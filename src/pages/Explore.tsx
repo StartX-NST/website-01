@@ -111,11 +111,6 @@ export default function Explore() {
 				transition={{ duration: 0.6 }}
 				className='max-w-7xl mx-auto relative z-10'>
 				<div className='mb-16'>
-					<div className='inline-block mb-4 px-4 py-1.5 rounded-full bg-primary/10 border border-primary/20'>
-						<span className='text-sm font-medium text-primary'>
-							Discover & Connect
-						</span>
-					</div>
 					<h1 className='text-5xl md:text-6xl font-display font-bold mb-4 tracking-tight'>
 						Explore
 					</h1>

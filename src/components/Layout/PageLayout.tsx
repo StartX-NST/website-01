@@ -1,5 +1,6 @@
 import { ReactNode } from 'react';
-import { AppSidebar } from './AppSidebar';
+import { AppNavbar } from './AppNavbar';
+import { AppFooter } from './AppFooter';
 
 interface PageLayoutProps {
 	children: ReactNode;
@@ -7,9 +8,10 @@ interface PageLayoutProps {
 
 export function PageLayout({ children }: PageLayoutProps) {
 	return (
-		<div className='flex min-h-screen w-full'>
-			<AppSidebar />
-			<main className='flex-1 lg:ml-0'>{children}</main>
+		<div className='flex flex-col min-h-screen w-full'>
+			<AppNavbar />
+			<main className='flex-1'>{children}</main>
+			<AppFooter />
 		</div>
 	);
 }
