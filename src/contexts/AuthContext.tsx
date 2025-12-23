@@ -1,77 +1,93 @@
 import {
-	createContext,
-	useContext,
-	useState,
-	useEffect,
-	ReactNode,
-} from 'react';
+  createContext,
+  useContext,
+  useState,
+  useEffect,
+  ReactNode,
+} from "react";
+
+import axiosInstance from "@/lib/axios";
 
 interface User {
-	id: string;
-	email: string;
-	name: string;
-	isMember: boolean;
+  id: string;
+  email: string;
+  role: string;
 }
 
 interface AuthContextType {
-	user: User | null;
-	isAuthenticated: boolean;
-	isMember: boolean;
-	login: (userData: User) => void;
-	logout: () => void;
-	updateMembershipStatus: (status: boolean) => void;
+  user: User | null;
+  isAuthenticated: boolean;
+  role: string | null;
+  loading: boolean;
+  login: (email: string, password: string) => Promise<void>;
+  register: (email: string, password: string) => Promise<void>;
+  logout: () => Promise<void>;
+  refreshUser: () => Promise<void>;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 export function AuthProvider({ children }: { children: ReactNode }) {
-	const [user, setUser] = useState<User | null>(null);
+  const [user, setUser] = useState<User | null>(null);
+  const [loading, setLoading] = useState(true);
 
-	// Load user from localStorage on mount
-	useEffect(() => {
-		const storedUser = localStorage.getItem('user');
-		if (storedUser) {
-			setUser(JSON.parse(storedUser));
-		}
-	}, []);
+  /* ---------------- LOAD USER FROM API ---------------- */
+  const refreshUser = async () => {
+    try {
+      const res = await axiosInstance.get("/auth/me");
+      setUser(res.data.user);
+    } catch {
+      setUser(null);
+    } finally {
+      setLoading(false);
+    }
+  };
 
-	const login = (userData: User) => {
-		setUser(userData);
-		localStorage.setItem('user', JSON.stringify(userData));
-	};
+  useEffect(() => {
+    refreshUser();
+  }, []);
 
-	const logout = () => {
-		setUser(null);
-		localStorage.removeItem('user');
-	};
+  /* ---------------- LOGIN ---------------- */
+  const login = async (email: string, password: string) => {
+    await axiosInstance.post("/auth/login", { email, password });
+    await refreshUser();
+  };
 
-	const updateMembershipStatus = (status: boolean) => {
-		if (user) {
-			const updatedUser = { ...user, isMember: status };
-			setUser(updatedUser);
-			localStorage.setItem('user', JSON.stringify(updatedUser));
-		}
-	};
+  /* ---------------- REGISTER ---------------- */
+  const register = async (email: string, password: string) => {
+    await axiosInstance.post("/auth/register", { email, password });
+    await refreshUser();
+  };
 
-	return (
-		<AuthContext.Provider
-			value={{
-				user,
-				isAuthenticated: !!user,
-				isMember: user?.isMember || false,
-				login,
-				logout,
-				updateMembershipStatus,
-			}}>
-			{children}
-		</AuthContext.Provider>
-	);
+  /* ---------------- LOGOUT ---------------- */
+  const logout = async () => {
+    await axiosInstance.post("/auth/logout");
+    setUser(null);
+  };
+
+  return (
+    <AuthContext.Provider
+      value={{
+        user,
+        isAuthenticated: !!user,
+        role: user?.role || null,
+        loading,
+        login,
+        register,
+        logout,
+        refreshUser,
+      }}
+    >
+      {children}
+    </AuthContext.Provider>
+  );
 }
 
+/* ---------------- HOOK ---------------- */
 export function useAuth() {
-	const context = useContext(AuthContext);
-	if (context === undefined) {
-		throw new Error('useAuth must be used within an AuthProvider');
-	}
-	return context;
+  const context = useContext(AuthContext);
+  if (!context) {
+    throw new Error("useAuth must be used within AuthProvider");
+  }
+  return context;
 }
