@@ -1,22 +1,6 @@
 import { useState } from 'react';
-import {
-	Compass,
-	Briefcase,
-	Trophy,
-	Zap,
-	Users,
-	Code,
-	Palette,
-	Rocket,
-	Brain,
-	DollarSign,
-	Target,
-} from 'lucide-react';
-import {
-	OpportunityCard,
-	CommunityCard,
-	ExploreFilters,
-} from '@/components/explore';
+import { Briefcase, Trophy } from 'lucide-react';
+import { OpportunityCard, ExploreFilters } from '@/components/explore';
 import {
 	AnimatedPage,
 	StaggerContainer,
@@ -129,70 +113,6 @@ const opportunitiesData = [
 	},
 ];
 
-// Mock communities data
-const communitiesData = [
-	{
-		id: '1',
-		name: 'AI Builders',
-		description:
-			'Connect with founders building AI products. Share insights, discuss challenges, and collaborate on cutting-edge machine learning projects.',
-		category: 'Technology',
-		members: 342,
-		icon: Brain,
-		active: true,
-	},
-	{
-		id: '2',
-		name: 'Design Founders',
-		description:
-			'Community for design-minded founders. Weekly design critiques, portfolio reviews, and discussions on product design best practices.',
-		category: 'Design',
-		members: 156,
-		icon: Palette,
-		active: true,
-	},
-	{
-		id: '3',
-		name: 'Product Builders',
-		description:
-			'Focus on product strategy, user research, and shipping features that matter. Learn from experienced product leaders.',
-		category: 'Product',
-		members: 289,
-		icon: Target,
-		active: true,
-	},
-	{
-		id: '4',
-		name: 'Developer Circle',
-		description:
-			'Engineering-focused community for technical founders. Code reviews, architecture discussions, and best practices for scaling systems.',
-		category: 'Engineering',
-		members: 412,
-		icon: Code,
-		active: true,
-	},
-	{
-		id: '5',
-		name: 'Fintech Founders',
-		description:
-			'Building in fintech? Join discussions on payments, compliance, banking APIs, and financial product design.',
-		category: 'Industry',
-		members: 198,
-		icon: DollarSign,
-		active: true,
-	},
-	{
-		id: '6',
-		name: 'First-Time Founders',
-		description:
-			'Supportive community for those starting their first company. Ask questions, share learnings, and grow together.',
-		category: 'Community',
-		members: 521,
-		icon: Rocket,
-		active: true,
-	},
-];
-
 export default function Explore() {
 	const [selectedType, setSelectedType] = useState('all');
 
@@ -200,11 +120,6 @@ export default function Explore() {
 	const filteredOpportunities = opportunitiesData.filter((opp) => {
 		return selectedType === 'all' || opp.type === selectedType;
 	});
-
-	// Stats
-	const totalOpportunities = opportunitiesData.length;
-	const totalCommunities = communitiesData.length;
-	const activeCommunities = communitiesData.filter((c) => c.active).length;
 
 	return (
 		<AnimatedPage>

@@ -1,21 +1,6 @@
 import { useState } from 'react';
-import {
-	Sparkles,
-	Users,
-	Rocket,
-	Trophy,
-	Target,
-	Zap,
-	TrendingUp,
-	Award,
-	DollarSign,
-} from 'lucide-react';
-import {
-	ProjectCard,
-	FounderCard,
-	AchievementCard,
-	ShowcaseFilters,
-} from '@/components/showcase';
+import { Rocket, Target } from 'lucide-react';
+import { ProjectCard, ShowcaseFilters } from '@/components/showcase';
 import {
 	AnimatedPage,
 	StaggerContainer,
@@ -126,67 +111,6 @@ const projectsData = [
 	},
 ];
 
-// Featured founders data
-const foundersData = [
-	{
-		id: '1',
-		name: 'Sarah Chen',
-		title: 'Founder, TaskFlow',
-		bio: 'Former product manager at Google. Building tools to help teams work better. Passionate about productivity and design.',
-		achievement: 'Raised $2M seed round',
-	},
-	{
-		id: '2',
-		name: 'Alex Kumar',
-		title: 'Founder, CodeMentor AI',
-		bio: 'Ex-senior engineer at Meta. Creating AI tools for developers. YC alum and open-source contributor.',
-		achievement: 'YC W24 • 10k+ users in 3 months',
-	},
-	{
-		id: '3',
-		name: 'Marcus Johnson',
-		title: 'Founder, LocalBites',
-		bio: 'Serial entrepreneur with a passion for supporting local businesses. Third-time founder with previous exits.',
-		achievement: 'Scaled to $50k monthly GMV',
-	},
-];
-
-// Achievements data
-const achievementsData = [
-	{
-		id: '1',
-		title: 'First Million in ARR',
-		description:
-			'TaskFlow crossed $1M in annual recurring revenue, 18 months after launch.',
-		date: 'December 2025',
-		icon: DollarSign,
-	},
-	{
-		id: '2',
-		title: 'YC Acceptance',
-		description:
-			'CodeMentor AI accepted into Y Combinator Winter 2024 batch.',
-		date: 'November 2025',
-		icon: Trophy,
-	},
-	{
-		id: '3',
-		title: 'App Store Featured',
-		description:
-			'FitTrack featured as App of the Day, reaching #1 in Health & Fitness.',
-		date: 'October 2025',
-		icon: Award,
-	},
-	{
-		id: '4',
-		title: '100k Users Milestone',
-		description:
-			'InsightAI celebrated reaching 100,000 active users across 40 countries.',
-		date: 'September 2025',
-		icon: Users,
-	},
-];
-
 export default function Showcase() {
 	const [selectedCategory, setSelectedCategory] = useState('all');
 
@@ -196,11 +120,6 @@ export default function Showcase() {
 			selectedCategory === 'all' || project.category === selectedCategory
 		);
 	});
-
-	// Stats
-	const totalProjects = projectsData.length;
-	const totalFounders = foundersData.length;
-	const totalAchievements = achievementsData.length;
 
 	return (
 		<AnimatedPage>

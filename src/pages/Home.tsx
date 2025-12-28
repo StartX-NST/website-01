@@ -1,13 +1,4 @@
-import {
-	ArrowRight,
-	Calendar,
-	BookOpen,
-	Gift,
-	Compass,
-	Users,
-	Rocket,
-	Target,
-} from 'lucide-react';
+import { ArrowRight, Calendar, BookOpen, Gift, Compass } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { AnimatedPage, FadeIn } from '@/components/animations';
 import { useAuth } from '@/contexts/AuthContext';

@@ -1,19 +1,6 @@
 import { useState } from 'react';
-import {
-	BookOpen,
-	Zap,
-	TrendingUp,
-	Code,
-	Users,
-	Award,
-	GraduationCap,
-	Rocket,
-} from 'lucide-react';
-import {
-	CourseCard,
-	LearningPathCard,
-	LearningFilters,
-} from '@/components/learn';
+import { BookOpen } from 'lucide-react';
+import { CourseCard, LearningFilters } from '@/components/learn';
 import {
 	AnimatedPage,
 	StaggerContainer,
@@ -112,40 +99,6 @@ const coursesData = [
 	},
 ];
 
-// Learning paths data
-const learningPaths = [
-	{
-		id: '1',
-		title: 'First-Time Founder Track',
-		description:
-			'Perfect for those just starting their entrepreneurial journey. Learn the fundamentals of building a startup from ideation to launch.',
-		targetAudience: 'First-time founders',
-		courses: 4,
-		duration: '14 weeks',
-		icon: Rocket,
-	},
-	{
-		id: '2',
-		title: 'Growth & Scale Track',
-		description:
-			'For founders ready to scale. Focus on growth marketing, fundraising, and building systems that work at scale.',
-		targetAudience: 'Growth-stage founders',
-		courses: 5,
-		duration: '20 weeks',
-		icon: TrendingUp,
-	},
-	{
-		id: '3',
-		title: 'Technical Builder Track',
-		description:
-			'Designed for technical founders who want to build better products and make smarter technical decisions.',
-		targetAudience: 'Technical founders',
-		courses: 3,
-		duration: '12 weeks',
-		icon: Code,
-	},
-];
-
 export default function Learn() {
 	const [selectedDifficulty, setSelectedDifficulty] = useState('all');
 
@@ -156,14 +109,6 @@ export default function Learn() {
 			course.difficulty === selectedDifficulty
 		);
 	});
-
-	// Stats
-	const totalCourses = coursesData.length;
-	const totalStudents = coursesData.reduce(
-		(acc, course) => acc + (course.enrolled || 0),
-		0
-	);
-	const completedCourses = coursesData.filter((c) => c.completed).length;
 
 	return (
 		<AnimatedPage>

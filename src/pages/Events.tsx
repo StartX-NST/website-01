@@ -1,12 +1,5 @@
 import { useState } from 'react';
-import {
-	Calendar,
-	Sparkles,
-	TrendingUp,
-	Award,
-	Users,
-	Clock,
-} from 'lucide-react';
+import { Calendar, Sparkles, TrendingUp } from 'lucide-react';
 import EventCard from '@/components/events/EventCard';
 import EventFilters from '@/components/events/EventFilters';
 import {
@@ -140,18 +133,6 @@ export default function Events() {
 		(e) => e.status === 'upcoming'
 	);
 	const pastEvents = filteredEvents.filter((e) => e.status === 'completed');
-
-	// Stats for the hero section
-	const totalUpcoming = eventsData.filter(
-		(e) => e.status === 'upcoming'
-	).length;
-	const totalAttendees = eventsData.reduce(
-		(acc, event) => acc + (event.attendees || 0),
-		0
-	);
-	const totalEvents = eventsData.filter(
-		(e) => e.status === 'completed'
-	).length;
 
 	return (
 		<AnimatedPage>
