@@ -20,7 +20,7 @@ interface CourseCardProps {
 }
 
 const difficultyColors = {
-	beginner: 'text-emerald-400 bg-emerald-500/10 border-emerald-500/20',
+	beginner: 'text-blue-400 bg-blue-500/10 border-blue-500/20',
 	intermediate: 'text-blue-400 bg-blue-500/10 border-blue-500/20',
 	advanced: 'text-orange-400 bg-orange-500/10 border-orange-500/20',
 };
@@ -36,13 +36,13 @@ export default function CourseCard({
 }: CourseCardProps) {
 	return (
 		<ProtectedAction requireMembership={true}>
-			<div className='group relative border border-gray-800 rounded-xl overflow-hidden bg-gradient-to-br from-black/60 to-black/40 backdrop-blur-sm transition-all duration-500 hover:-translate-y-1 hover:border-emerald-500/30 hover:shadow-[0_0_25px_rgba(16,185,129,0.1)]'>
+			<div className='group relative border border-gray-800 rounded-xl overflow-hidden bg-gradient-to-br from-black/60 to-black/40 backdrop-blur-sm transition-all duration-500 hover:-translate-y-1 hover:border-blue-500/30 hover:shadow-[0_0_25px_rgba(19,40,85,0.1)]'>
 				{/* Completed badge */}
 				{completed && (
 					<div className='absolute top-4 right-4 z-10'>
-						<div className='px-3 py-1.5 rounded-full bg-emerald-500/20 border border-emerald-500/40 backdrop-blur-sm flex items-center gap-1.5'>
-							<CheckCircle className='w-3.5 h-3.5 text-emerald-400' />
-							<span className='text-xs font-semibold text-emerald-400 uppercase tracking-wider'>
+						<div className='px-3 py-1.5 rounded-full bg-blue-500/20 border border-blue-500/40 backdrop-blur-sm flex items-center gap-1.5'>
+							<CheckCircle className='w-3.5 h-3.5 text-blue-400' />
+							<span className='text-xs font-semibold text-blue-400 uppercase tracking-wider'>
 								Completed
 							</span>
 						</div>
@@ -61,7 +61,7 @@ export default function CourseCard({
 					</div>
 
 					{/* Title */}
-					<h3 className='text-xl font-bold text-white mb-3 group-hover:text-emerald-400 transition-colors line-clamp-2'>
+					<h3 className='text-xl font-bold text-white mb-3 group-hover:text-blue-400 transition-colors line-clamp-2'>
 						{title}
 					</h3>
 
@@ -73,16 +73,16 @@ export default function CourseCard({
 					{/* Course details */}
 					<div className='flex items-center gap-4 mb-6 text-sm text-gray-400'>
 						<div className='flex items-center gap-1.5'>
-							<Clock className='w-4 h-4 text-emerald-400 flex-shrink-0' />
+							<Clock className='w-4 h-4 text-blue-400 flex-shrink-0' />
 							<span>{duration}</span>
 						</div>
 						<div className='flex items-center gap-1.5'>
-							<BookOpen className='w-4 h-4 text-emerald-400 flex-shrink-0' />
+							<BookOpen className='w-4 h-4 text-blue-400 flex-shrink-0' />
 							<span>{modules} modules</span>
 						</div>
 						{enrolled && (
 							<div className='flex items-center gap-1.5'>
-								<BarChart className='w-4 h-4 text-emerald-400 flex-shrink-0' />
+								<BarChart className='w-4 h-4 text-blue-400 flex-shrink-0' />
 								<span>{enrolled} enrolled</span>
 							</div>
 						)}
@@ -91,7 +91,7 @@ export default function CourseCard({
 					{/* CTA */}
 					<Link
 						to='#'
-						className='inline-flex items-center gap-2 text-sm font-semibold text-emerald-400 hover:text-emerald-300 transition-colors group/cta'>
+						className='inline-flex items-center gap-2 text-sm font-semibold text-blue-400 hover:text-blue-300 transition-colors group/cta'>
 						<span>
 							{completed ? 'Review course' : 'Start learning'}
 						</span>

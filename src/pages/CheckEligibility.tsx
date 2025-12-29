@@ -7,8 +7,8 @@ export default function CheckEligibility() {
 			<div className='max-w-3xl w-full'>
 				{/* Header */}
 				<div className='text-center mb-12'>
-					<div className='inline-flex items-center justify-center w-16 h-16 rounded-full bg-emerald-500/10 border border-emerald-500/20 mb-6'>
-						<CheckCircle className='w-8 h-8 text-emerald-400' />
+					<div className='inline-flex items-center justify-center w-16 h-16 rounded-full bg-blue-500/10 border border-blue-500/20 mb-6'>
+						<CheckCircle className='w-8 h-8 text-blue-400' />
 					</div>
 					<h1 className='text-4xl md:text-5xl font-bold text-white mb-4'>
 						Join StartX
@@ -46,9 +46,9 @@ export default function CheckEligibility() {
 						].map((item, idx) => (
 							<div
 								key={idx}
-								className='flex items-start gap-4 p-4 rounded-xl bg-emerald-500/5 border border-emerald-500/10 hover:border-emerald-500/20 transition-colors'>
-								<div className='flex-shrink-0 w-6 h-6 rounded-full bg-emerald-500/20 border border-emerald-500/30 flex items-center justify-center mt-0.5'>
-									<CheckCircle className='w-4 h-4 text-emerald-400' />
+								className='flex items-start gap-4 p-4 rounded-xl bg-blue-500/5 border border-blue-500/10 hover:border-blue-500/20 transition-colors'>
+								<div className='flex-shrink-0 w-6 h-6 rounded-full bg-blue-500/20 border border-blue-500/30 flex items-center justify-center mt-0.5'>
+									<CheckCircle className='w-4 h-4 text-blue-400' />
 								</div>
 								<div>
 									<h3 className='text-white font-semibold mb-1'>
@@ -72,7 +72,7 @@ export default function CheckEligibility() {
 					<div className='flex flex-col sm:flex-row items-center justify-center gap-4'>
 						<Link
 							to='/apply-membership'
-							className='inline-flex items-center gap-2.5 bg-emerald-500 hover:bg-emerald-400 text-black font-bold text-base px-10 py-4 rounded-full transition-all duration-300 hover:shadow-[0_0_40px_rgba(16,185,129,0.5)] hover:scale-105 shadow-[0_0_25px_rgba(16,185,129,0.2)]'>
+							className='inline-flex items-center gap-2.5 bg-blue-500 hover:bg-blue-400 text-black font-bold text-base px-10 py-4 rounded-full transition-all duration-300 hover:shadow-[0_0_40px_rgba(19,40,85,0.5)] hover:scale-105 shadow-[0_0_25px_rgba(19,40,85,0.2)]'>
 							Apply for membership
 							<ArrowRight
 								className='w-5 h-5'
@@ -81,7 +81,7 @@ export default function CheckEligibility() {
 						</Link>
 						<Link
 							to='/'
-							className='inline-flex items-center gap-2 text-gray-300 hover:text-white font-medium text-base px-10 py-4 rounded-full border border-gray-800 hover:border-emerald-500/50 hover:bg-emerald-500/5 transition-all duration-300'>
+							className='inline-flex items-center gap-2 text-gray-300 hover:text-white font-medium text-base px-10 py-4 rounded-full border border-gray-800 hover:border-blue-500/50 hover:bg-blue-500/5 transition-all duration-300'>
 							Back to home
 						</Link>
 					</div>

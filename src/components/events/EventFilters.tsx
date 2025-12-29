@@ -36,8 +36,8 @@ export default function EventFilters({
 						onClick={() => onTypeChange(type.value)}
 						className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
 							selectedType === type.value
-								? 'bg-emerald-500 text-black shadow-[0_0_20px_rgba(16,185,129,0.3)]'
-								: 'bg-black/40 text-gray-400 border border-gray-800 hover:border-emerald-500/50 hover:text-white'
+								? 'bg-blue-500 text-black shadow-[0_0_20px_rgba(19,40,85,0.3)]'
+								: 'bg-black/40 text-gray-400 border border-gray-800 hover:border-blue-500/50 hover:text-white'
 						}`}>
 						{type.label}
 					</button>
@@ -52,8 +52,8 @@ export default function EventFilters({
 						onClick={() => onStatusChange(status.value)}
 						className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
 							selectedStatus === status.value
-								? 'bg-emerald-500/10 text-emerald-400 border border-emerald-500/40'
-								: 'bg-black/40 text-gray-400 border border-gray-800 hover:border-emerald-500/50 hover:text-white'
+								? 'bg-blue-500/10 text-blue-400 border border-blue-500/40'
+								: 'bg-black/40 text-gray-400 border border-gray-800 hover:border-blue-500/50 hover:text-white'
 						}`}>
 						{status.label}
 					</button>

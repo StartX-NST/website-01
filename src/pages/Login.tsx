@@ -38,7 +38,7 @@ export default function Login() {
 				<div className='text-center mb-8'>
 					<Link
 						to='/'
-						className='inline-block text-2xl font-bold text-white hover:text-emerald-400 transition-colors mb-2'>
+						className='inline-block text-2xl font-bold text-white hover:text-blue-400 transition-colors mb-2'>
 						StartX
 					</Link>
 					<h1 className='text-3xl font-bold text-white mb-2'>
@@ -73,7 +73,7 @@ export default function Login() {
 										email: e.target.value,
 									})
 								}
-								className='w-full px-4 py-2.5 bg-black/40 border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-emerald-500/50 transition-all'
+								className='w-full px-4 py-2.5 bg-black/40 border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-blue-500/50 transition-all'
 								placeholder='Enter your email'
 							/>
 						</div>
@@ -92,7 +92,7 @@ export default function Login() {
 										password: e.target.value,
 									})
 								}
-								className='w-full px-4 py-2.5 bg-black/40 border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-emerald-500/50 transition-all'
+								className='w-full px-4 py-2.5 bg-black/40 border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-blue-500/50 transition-all'
 								placeholder='Enter your password'
 							/>
 						</div>
@@ -100,7 +100,7 @@ export default function Login() {
 						<button
 							type='submit'
 							disabled={loading}
-							className='w-full py-3 bg-emerald-500 hover:bg-emerald-400 text-black font-semibold rounded-lg transition-all duration-300 hover:shadow-[0_0_30px_rgba(16,185,129,0.4)] disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2'>
+							className='w-full py-3 bg-blue-500 hover:bg-blue-400 text-black font-semibold rounded-lg transition-all duration-300 hover:shadow-[0_0_30px_rgba(19,40,85,0.4)] disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2'>
 							{loading ? (
 								<>
 									<Loader2 className='w-5 h-5 animate-spin' />
@@ -115,7 +115,7 @@ export default function Login() {
 							Don't have an account?{' '}
 							<Link
 								to='/signup'
-								className='text-emerald-400 hover:text-emerald-300 transition-colors'>
+								className='text-blue-400 hover:text-blue-300 transition-colors'>
 								Create account
 							</Link>
 						</p>
@@ -125,11 +125,11 @@ export default function Login() {
 								Demo credentials:
 							</p>
 							<p className='text-xs text-gray-400 text-center'>
-								<span className='text-emerald-400'>
+								<span className='text-blue-400'>
 									member@test.com
 								</span>{' '}
 								or{' '}
-								<span className='text-emerald-400'>
+								<span className='text-blue-400'>
 									admin@test.com
 								</span>
 							</p>

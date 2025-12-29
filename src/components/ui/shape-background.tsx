@@ -69,7 +69,7 @@ export function ShapesBackground() {
 	return (
 		<div className='fixed inset-0 overflow-hidden pointer-events-none z-0'>
 			{/* Subtle gradient overlay */}
-			<div className='absolute inset-0 bg-gradient-to-br from-emerald-500/[0.03] via-transparent to-emerald-500/[0.02] blur-3xl' />
+			<div className='absolute inset-0 bg-gradient-to-br from-blue-500/[0.03] via-transparent to-blue-500/[0.02] blur-3xl' />
 
 			{/* Geometric shapes */}
 			<ElegantShape
@@ -77,7 +77,7 @@ export function ShapesBackground() {
 				width={600}
 				height={140}
 				rotate={12}
-				gradient='from-emerald-500/[0.12]'
+				gradient='from-blue-500/[0.12]'
 				className='left-[-10%] md:left-[-5%] top-[15%] md:top-[20%]'
 			/>
 
@@ -86,7 +86,7 @@ export function ShapesBackground() {
 				width={500}
 				height={120}
 				rotate={-15}
-				gradient='from-emerald-400/[0.1]'
+				gradient='from-blue-400/[0.1]'
 				className='right-[-5%] md:right-[0%] top-[70%] md:top-[75%]'
 			/>
 
@@ -95,7 +95,7 @@ export function ShapesBackground() {
 				width={300}
 				height={80}
 				rotate={-8}
-				gradient='from-emerald-500/[0.11]'
+				gradient='from-blue-500/[0.11]'
 				className='left-[5%] md:left-[10%] bottom-[5%] md:bottom-[10%]'
 			/>
 
@@ -104,7 +104,7 @@ export function ShapesBackground() {
 				width={200}
 				height={60}
 				rotate={20}
-				gradient='from-emerald-300/[0.09]'
+				gradient='from-blue-300/[0.09]'
 				className='right-[15%] md:right-[20%] top-[10%] md:top-[15%]'
 			/>
 
@@ -113,7 +113,7 @@ export function ShapesBackground() {
 				width={150}
 				height={40}
 				rotate={-25}
-				gradient='from-emerald-400/[0.1]'
+				gradient='from-blue-400/[0.1]'
 				className='left-[20%] md:left-[25%] top-[5%] md:top-[10%]'
 			/>
 		</div>

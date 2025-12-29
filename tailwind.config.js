@@ -5,8 +5,8 @@ export default {
 		extend: {
 			colors: {
 				primary: {
-					DEFAULT: 'rgb(0, 217, 255)',
-					foreground: 'rgb(0, 0, 0)',
+					DEFAULT: 'rgb(19, 40, 85)',
+					foreground: 'rgb(255, 255, 255)',
 				},
 				background: 'rgb(0, 0, 0)',
 				foreground: 'rgb(255, 255, 255)',

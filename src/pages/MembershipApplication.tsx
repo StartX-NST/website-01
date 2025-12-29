@@ -49,7 +49,7 @@ export default function MembershipApplication() {
 			title: 'Application Approved!',
 			message:
 				'Congratulations! You are now a StartX member. Welcome to the community!',
-			color: 'emerald',
+			color: 'blue',
 		},
 		rejected: {
 			icon: AlertCircle,
@@ -72,7 +72,7 @@ export default function MembershipApplication() {
 					<div className='text-center mb-8'>
 						<Link
 							to='/'
-							className='inline-block text-2xl font-bold text-white hover:text-emerald-400 transition-colors mb-2'>
+							className='inline-block text-2xl font-bold text-white hover:text-blue-400 transition-colors mb-2'>
 							StartX
 						</Link>
 					</div>
@@ -127,15 +127,15 @@ export default function MembershipApplication() {
 					<div className='text-center mb-8'>
 						<Link
 							to='/'
-							className='inline-block text-2xl font-bold text-white hover:text-emerald-400 transition-colors mb-2'>
+							className='inline-block text-2xl font-bold text-white hover:text-blue-400 transition-colors mb-2'>
 							StartX
 						</Link>
 					</div>
 
 					<div className='bg-black/80 border border-gray-800 rounded-xl p-12 backdrop-blur-xl'>
 						<div className='text-center'>
-							<div className='inline-flex items-center justify-center w-16 h-16 rounded-full bg-emerald-500/10 border border-emerald-500/20 mb-6'>
-								<CheckCircle className='w-8 h-8 text-emerald-400' />
+							<div className='inline-flex items-center justify-center w-16 h-16 rounded-full bg-blue-500/10 border border-blue-500/20 mb-6'>
+								<CheckCircle className='w-8 h-8 text-blue-400' />
 							</div>
 							<h2 className='text-2xl font-bold text-white mb-4'>
 								Application Submitted!
@@ -147,7 +147,7 @@ export default function MembershipApplication() {
 							</p>
 							<Link
 								to='/'
-								className='inline-block px-8 py-3 bg-emerald-500 hover:bg-emerald-400 text-black font-semibold rounded-lg transition-all duration-300 hover:shadow-[0_0_30px_rgba(16,185,129,0.4)]'>
+								className='inline-block px-8 py-3 bg-blue-500 hover:bg-blue-400 text-black font-semibold rounded-lg transition-all duration-300 hover:shadow-[0_0_30px_rgba(19,40,85,0.4)]'>
 								Done
 							</Link>
 						</div>
@@ -163,7 +163,7 @@ export default function MembershipApplication() {
 				<div className='text-center mb-8'>
 					<Link
 						to='/'
-						className='inline-block text-2xl font-bold text-white hover:text-emerald-400 transition-colors mb-4'>
+						className='inline-block text-2xl font-bold text-white hover:text-blue-400 transition-colors mb-4'>
 						StartX
 					</Link>
 					<h1 className='text-3xl font-bold text-white mb-2'>
@@ -194,7 +194,7 @@ export default function MembershipApplication() {
 											name: e.target.value,
 										})
 									}
-									className='w-full px-4 py-2.5 bg-black/40 border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-emerald-500/50 transition-all'
+									className='w-full px-4 py-2.5 bg-black/40 border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-blue-500/50 transition-all'
 									placeholder='John Doe'
 								/>
 							</div>
@@ -212,7 +212,7 @@ export default function MembershipApplication() {
 											email: e.target.value,
 										})
 									}
-									className='w-full px-4 py-2.5 bg-black/40 border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-emerald-500/50 transition-all'
+									className='w-full px-4 py-2.5 bg-black/40 border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-blue-500/50 transition-all'
 									placeholder='john@example.com'
 								/>
 							</div>
@@ -231,7 +231,7 @@ export default function MembershipApplication() {
 										phone: e.target.value,
 									})
 								}
-								className='w-full px-4 py-2.5 bg-black/40 border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-emerald-500/50 transition-all'
+								className='w-full px-4 py-2.5 bg-black/40 border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-blue-500/50 transition-all'
 								placeholder='+1 (555) 000-0000'
 							/>
 						</div>
@@ -252,7 +252,7 @@ export default function MembershipApplication() {
 											campus: e.target.value,
 										})
 									}
-									className='w-full px-4 py-2.5 bg-black/40 border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-emerald-500/50 transition-all'
+									className='w-full px-4 py-2.5 bg-black/40 border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-blue-500/50 transition-all'
 									placeholder='Your University'
 								/>
 							</div>
@@ -269,7 +269,7 @@ export default function MembershipApplication() {
 											year: e.target.value,
 										})
 									}
-									className='w-full px-4 py-2.5 bg-black/40 border border-gray-700 rounded-lg text-white focus:outline-none focus:border-emerald-500/50 transition-all'>
+									className='w-full px-4 py-2.5 bg-black/40 border border-gray-700 rounded-lg text-white focus:outline-none focus:border-blue-500/50 transition-all'>
 									<option value=''>Select Year</option>
 									<option value='freshman'>Freshman</option>
 									<option value='sophomore'>Sophomore</option>
@@ -295,7 +295,7 @@ export default function MembershipApplication() {
 										interests: e.target.value,
 									})
 								}
-								className='w-full px-4 py-2.5 bg-black/40 border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-emerald-500/50 transition-all'
+								className='w-full px-4 py-2.5 bg-black/40 border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-blue-500/50 transition-all'
 								placeholder='e.g., AI, Web Development, Blockchain'
 							/>
 						</div>
@@ -313,7 +313,7 @@ export default function MembershipApplication() {
 									})
 								}
 								rows={3}
-								className='w-full px-4 py-2.5 bg-black/40 border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-emerald-500/50 transition-all resize-none'
+								className='w-full px-4 py-2.5 bg-black/40 border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-blue-500/50 transition-all resize-none'
 								placeholder='Tell us about your relevant experience, projects, or achievements...'
 							/>
 						</div>
@@ -332,7 +332,7 @@ export default function MembershipApplication() {
 									})
 								}
 								rows={3}
-								className='w-full px-4 py-2.5 bg-black/40 border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-emerald-500/50 transition-all resize-none'
+								className='w-full px-4 py-2.5 bg-black/40 border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-blue-500/50 transition-all resize-none'
 								placeholder='What motivates you to join StartX? What do you hope to achieve?'
 							/>
 						</div>
@@ -348,7 +348,7 @@ export default function MembershipApplication() {
 							<button
 								type='submit'
 								disabled={loading}
-								className='flex-1 py-3 bg-emerald-500 hover:bg-emerald-400 text-black font-semibold rounded-lg transition-all duration-300 hover:shadow-[0_0_30px_rgba(16,185,129,0.4)] disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2'>
+								className='flex-1 py-3 bg-blue-500 hover:bg-blue-400 text-black font-semibold rounded-lg transition-all duration-300 hover:shadow-[0_0_30px_rgba(19,40,85,0.4)] disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2'>
 								{loading ? (
 									<>
 										<Loader2 className='w-5 h-5 animate-spin' />

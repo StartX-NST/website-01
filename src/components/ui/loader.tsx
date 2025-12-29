@@ -15,7 +15,7 @@ export function Loader({ size = 'md', className }: LoaderProps) {
 	return (
 		<div
 			className={cn(
-				'inline-block rounded-full border-emerald-500/20 border-t-emerald-500 animate-spin',
+				'inline-block rounded-full border-blue-500/20 border-t-blue-500 animate-spin',
 				sizeClasses[size],
 				className
 			)}
@@ -47,7 +47,7 @@ export function LoadingScreen({ message = 'Loading...' }: LoadingScreenProps) {
 			</div>
 
 			{/* Glow effect */}
-			<div className='absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] bg-emerald-500/10 rounded-full blur-[100px]' />
+			<div className='absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] bg-blue-500/10 rounded-full blur-[100px]' />
 
 			{/* Content */}
 			<div className='relative z-10 flex flex-col items-center gap-4'>

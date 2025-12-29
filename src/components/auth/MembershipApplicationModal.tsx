@@ -92,7 +92,7 @@ export default function MembershipApplicationModal({
 			},
 			approved: {
 				icon: CheckCircle,
-				color: 'emerald',
+				color: 'blue',
 				title: 'Application Approved!',
 				message:
 					'Congratulations! Your membership application has been approved. You now have full access to all member benefits.',
@@ -190,7 +190,7 @@ export default function MembershipApplicationModal({
 											linkedinUrl: e.target.value,
 										})
 									}
-									className='w-full px-4 py-2.5 bg-black/40 border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-emerald-500/50 transition-all'
+									className='w-full px-4 py-2.5 bg-black/40 border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-blue-500/50 transition-all'
 									placeholder='https://linkedin.com/in/yourprofile'
 								/>
 							</div>
@@ -211,7 +211,7 @@ export default function MembershipApplicationModal({
 												currentRole: e.target.value,
 											})
 										}
-										className='w-full px-4 py-2.5 bg-black/40 border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-emerald-500/50 transition-all'
+										className='w-full px-4 py-2.5 bg-black/40 border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-blue-500/50 transition-all'
 										placeholder='Founder, Developer, etc.'
 									/>
 								</div>
@@ -228,7 +228,7 @@ export default function MembershipApplicationModal({
 												company: e.target.value,
 											})
 										}
-										className='w-full px-4 py-2.5 bg-black/40 border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-emerald-500/50 transition-all'
+										className='w-full px-4 py-2.5 bg-black/40 border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-blue-500/50 transition-all'
 										placeholder='Your company name'
 									/>
 								</div>
@@ -248,7 +248,7 @@ export default function MembershipApplicationModal({
 											yearsOfExperience: e.target.value,
 										})
 									}
-									className='w-full px-4 py-2.5 bg-black/40 border border-gray-700 rounded-lg text-white focus:outline-none focus:border-emerald-500/50 transition-all'>
+									className='w-full px-4 py-2.5 bg-black/40 border border-gray-700 rounded-lg text-white focus:outline-none focus:border-blue-500/50 transition-all'>
 									<option value=''>
 										Select experience level
 									</option>
@@ -274,7 +274,7 @@ export default function MembershipApplicationModal({
 										})
 									}
 									rows={3}
-									className='w-full px-4 py-2.5 bg-black/40 border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-emerald-500/50 transition-all resize-none'
+									className='w-full px-4 py-2.5 bg-black/40 border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-blue-500/50 transition-all resize-none'
 									placeholder='Brief description of your project or startup idea...'
 								/>
 							</div>
@@ -294,7 +294,7 @@ export default function MembershipApplicationModal({
 										})
 									}
 									rows={3}
-									className='w-full px-4 py-2.5 bg-black/40 border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-emerald-500/50 transition-all resize-none'
+									className='w-full px-4 py-2.5 bg-black/40 border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-blue-500/50 transition-all resize-none'
 									placeholder='What are you hoping to gain from the community?'
 								/>
 							</div>
@@ -313,7 +313,7 @@ export default function MembershipApplicationModal({
 											commitment: e.target.value,
 										})
 									}
-									className='w-full px-4 py-2.5 bg-black/40 border border-gray-700 rounded-lg text-white focus:outline-none focus:border-emerald-500/50 transition-all'>
+									className='w-full px-4 py-2.5 bg-black/40 border border-gray-700 rounded-lg text-white focus:outline-none focus:border-blue-500/50 transition-all'>
 									<option value=''>
 										Select your availability
 									</option>
@@ -346,7 +346,7 @@ export default function MembershipApplicationModal({
 											referralSource: e.target.value,
 										})
 									}
-									className='w-full px-4 py-2.5 bg-black/40 border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-emerald-500/50 transition-all'
+									className='w-full px-4 py-2.5 bg-black/40 border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-blue-500/50 transition-all'
 									placeholder='Friend, social media, search, etc.'
 								/>
 							</div>
@@ -362,7 +362,7 @@ export default function MembershipApplicationModal({
 								<button
 									type='submit'
 									disabled={loading}
-									className='flex-1 py-3 bg-emerald-500 hover:bg-emerald-400 text-black font-semibold rounded-lg transition-all duration-300 hover:shadow-[0_0_30px_rgba(16,185,129,0.4)] disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2'>
+									className='flex-1 py-3 bg-blue-500 hover:bg-blue-400 text-black font-semibold rounded-lg transition-all duration-300 hover:shadow-[0_0_30px_rgba(19,40,85,0.4)] disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2'>
 									{loading ? (
 										<>
 											<Loader2 className='w-5 h-5 animate-spin' />
@@ -377,8 +377,8 @@ export default function MembershipApplicationModal({
 					</div>
 				) : (
 					<div className='relative p-12 text-center'>
-						<div className='inline-flex items-center justify-center w-16 h-16 rounded-full bg-emerald-500/10 border border-emerald-500/20 mb-6'>
-							<CheckCircle className='w-8 h-8 text-emerald-400' />
+						<div className='inline-flex items-center justify-center w-16 h-16 rounded-full bg-blue-500/10 border border-blue-500/20 mb-6'>
+							<CheckCircle className='w-8 h-8 text-blue-400' />
 						</div>
 						<h2 className='text-2xl font-bold text-white mb-4'>
 							Application Submitted!
@@ -390,7 +390,7 @@ export default function MembershipApplicationModal({
 						</p>
 						<button
 							onClick={handleClose}
-							className='px-8 py-3 bg-emerald-500 hover:bg-emerald-400 text-black font-semibold rounded-lg transition-all duration-300 hover:shadow-[0_0_30px_rgba(16,185,129,0.4)]'>
+							className='px-8 py-3 bg-blue-500 hover:bg-blue-400 text-black font-semibold rounded-lg transition-all duration-300 hover:shadow-[0_0_30px_rgba(19,40,85,0.4)]'>
 							Done
 						</button>
 					</div>

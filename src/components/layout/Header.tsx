@@ -86,7 +86,7 @@ export default function Header() {
 
 		if (user.role === 'member') {
 			return (
-				<span className='px-2.5 py-0.5 text-xs font-semibold rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400'>
+				<span className='px-2.5 py-0.5 text-xs font-semibold rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400'>
 					Member
 				</span>
 			);
@@ -120,7 +120,7 @@ export default function Header() {
 								to='/'
 								className='
 								text-white text-lg font-semibold tracking-wide px-2
-								hover:text-emerald-400 transition-colors duration-300
+								hover:text-blue-400 transition-colors duration-300
 							'>
 								StartX
 							</Link>
@@ -139,7 +139,7 @@ export default function Header() {
 											transition-all duration-300
 											${
 												active
-													? 'text-emerald-400'
+													? 'text-blue-400'
 													: 'text-gray-300 hover:text-white hover:bg-white/5'
 											}
 										`}>
@@ -147,7 +147,7 @@ export default function Header() {
 											{active && (
 												<motion.div
 													layoutId='navbar-indicator'
-													className='absolute inset-0 bg-emerald-500/10 rounded-full -z-10'
+													className='absolute inset-0 bg-blue-500/10 rounded-full -z-10'
 													initial={false}
 													transition={{
 														type: 'spring',
@@ -155,10 +155,10 @@ export default function Header() {
 														damping: 30,
 													}}>
 													{/* Tubelight glow effect */}
-													<div className='absolute -top-2 left-1/2 -translate-x-1/2 w-8 h-1 bg-emerald-400 rounded-t-full shadow-[0_0_10px_rgba(16,185,129,0.5)]'>
-														<div className='absolute w-12 h-6 bg-emerald-400/30 rounded-full blur-md -top-2 -left-2' />
-														<div className='absolute w-8 h-6 bg-emerald-400/20 rounded-full blur-md -top-1' />
-														<div className='absolute w-4 h-4 bg-emerald-400/30 rounded-full blur-sm top-0 left-2' />
+													<div className='absolute -top-2 left-1/2 -translate-x-1/2 w-8 h-1 bg-blue-400 rounded-t-full shadow-[0_0_10px_rgba(19,40,85,0.5)]'>
+														<div className='absolute w-12 h-6 bg-blue-400/30 rounded-full blur-md -top-2 -left-2' />
+														<div className='absolute w-8 h-6 bg-blue-400/20 rounded-full blur-md -top-1' />
+														<div className='absolute w-4 h-4 bg-blue-400/30 rounded-full blur-sm top-0 left-2' />
 													</div>
 												</motion.div>
 											)}
@@ -180,8 +180,8 @@ export default function Header() {
 											text-sm font-semibold tracking-wide
 											shadow-lg
 											transition-all duration-300
-											hover:bg-emerald-400
-											hover:shadow-[0_0_25px_rgba(16,185,129,0.6)]
+											hover:bg-blue-400
+											hover:shadow-[0_0_25px_rgba(19,40,85,0.6)]
 										'>
 											Sign In
 										</Link>
@@ -193,7 +193,7 @@ export default function Header() {
 													!showMobileMenu
 												)
 											}
-											className='md:hidden p-2 text-white hover:text-emerald-400 transition-colors'>
+											className='md:hidden p-2 text-white hover:text-blue-400 transition-colors'>
 											{showMobileMenu ? (
 												<X className='w-6 h-6' />
 											) : (
@@ -214,13 +214,13 @@ export default function Header() {
 													className='
 													hidden sm:block
 													relative
-													bg-emerald-500 text-black
+													bg-blue-500 text-black
 													px-4 md:px-5 py-2 md:py-2.5 rounded-full
 													text-sm font-semibold tracking-wide
 													shadow-lg
 													transition-all duration-300
-													hover:bg-emerald-400
-													hover:shadow-[0_0_25px_rgba(16,185,129,0.6)]
+													hover:bg-blue-400
+													hover:shadow-[0_0_25px_rgba(19,40,85,0.6)]
 												'>
 													Apply for Membership
 												</Link>
@@ -248,8 +248,8 @@ export default function Header() {
 													);
 												}}
 												className='flex items-center gap-2 md:gap-2.5 px-3 md:px-4 py-2 md:py-2.5 rounded-full bg-white/10 hover:bg-white/15 border border-white/10 transition-all duration-300 group'>
-												<div className='flex items-center justify-center w-7 h-7 rounded-full bg-emerald-500/20 border border-emerald-500/30'>
-													<User className='w-4 h-4 text-emerald-400' />
+												<div className='flex items-center justify-center w-7 h-7 rounded-full bg-blue-500/20 border border-blue-500/30'>
+													<User className='w-4 h-4 text-blue-400' />
 												</div>
 												<span className='text-sm font-medium text-white hidden lg:block'>
 													{user?.name}
@@ -312,8 +312,8 @@ export default function Header() {
 																			false
 																		);
 																	}}
-																	className='w-full px-4 py-3 text-left text-sm text-gray-300 hover:text-white hover:bg-emerald-500/10 transition-all duration-200 flex items-center gap-3 group'>
-																	<FileText className='w-4 h-4 text-emerald-400 group-hover:scale-110 transition-transform' />
+																	className='w-full px-4 py-3 text-left text-sm text-gray-300 hover:text-white hover:bg-blue-500/10 transition-all duration-200 flex items-center gap-3 group'>
+																	<FileText className='w-4 h-4 text-blue-400 group-hover:scale-110 transition-transform' />
 																	<span>
 																		{user.applicationStatus ===
 																			'none' ||
@@ -351,7 +351,7 @@ export default function Header() {
 													!showMobileMenu
 												)
 											}
-											className='md:hidden p-2 text-white hover:text-emerald-400 transition-colors'>
+											className='md:hidden p-2 text-white hover:text-blue-400 transition-colors'>
 											{showMobileMenu ? (
 												<X className='w-6 h-6' />
 											) : (
@@ -409,7 +409,7 @@ export default function Header() {
 											relative block px-4 py-3 rounded-xl text-base font-medium transition-all duration-300
 											${
 												active
-													? 'text-emerald-400'
+													? 'text-blue-400'
 													: 'text-gray-300 hover:text-white hover:bg-white/5'
 											}
 										`}>
@@ -417,7 +417,7 @@ export default function Header() {
 												{active && (
 													<motion.div
 														layoutId='mobile-navbar-indicator'
-														className='absolute inset-0 bg-emerald-500/10 rounded-xl -z-10'
+														className='absolute inset-0 bg-blue-500/10 rounded-xl -z-10'
 														initial={false}
 														transition={{
 															type: 'spring',
@@ -425,9 +425,9 @@ export default function Header() {
 															damping: 30,
 														}}>
 														{/* Mobile tubelight glow on left side */}
-														<div className='absolute left-0 top-1/2 -translate-y-1/2 w-1 h-8 bg-emerald-400 rounded-r-full shadow-[0_0_10px_rgba(16,185,129,0.5)]'>
-															<div className='absolute w-6 h-12 bg-emerald-400/30 rounded-full blur-md -left-2 -top-2' />
-															<div className='absolute w-4 h-8 bg-emerald-400/20 rounded-full blur-md -left-1' />
+														<div className='absolute left-0 top-1/2 -translate-y-1/2 w-1 h-8 bg-blue-400 rounded-r-full shadow-[0_0_10px_rgba(19,40,85,0.5)]'>
+															<div className='absolute w-6 h-12 bg-blue-400/30 rounded-full blur-md -left-2 -top-2' />
+															<div className='absolute w-4 h-8 bg-blue-400/20 rounded-full blur-md -left-1' />
 														</div>
 													</motion.div>
 												)}
@@ -452,7 +452,7 @@ export default function Header() {
 												onClick={() =>
 													setShowMobileMenu(false)
 												}
-												className='block px-4 py-3 rounded-xl text-base font-medium text-emerald-400 bg-emerald-500/10 hover:bg-emerald-500/20 transition-all duration-300'>
+												className='block px-4 py-3 rounded-xl text-base font-medium text-blue-400 bg-blue-500/10 hover:bg-blue-500/20 transition-all duration-300'>
 												{user.applicationStatus ===
 													'none' ||
 												user.applicationStatus ===

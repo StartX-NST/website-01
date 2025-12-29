@@ -5,8 +5,8 @@ export default function MembershipRequired() {
 	return (
 		<div className='min-h-screen bg-black flex items-center justify-center p-4'>
 			<div className='max-w-md w-full text-center'>
-				<div className='inline-flex items-center justify-center w-20 h-20 rounded-full bg-emerald-500/10 border border-emerald-500/20 mb-6'>
-					<Lock className='w-10 h-10 text-emerald-400' />
+				<div className='inline-flex items-center justify-center w-20 h-20 rounded-full bg-blue-500/10 border border-blue-500/20 mb-6'>
+					<Lock className='w-10 h-10 text-blue-400' />
 				</div>
 
 				<h1 className='text-3xl font-bold text-white mb-4'>
@@ -22,7 +22,7 @@ export default function MembershipRequired() {
 				<div className='flex flex-col gap-3'>
 					<Link
 						to='/apply-membership'
-						className='w-full px-6 py-3 bg-emerald-500 hover:bg-emerald-400 text-black font-semibold rounded-lg transition-all duration-300 hover:shadow-[0_0_30px_rgba(16,185,129,0.4)]'>
+						className='w-full px-6 py-3 bg-blue-500 hover:bg-blue-400 text-black font-semibold rounded-lg transition-all duration-300 hover:shadow-[0_0_30px_rgba(19,40,85,0.4)]'>
 						Apply for Membership
 					</Link>
 

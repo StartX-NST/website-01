@@ -154,7 +154,7 @@ export default function Events() {
 							upcomingEvents.length > 0 && (
 								<div className='mb-20'>
 									<div className='flex items-center gap-3 mb-8'>
-										<Sparkles className='w-6 h-6 text-emerald-400' />
+										<Sparkles className='w-6 h-6 text-blue-400' />
 										<h2 className='text-2xl md:text-3xl font-bold text-white'>
 											Upcoming Events
 										</h2>

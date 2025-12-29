@@ -24,7 +24,7 @@ export default function Home() {
 									Build startups that
 								</span>
 								<br />
-								<span className='bg-gradient-to-r from-emerald-400 via-emerald-300 to-emerald-500 bg-clip-text text-transparent'>
+								<span className='bg-gradient-to-r from-blue-400 via-blue-300 to-blue-500 bg-clip-text text-transparent'>
 									actually launch
 								</span>
 							</h1>
@@ -48,7 +48,7 @@ export default function Home() {
 							<div className='flex flex-wrap items-center justify-center gap-5 mb-12'>
 								<Link
 									to='/check-eligibility'
-									className='group inline-flex items-center gap-2.5 bg-emerald-500 hover:bg-emerald-400 text-black font-semibold text-base px-10 py-4 rounded-full transition-all duration-300 hover:shadow-[0_0_50px_rgba(16,185,129,0.5)] hover:scale-105 shadow-[0_0_30px_rgba(16,185,129,0.2)]'>
+									className='group inline-flex items-center gap-2.5 bg-blue-500 hover:bg-blue-400 text-black font-semibold text-base px-10 py-4 rounded-full transition-all duration-300 hover:shadow-[0_0_50px_rgba(19,40,85,0.5)] hover:scale-105 shadow-[0_0_30px_rgba(19,40,85,0.2)]'>
 									Check eligibility
 									<ArrowRight
 										className='w-4 h-4 group-hover:translate-x-1 transition-transform'
@@ -58,7 +58,7 @@ export default function Home() {
 
 								<Link
 									to='/explore'
-									className='inline-flex items-center gap-2 text-gray-300 hover:text-white font-medium text-base px-10 py-4 rounded-full border border-gray-800 hover:border-emerald-500/50 hover:bg-emerald-500/5 transition-all duration-300 backdrop-blur-sm'>
+									className='inline-flex items-center gap-2 text-gray-300 hover:text-white font-medium text-base px-10 py-4 rounded-full border border-gray-800 hover:border-blue-500/50 hover:bg-blue-500/5 transition-all duration-300 backdrop-blur-sm'>
 									See what members build
 								</Link>
 							</div>
@@ -68,15 +68,15 @@ export default function Home() {
 						<FadeIn delay={0.3}>
 							<div className='flex flex-wrap items-center justify-center gap-8 text-xs text-gray-500 font-medium'>
 								<div className='flex items-center gap-2'>
-									<div className='w-1.5 h-1.5 rounded-full bg-emerald-500' />
+									<div className='w-1.5 h-1.5 rounded-full bg-blue-500' />
 									<span>No equity</span>
 								</div>
 								<div className='flex items-center gap-2'>
-									<div className='w-1.5 h-1.5 rounded-full bg-emerald-500' />
+									<div className='w-1.5 h-1.5 rounded-full bg-blue-500' />
 									<span>No hidden fees</span>
 								</div>
 								<div className='flex items-center gap-2'>
-									<div className='w-1.5 h-1.5 rounded-full bg-emerald-500' />
+									<div className='w-1.5 h-1.5 rounded-full bg-blue-500' />
 									<span>Free to join</span>
 								</div>
 							</div>
@@ -85,7 +85,7 @@ export default function Home() {
 				</section>
 
 				{/* ================= VALUE PILLARS - BENTO GRID ================= */}
-				<section className='relative py-40 px-6 overflow-hidden z-10'>
+				<section className='relative pb-40 px-6 overflow-hidden z-10'>
 					<div className='relative z-10 max-w-7xl mx-auto'>
 						{/* Section header */}
 						<div className='text-center mb-16'>
@@ -111,7 +111,7 @@ export default function Home() {
 											alt='Events'
 											className='w-full h-full object-cover'
 										/>
-										<div className='absolute inset-0 bg-gradient-to-br from-emerald-500/15 via-emerald-500/5 to-transparent' />
+										<div className='absolute inset-0 bg-gradient-to-br from-blue-500/15 via-blue-500/5 to-transparent' />
 									</div>
 								}
 								description='Connect with student founders through workshops, hackathons, and founder sessions with experienced builders.'
@@ -129,7 +129,7 @@ export default function Home() {
 											alt='Learn'
 											className='w-full h-full object-cover'
 										/>
-										<div className='absolute inset-0 bg-gradient-to-br from-emerald-500/15 via-emerald-500/5 to-transparent' />
+										<div className='absolute inset-0 bg-gradient-to-br from-blue-500/15 via-blue-500/5 to-transparent' />
 									</div>
 								}
 								description='Courses and resources designed for student entrepreneurs.'
@@ -147,7 +147,7 @@ export default function Home() {
 											alt='Opportunities'
 											className='w-full h-full object-cover'
 										/>
-										<div className='absolute inset-0 bg-gradient-to-br from-emerald-500/15 via-emerald-500/5 to-transparent' />
+										<div className='absolute inset-0 bg-gradient-to-br from-blue-500/15 via-blue-500/5 to-transparent' />
 									</div>
 								}
 								description='Discover internships, competitions, and resources to accelerate your startup journey.'
@@ -166,7 +166,7 @@ export default function Home() {
 											alt='Resources'
 											className='w-full h-full object-cover'
 										/>
-										<div className='absolute inset-0 bg-gradient-to-br from-emerald-500/15 via-emerald-500/5 to-transparent' />
+										<div className='absolute inset-0 bg-gradient-to-br from-blue-500/15 via-blue-500/5 to-transparent' />
 									</div>
 								}
 								description='Tools, credits, and resources for student startups.'
@@ -184,7 +184,7 @@ export default function Home() {
 											alt='Community'
 											className='w-full h-full object-cover'
 										/>
-										<div className='absolute inset-0 bg-gradient-to-br from-emerald-500/15 via-emerald-500/5 to-transparent' />
+										<div className='absolute inset-0 bg-gradient-to-br from-blue-500/15 via-blue-500/5 to-transparent' />
 									</div>
 								}
 								description='Join 1000+ student builders creating the future.'
@@ -202,7 +202,7 @@ export default function Home() {
 											alt='Launch'
 											className='w-full h-full object-cover'
 										/>
-										<div className='absolute inset-0 bg-gradient-to-br from-emerald-500/15 via-emerald-500/5 to-transparent' />
+										<div className='absolute inset-0 bg-gradient-to-br from-blue-500/15 via-blue-500/5 to-transparent' />
 									</div>
 								}
 								description='From idea to launch in weeks, not months.'
@@ -214,7 +214,7 @@ export default function Home() {
 				</section>
 
 				{/* ================= SOCIAL PROOF ================= */}
-				<section className='relative py-40 px-6 overflow-hidden z-10'>
+				<section className='relative px-6 overflow-hidden z-10'>
 					<div className='relative z-10 max-w-6xl mx-auto'>
 						{/* Stats grid */}
 						<div className='grid md:grid-cols-3 gap-12 md:gap-16'>
@@ -241,14 +241,8 @@ export default function Home() {
 									style={{
 										animationDelay: `${idx * 150}ms`,
 									}}>
-									{/* Icon with decorative ring */}
-									<div className='relative inline-flex mb-8'>
-										<div className='absolute inset-0 rounded-full border border-emerald-500/20 group-hover:scale-110 transition-transform duration-500' />
-										<div className='absolute inset-0 rounded-full border border-emerald-500/10 scale-125 group-hover:scale-150 transition-transform duration-700' />
-									</div>
-
 									{/* Value */}
-									<div className='text-5xl md:text-6xl lg:text-7xl font-bold mb-4 bg-gradient-to-br from-white via-emerald-100 to-white bg-clip-text text-transparent group-hover:scale-105 transition-transform'>
+									<div className='text-5xl md:text-6xl lg:text-7xl font-bold mb-4 bg-gradient-to-br from-white via-blue-100 to-white bg-clip-text text-transparent group-hover:scale-105 transition-transform'>
 										{stat.value}
 									</div>
 
@@ -268,7 +262,7 @@ export default function Home() {
 				</section>
 
 				{/* ================= HOW IT WORKS ================= */}
-				<section className='relative py-40 px-6 overflow-hidden z-10'>
+				<section className='relative pt-40 pb-10 px-6 overflow-hidden z-10'>
 					<div className='relative z-10 max-w-5xl mx-auto'>
 						{/* Section header */}
 						<div className='text-center mb-24'>
@@ -307,21 +301,21 @@ export default function Home() {
 									}}>
 									{/* Connecting line */}
 									{idx < 2 && (
-										<div className='absolute left-5 top-16 w-0.5 h-12 bg-gradient-to-b from-emerald-500/30 to-transparent' />
+										<div className='absolute left-5 top-16 w-0.5 h-12 bg-gradient-to-b from-blue-500/30 to-transparent' />
 									)}
 
-									<div className='flex items-start gap-6 md:gap-8 border border-gray-800 rounded-xl p-6 md:p-7 bg-gradient-to-br from-black/60 to-black/40 backdrop-blur-sm hover:border-emerald-500/30 transition-all duration-500 hover:shadow-[0_0_30px_rgba(16,185,129,0.1)] hover:-translate-y-1'>
+									<div className='flex items-start gap-6 md:gap-8 border border-gray-800 rounded-xl p-6 md:p-7 bg-gradient-to-br from-black/60 to-black/40 backdrop-blur-sm hover:border-blue-500/30 transition-all duration-500 hover:shadow-[0_0_30px_rgba(19,40,85,0.1)] hover:-translate-y-1'>
 										{/* Number badge */}
 										<div className='flex-shrink-0 relative'>
-											<div className='absolute inset-0 bg-emerald-500/20 rounded-full blur-lg group-hover:bg-emerald-500/30 transition-all' />
-											<div className='relative w-11 h-11 rounded-full border-2 border-gray-800 group-hover:border-emerald-500/50 bg-gradient-to-br from-black to-emerald-950/20 flex items-center justify-center text-emerald-400 font-bold text-base transition-all duration-500 group-hover:scale-110 group-hover:rotate-3'>
+											<div className='absolute inset-0 bg-blue-500/20 rounded-full blur-lg group-hover:bg-blue-500/30 transition-all' />
+											<div className='relative w-11 h-11 rounded-full border-2 border-gray-800 group-hover:border-blue-500/50 bg-gradient-to-br from-black to-blue-950/20 flex items-center justify-center text-blue-400 font-bold text-base transition-all duration-500 group-hover:scale-110 group-hover:rotate-3'>
 												{step.num}
 											</div>
 										</div>
 
 										{/* Content */}
 										<div className='flex-1 pt-1'>
-											<h3 className='text-lg md:text-xl font-bold text-white group-hover:text-emerald-400 transition-colors mb-2'>
+											<h3 className='text-lg md:text-xl font-bold text-white group-hover:text-blue-400 transition-colors mb-2'>
 												{step.title}
 											</h3>
 											<p className='text-sm md:text-base text-gray-400 leading-relaxed'>
@@ -337,25 +331,21 @@ export default function Home() {
 
 				{/* ================= FINAL CTA ================= */}
 				{!isAuthenticated && (
-					<section className='relative py-40 px-6 overflow-hidden z-10'>
+					<section className='relative pt-40 pb-20 px-6 overflow-hidden z-10'>
 						<div className='relative z-10 max-w-5xl mx-auto'>
 							<div className='relative border border-gray-800 rounded-3xl bg-gradient-to-b from-black/60 to-black/40 backdrop-blur-sm p-12 md:p-20 lg:p-24 overflow-hidden'>
 								{/* Decorative corner accents */}
-								<div className='absolute top-0 left-0 w-20 h-20 border-t-2 border-l-2 border-emerald-400/30 rounded-tl-3xl' />
-								<div className='absolute top-0 right-0 w-20 h-20 border-t-2 border-r-2 border-emerald-400/30 rounded-tr-3xl' />
-								<div className='absolute bottom-0 left-0 w-20 h-20 border-b-2 border-l-2 border-emerald-400/30 rounded-bl-3xl' />
-								<div className='absolute bottom-0 right-0 w-20 h-20 border-b-2 border-r-2 border-emerald-400/30 rounded-br-3xl' />
-
-								{/* Floating decorative elements */}
-								<div className='absolute top-10 right-20 w-32 h-32 bg-emerald-500/10 rounded-full blur-2xl' />
-								<div className='absolute bottom-10 left-20 w-40 h-40 bg-emerald-600/10 rounded-full blur-3xl' />
+								<div className='absolute top-0 left-0 w-20 h-20 border-t-2 border-l-2 border-blue-400/30 rounded-tl-3xl' />
+								<div className='absolute top-0 right-0 w-20 h-20 border-t-2 border-r-2 border-blue-400/30 rounded-tr-3xl' />
+								<div className='absolute bottom-0 left-0 w-20 h-20 border-b-2 border-l-2 border-blue-400/30 rounded-bl-3xl' />
+								<div className='absolute bottom-0 right-0 w-20 h-20 border-b-2 border-r-2 border-blue-400/30 rounded-br-3xl' />
 
 								<div className='relative text-center'>
 									{/* Heading */}
 									<h2 className='text-3xl md:text-4xl lg:text-6xl font-bold text-white mb-8 leading-tight'>
 										Ready to build{' '}
 										<br className='hidden md:block' />
-										<span className='bg-gradient-to-r from-emerald-400 via-emerald-300 to-emerald-500 bg-clip-text text-transparent'>
+										<span className='bg-gradient-to-r from-blue-400 via-blue-300 to-blue-500 bg-clip-text text-transparent'>
 											something great?
 										</span>
 									</h2>
@@ -370,7 +360,7 @@ export default function Home() {
 									<div className='flex flex-wrap items-center justify-center gap-5 mb-10'>
 										<Link
 											to='/check-eligibility'
-											className='inline-flex items-center gap-2.5 bg-emerald-500 hover:bg-emerald-400 text-black font-bold text-base px-12 py-5 rounded-full transition-all duration-300 hover:shadow-[0_0_50px_rgba(16,185,129,0.5)] hover:scale-105 shadow-[0_0_30px_rgba(16,185,129,0.2)] group'>
+											className='inline-flex items-center gap-2.5 bg-blue-500 hover:bg-blue-400 text-black font-bold text-base px-12 py-5 rounded-full transition-all duration-300 hover:shadow-[0_0_50px_rgba(19,40,85,0.5)] hover:scale-105 shadow-[0_0_30px_rgba(19,40,85,0.2)] group'>
 											Check eligibility
 											<ArrowRight
 												className='w-5 h-5 group-hover:translate-x-1 transition-transform'
@@ -380,7 +370,7 @@ export default function Home() {
 
 										<Link
 											to='/showcase'
-											className='inline-flex items-center gap-2 text-gray-300 hover:text-white font-semibold text-base px-12 py-5 rounded-full border-2 border-gray-800 hover:border-emerald-500/50 hover:bg-emerald-500/5 transition-all duration-300 backdrop-blur-sm'>
+											className='inline-flex items-center gap-2 text-gray-300 hover:text-white font-semibold text-base px-12 py-5 rounded-full border-2 border-gray-800 hover:border-blue-500/50 hover:bg-blue-500/5 transition-all duration-300 backdrop-blur-sm'>
 											See projects
 										</Link>
 									</div>
@@ -388,7 +378,7 @@ export default function Home() {
 									<div className='flex flex-wrap items-center justify-center gap-6 text-sm text-gray-500'>
 										<div className='flex items-center gap-2'>
 											<svg
-												className='w-5 h-5 text-emerald-400'
+												className='w-5 h-5 text-blue-400'
 												fill='currentColor'
 												viewBox='0 0 20 20'>
 												<path
@@ -401,7 +391,7 @@ export default function Home() {
 										</div>
 										<div className='flex items-center gap-2'>
 											<svg
-												className='w-5 h-5 text-emerald-400'
+												className='w-5 h-5 text-blue-400'
 												fill='currentColor'
 												viewBox='0 0 20 20'>
 												<path
@@ -414,7 +404,7 @@ export default function Home() {
 										</div>
 										<div className='flex items-center gap-2'>
 											<svg
-												className='w-5 h-5 text-emerald-400'
+												className='w-5 h-5 text-blue-400'
 												fill='currentColor'
 												viewBox='0 0 20 20'>
 												<path

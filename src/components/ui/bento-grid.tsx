@@ -44,9 +44,9 @@ const BentoCard = ({
 		className={cn(
 			'group relative col-span-1 flex flex-col justify-between overflow-hidden rounded-2xl',
 			'bg-gradient-to-br from-black/60 to-black/40 backdrop-blur-sm',
-			'border border-gray-800 hover:border-emerald-500/40',
+			'border border-gray-800 hover:border-blue-500/40',
 			'transform-gpu transition-all duration-500',
-			'hover:shadow-[0_0_40px_rgba(16,185,129,0.15)]',
+			'hover:shadow-[0_0_40px_rgba(19,40,85,0.15)]',
 			'hover:-translate-y-1',
 			className
 		)}>
@@ -56,8 +56,8 @@ const BentoCard = ({
 			<div className='absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent' />
 		</div>
 
-		{/* Emerald glow effect */}
-		<div className='absolute inset-0 bg-gradient-to-t from-emerald-500/5 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500' />
+		{/* Blue glow effect */}
+		<div className='absolute inset-0 bg-gradient-to-t from-blue-500/5 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500' />
 
 		{/* Content */}
 		<div className='relative z-10 flex flex-col h-full p-6'>
@@ -65,10 +65,10 @@ const BentoCard = ({
 			{Icon && (
 				<div className='flex-shrink-0 mb-4'>
 					<div className='relative inline-flex'>
-						<div className='absolute inset-0 bg-emerald-500/20 rounded-lg blur-xl group-hover:bg-emerald-500/30 transition-all' />
-						<div className='relative bg-emerald-500/10 p-2.5 rounded-lg border border-emerald-500/20 group-hover:border-emerald-500/40 transition-all'>
+						<div className='absolute inset-0 bg-blue-500/20 rounded-lg blur-xl group-hover:bg-blue-500/30 transition-all' />
+						<div className='relative bg-blue-500/10 p-2.5 rounded-lg border border-blue-500/20 group-hover:border-blue-500/40 transition-all'>
 							<Icon
-								className='w-6 h-6 text-emerald-400 transition-transform group-hover:scale-110'
+								className='w-6 h-6 text-blue-400 transition-transform group-hover:scale-110'
 								strokeWidth={1.5}
 							/>
 						</div>
@@ -78,7 +78,7 @@ const BentoCard = ({
 
 			{/* Text content */}
 			<div className='flex-1 flex flex-col justify-end transform-gpu transition-all duration-300 group-hover:-translate-y-2'>
-				<h3 className='text-xl font-bold text-white mb-2 group-hover:text-emerald-400 transition-colors'>
+				<h3 className='text-xl font-bold text-white mb-2 group-hover:text-blue-400 transition-colors'>
 					{name}
 				</h3>
 				<p className='text-sm text-gray-400 leading-relaxed mb-3 line-clamp-2'>
@@ -86,7 +86,7 @@ const BentoCard = ({
 				</p>
 
 				{/* CTA */}
-				<div className='inline-flex items-center text-sm font-medium text-emerald-400 opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-2 group-hover:translate-y-0'>
+				<div className='inline-flex items-center text-sm font-medium text-blue-400 opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-2 group-hover:translate-y-0'>
 					<span>{cta}</span>
 					<ArrowRight className='w-4 h-4 ml-1.5 group-hover:translate-x-1 transition-transform' />
 				</div>

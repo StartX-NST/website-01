@@ -36,7 +36,7 @@ export default function EventCard({
 				className={`group relative border rounded-xl overflow-hidden transition-all duration-500 hover:-translate-y-1 ${
 					isCompleted
 						? 'border-gray-800/50 bg-gradient-to-br from-black/90 to-black/70 opacity-60'
-						: 'border-gray-800 bg-gradient-to-br from-black/60 to-black/40 hover:border-emerald-500/30 hover:shadow-[0_0_25px_rgba(16,185,129,0.1)]'
+						: 'border-gray-800 bg-gradient-to-br from-black/60 to-black/40 hover:border-blue-500/30 hover:shadow-[0_0_25px_rgba(19,40,85,0.1)]'
 				} backdrop-blur-sm`}>
 				{/* Status badge */}
 				{isCompleted && (
@@ -52,14 +52,14 @@ export default function EventCard({
 				<div className='p-6'>
 					{/* Type badge */}
 					<div className='inline-flex mb-4'>
-						<div className='px-3 py-1.5 rounded-lg bg-emerald-500/10 border border-emerald-500/20 backdrop-blur-sm'>
-							<span className='text-xs font-semibold uppercase tracking-wider text-emerald-400'>
+						<div className='px-3 py-1.5 rounded-lg bg-blue-500/10 border border-blue-500/20 backdrop-blur-sm'>
+							<span className='text-xs font-semibold uppercase tracking-wider text-blue-400'>
 								{type}
 							</span>
 						</div>
 					</div>
 					{/* Title */}
-					<h3 className='text-xl font-bold text-white mb-3 group-hover:text-emerald-400 transition-colors line-clamp-2'>
+					<h3 className='text-xl font-bold text-white mb-3 group-hover:text-blue-400 transition-colors line-clamp-2'>
 						{title}
 					</h3>
 					{/* Description */}
@@ -69,26 +69,26 @@ export default function EventCard({
 					{/* Event details */}
 					<div className='space-y-3 mb-6'>
 						<div className='flex items-center gap-2.5 text-sm text-gray-400'>
-							<Calendar className='w-4 h-4 text-emerald-400 flex-shrink-0' />
+							<Calendar className='w-4 h-4 text-blue-400 flex-shrink-0' />
 							<span>{date}</span>
 						</div>
 						<div className='flex items-center gap-2.5 text-sm text-gray-400'>
-							<Clock className='w-4 h-4 text-emerald-400 flex-shrink-0' />
+							<Clock className='w-4 h-4 text-blue-400 flex-shrink-0' />
 							<span>{time}</span>
 						</div>
 						<div className='flex items-center gap-2.5 text-sm text-gray-400'>
-							<MapPin className='w-4 h-4 text-emerald-400 flex-shrink-0' />
+							<MapPin className='w-4 h-4 text-blue-400 flex-shrink-0' />
 							<span>{location}</span>
 						</div>
 						{attendees !== undefined && maxAttendees && (
 							<div className='flex items-center gap-2.5 text-sm text-gray-400'>
-								<Users className='w-4 h-4 text-emerald-400 flex-shrink-0' />
+								<Users className='w-4 h-4 text-blue-400 flex-shrink-0' />
 								<span>
 									{attendees}/{maxAttendees} attendees
 								</span>
 								<div className='flex-1 h-1.5 bg-gray-800 rounded-full overflow-hidden ml-2'>
 									<div
-										className='h-full bg-gradient-to-r from-emerald-500 to-emerald-400 rounded-full transition-all duration-500'
+										className='h-full bg-gradient-to-r from-blue-500 to-blue-400 rounded-full transition-all duration-500'
 										style={{
 											width: `${
 												(attendees / maxAttendees) * 100
@@ -103,7 +103,7 @@ export default function EventCard({
 					{isUpcoming && (
 						<Link
 							to='#'
-							className='inline-flex items-center gap-2 text-sm font-semibold text-emerald-400 hover:text-emerald-300 transition-colors group/cta'>
+							className='inline-flex items-center gap-2 text-sm font-semibold text-blue-400 hover:text-blue-300 transition-colors group/cta'>
 							<span>Register now</span>
 							<ArrowRight className='w-4 h-4 group-hover/cta:translate-x-1 transition-transform' />
 						</Link>

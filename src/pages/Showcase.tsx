@@ -126,13 +126,13 @@ export default function Showcase() {
 			<div className='min-h-screen bg-black'>
 				{/* Featured Projects Section */}
 				<section className='relative py-20 px-6 overflow-hidden'>
-					<div className='absolute right-0 top-1/3 w-[400px] h-[400px] bg-emerald-500/5 rounded-full blur-[100px]' />
+					<div className='absolute right-0 top-1/3 w-[400px] h-[400px] bg-blue-500/5 rounded-full blur-[100px]' />
 
 					<div className='relative z-10 max-w-7xl mx-auto'>
 						{/* Section header */}
 						<div className='mb-8'>
 							<div className='flex items-center gap-3 mb-4'>
-								<Target className='w-6 h-6 text-emerald-400' />
+								<Target className='w-6 h-6 text-blue-400' />
 								<h2 className='text-2xl md:text-3xl font-bold text-white'>
 									Featured Projects
 								</h2>
