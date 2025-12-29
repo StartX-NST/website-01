@@ -125,7 +125,7 @@ export default function Header() {
 								StartX
 							</Link>
 
-							{/* Navigation Links - Desktop */}
+							{/* Navigation Links - Desktop with Tubelight Effect */}
 							<div className='hidden md:flex items-center space-x-1'>
 								{navLinks.map((link) => {
 									const active = isActive(link.path);
@@ -139,11 +139,29 @@ export default function Header() {
 											transition-all duration-300
 											${
 												active
-													? 'text-emerald-400 bg-emerald-500/10'
+													? 'text-emerald-400'
 													: 'text-gray-300 hover:text-white hover:bg-white/5'
 											}
 										`}>
 											{link.name}
+											{active && (
+												<motion.div
+													layoutId='navbar-indicator'
+													className='absolute inset-0 bg-emerald-500/10 rounded-full -z-10'
+													initial={false}
+													transition={{
+														type: 'spring',
+														stiffness: 380,
+														damping: 30,
+													}}>
+													{/* Tubelight glow effect */}
+													<div className='absolute -top-2 left-1/2 -translate-x-1/2 w-8 h-1 bg-emerald-400 rounded-t-full shadow-[0_0_10px_rgba(16,185,129,0.5)]'>
+														<div className='absolute w-12 h-6 bg-emerald-400/30 rounded-full blur-md -top-2 -left-2' />
+														<div className='absolute w-8 h-6 bg-emerald-400/20 rounded-full blur-md -top-1' />
+														<div className='absolute w-4 h-4 bg-emerald-400/30 rounded-full blur-sm top-0 left-2' />
+													</div>
+												</motion.div>
+											)}
 										</Link>
 									);
 								})}
@@ -388,14 +406,31 @@ export default function Header() {
 													setShowMobileMenu(false)
 												}
 												className={`
-											block px-4 py-3 rounded-xl text-base font-medium transition-all duration-300
+											relative block px-4 py-3 rounded-xl text-base font-medium transition-all duration-300
 											${
 												active
-													? 'text-emerald-400 bg-emerald-500/10'
+													? 'text-emerald-400'
 													: 'text-gray-300 hover:text-white hover:bg-white/5'
 											}
 										`}>
 												{link.name}
+												{active && (
+													<motion.div
+														layoutId='mobile-navbar-indicator'
+														className='absolute inset-0 bg-emerald-500/10 rounded-xl -z-10'
+														initial={false}
+														transition={{
+															type: 'spring',
+															stiffness: 380,
+															damping: 30,
+														}}>
+														{/* Mobile tubelight glow on left side */}
+														<div className='absolute left-0 top-1/2 -translate-y-1/2 w-1 h-8 bg-emerald-400 rounded-r-full shadow-[0_0_10px_rgba(16,185,129,0.5)]'>
+															<div className='absolute w-6 h-12 bg-emerald-400/30 rounded-full blur-md -left-2 -top-2' />
+															<div className='absolute w-4 h-8 bg-emerald-400/20 rounded-full blur-md -left-1' />
+														</div>
+													</motion.div>
+												)}
 											</Link>
 										</motion.div>
 									);

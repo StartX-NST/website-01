@@ -10,14 +10,14 @@ export default function MembershipApplication() {
 	const [step, setStep] = useState<'form' | 'success'>('form');
 
 	const [formData, setFormData] = useState({
-		linkedinUrl: '',
-		currentRole: '',
-		company: '',
-		yearsOfExperience: '',
-		startupIdea: '',
-		whyJoin: '',
-		commitment: '',
-		referralSource: '',
+		name: '',
+		email: '',
+		phone: '',
+		campus: '',
+		year: '',
+		interests: '',
+		experience: '',
+		motivation: '',
 	});
 
 	// Get status config for displaying application status
@@ -167,10 +167,10 @@ export default function MembershipApplication() {
 						StartX
 					</Link>
 					<h1 className='text-3xl font-bold text-white mb-2'>
-						Membership Application
+						Apply for Membership
 					</h1>
 					<p className='text-gray-400'>
-						Join our community of founders and innovators
+						Join 1000+ student builders creating the future
 					</p>
 				</div>
 
@@ -178,177 +178,162 @@ export default function MembershipApplication() {
 					<form
 						onSubmit={handleSubmit}
 						className='space-y-6'>
-						{/* LinkedIn URL */}
-						<div>
-							<label className='block text-sm font-medium text-gray-300 mb-2'>
-								LinkedIn Profile URL *
-							</label>
-							<input
-								type='url'
-								required
-								value={formData.linkedinUrl}
-								onChange={(e) =>
-									setFormData({
-										...formData,
-										linkedinUrl: e.target.value,
-									})
-								}
-								className='w-full px-4 py-2.5 bg-black/40 border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-emerald-500/50 transition-all'
-								placeholder='https://linkedin.com/in/yourprofile'
-							/>
-						</div>
-
-						{/* Current Role */}
-						<div className='grid grid-cols-2 gap-4'>
+						{/* Personal Information */}
+						<div className='grid md:grid-cols-2 gap-4'>
 							<div>
 								<label className='block text-sm font-medium text-gray-300 mb-2'>
-									Current Role *
+									Full Name *
 								</label>
 								<input
 									type='text'
 									required
-									value={formData.currentRole}
+									value={formData.name}
 									onChange={(e) =>
 										setFormData({
 											...formData,
-											currentRole: e.target.value,
+											name: e.target.value,
 										})
 									}
 									className='w-full px-4 py-2.5 bg-black/40 border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-emerald-500/50 transition-all'
-									placeholder='Founder, Developer, etc.'
+									placeholder='John Doe'
 								/>
 							</div>
 							<div>
 								<label className='block text-sm font-medium text-gray-300 mb-2'>
-									Company/Project
+									Email Address *
 								</label>
 								<input
-									type='text'
-									value={formData.company}
+									type='email'
+									required
+									value={formData.email}
 									onChange={(e) =>
 										setFormData({
 											...formData,
-											company: e.target.value,
+											email: e.target.value,
 										})
 									}
 									className='w-full px-4 py-2.5 bg-black/40 border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-emerald-500/50 transition-all'
-									placeholder='Your company name'
+									placeholder='john@example.com'
 								/>
 							</div>
 						</div>
 
-						{/* Years of Experience */}
 						<div>
 							<label className='block text-sm font-medium text-gray-300 mb-2'>
-								Years of Experience *
-							</label>
-							<select
-								required
-								value={formData.yearsOfExperience}
-								onChange={(e) =>
-									setFormData({
-										...formData,
-										yearsOfExperience: e.target.value,
-									})
-								}
-								className='w-full px-4 py-2.5 bg-black/40 border border-gray-700 rounded-lg text-white focus:outline-none focus:border-emerald-500/50 transition-all'>
-								<option value=''>
-									Select experience level
-								</option>
-								<option value='0-2'>0-2 years</option>
-								<option value='3-5'>3-5 years</option>
-								<option value='6-10'>6-10 years</option>
-								<option value='10+'>10+ years</option>
-							</select>
-						</div>
-
-						{/* Startup Idea */}
-						<div>
-							<label className='block text-sm font-medium text-gray-300 mb-2'>
-								What are you building? *
-							</label>
-							<textarea
-								required
-								value={formData.startupIdea}
-								onChange={(e) =>
-									setFormData({
-										...formData,
-										startupIdea: e.target.value,
-									})
-								}
-								rows={3}
-								className='w-full px-4 py-2.5 bg-black/40 border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-emerald-500/50 transition-all resize-none'
-								placeholder='Brief description of your project or startup idea...'
-							/>
-						</div>
-
-						{/* Why Join */}
-						<div>
-							<label className='block text-sm font-medium text-gray-300 mb-2'>
-								Why do you want to join StartX? *
-							</label>
-							<textarea
-								required
-								value={formData.whyJoin}
-								onChange={(e) =>
-									setFormData({
-										...formData,
-										whyJoin: e.target.value,
-									})
-								}
-								rows={3}
-								className='w-full px-4 py-2.5 bg-black/40 border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-emerald-500/50 transition-all resize-none'
-								placeholder='What are you hoping to gain from the community?'
-							/>
-						</div>
-
-						{/* Commitment */}
-						<div>
-							<label className='block text-sm font-medium text-gray-300 mb-2'>
-								Time Commitment *
-							</label>
-							<select
-								required
-								value={formData.commitment}
-								onChange={(e) =>
-									setFormData({
-										...formData,
-										commitment: e.target.value,
-									})
-								}
-								className='w-full px-4 py-2.5 bg-black/40 border border-gray-700 rounded-lg text-white focus:outline-none focus:border-emerald-500/50 transition-all'>
-								<option value=''>
-									Select your availability
-								</option>
-								<option value='part-time'>
-									Part-time (5-10 hours/week)
-								</option>
-								<option value='full-time'>
-									Full-time (20+ hours/week)
-								</option>
-								<option value='weekends'>Weekends only</option>
-								<option value='flexible'>
-									Flexible/Variable
-								</option>
-							</select>
-						</div>
-
-						{/* Referral Source */}
-						<div>
-							<label className='block text-sm font-medium text-gray-300 mb-2'>
-								How did you hear about us?
+								Phone Number
 							</label>
 							<input
-								type='text'
-								value={formData.referralSource}
+								type='tel'
+								value={formData.phone}
 								onChange={(e) =>
 									setFormData({
 										...formData,
-										referralSource: e.target.value,
+										phone: e.target.value,
 									})
 								}
 								className='w-full px-4 py-2.5 bg-black/40 border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-emerald-500/50 transition-all'
-								placeholder='Friend, social media, search, etc.'
+								placeholder='+1 (555) 000-0000'
+							/>
+						</div>
+
+						{/* Campus Information */}
+						<div className='grid md:grid-cols-2 gap-4'>
+							<div>
+								<label className='block text-sm font-medium text-gray-300 mb-2'>
+									Campus *
+								</label>
+								<input
+									type='text'
+									required
+									value={formData.campus}
+									onChange={(e) =>
+										setFormData({
+											...formData,
+											campus: e.target.value,
+										})
+									}
+									className='w-full px-4 py-2.5 bg-black/40 border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-emerald-500/50 transition-all'
+									placeholder='Your University'
+								/>
+							</div>
+							<div>
+								<label className='block text-sm font-medium text-gray-300 mb-2'>
+									Year of Study *
+								</label>
+								<select
+									required
+									value={formData.year}
+									onChange={(e) =>
+										setFormData({
+											...formData,
+											year: e.target.value,
+										})
+									}
+									className='w-full px-4 py-2.5 bg-black/40 border border-gray-700 rounded-lg text-white focus:outline-none focus:border-emerald-500/50 transition-all'>
+									<option value=''>Select Year</option>
+									<option value='freshman'>Freshman</option>
+									<option value='sophomore'>Sophomore</option>
+									<option value='junior'>Junior</option>
+									<option value='senior'>Senior</option>
+									<option value='graduate'>Graduate</option>
+								</select>
+							</div>
+						</div>
+
+						{/* Interests & Experience */}
+						<div>
+							<label className='block text-sm font-medium text-gray-300 mb-2'>
+								Areas of Interest *
+							</label>
+							<input
+								type='text'
+								required
+								value={formData.interests}
+								onChange={(e) =>
+									setFormData({
+										...formData,
+										interests: e.target.value,
+									})
+								}
+								className='w-full px-4 py-2.5 bg-black/40 border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-emerald-500/50 transition-all'
+								placeholder='e.g., AI, Web Development, Blockchain'
+							/>
+						</div>
+
+						<div>
+							<label className='block text-sm font-medium text-gray-300 mb-2'>
+								Previous Experience
+							</label>
+							<textarea
+								value={formData.experience}
+								onChange={(e) =>
+									setFormData({
+										...formData,
+										experience: e.target.value,
+									})
+								}
+								rows={3}
+								className='w-full px-4 py-2.5 bg-black/40 border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-emerald-500/50 transition-all resize-none'
+								placeholder='Tell us about your relevant experience, projects, or achievements...'
+							/>
+						</div>
+
+						<div>
+							<label className='block text-sm font-medium text-gray-300 mb-2'>
+								Why StartX? *
+							</label>
+							<textarea
+								required
+								value={formData.motivation}
+								onChange={(e) =>
+									setFormData({
+										...formData,
+										motivation: e.target.value,
+									})
+								}
+								rows={3}
+								className='w-full px-4 py-2.5 bg-black/40 border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-emerald-500/50 transition-all resize-none'
+								placeholder='What motivates you to join StartX? What do you hope to achieve?'
 							/>
 						</div>
 

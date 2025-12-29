@@ -15,8 +15,8 @@ export default function MembershipRequired() {
 
 				<p className='text-gray-400 mb-8 leading-relaxed'>
 					This content is available exclusively to StartX members.
-					Apply for membership to unlock full access to courses,
-					resources, and our founder community.
+					Apply for membership to unlock full access to resources,
+					events, and our student founder community.
 				</p>
 
 				<div className='flex flex-col gap-3'>

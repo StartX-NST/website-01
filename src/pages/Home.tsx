@@ -1,40 +1,20 @@
-import { ArrowRight, Calendar, BookOpen, Gift, Compass } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { AnimatedPage, FadeIn } from '@/components/animations';
 import { useAuth } from '@/contexts/AuthContext';
+import { BentoCard, BentoGrid } from '@/components/ui/bento-grid';
+import { ShapesBackground } from '@/components/ui/shape-background';
 
 export default function Home() {
 	const { isAuthenticated } = useAuth();
 	return (
 		<AnimatedPage>
-			<div className='min-h-screen bg-black'>
-				{/* Global continuous grid background */}
-				<div className='fixed inset-0 pointer-events-none'>
-					<div
-						className='absolute inset-0 opacity-[0.03]'
-						style={{
-							backgroundImage: `
-							linear-gradient(to right, #ffffff 1px, transparent 1px),
-							linear-gradient(to bottom, #ffffff 1px, transparent 1px)
-						`,
-							backgroundSize: '80px 80px',
-						}}
-					/>
-				</div>
+			<div className='min-h-screen bg-black relative'>
+				{/* Geometric Shapes Background - Fixed across entire page */}
+				<ShapesBackground />
 
 				{/* Hero Section */}
-				<section className='relative min-h-screen flex items-center justify-center overflow-hidden py-20'>
-					{/* Background */}
-					<div className='absolute inset-0'>
-						{/* Emerald spotlight */}
-						<div className='absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(16,185,129,0.15)_0%,transparent_60%)]' />
-
-						{/* Floating glow orbs - multiple for depth */}
-						<div className='absolute top-1/3 left-1/2 -translate-x-1/2 w-[520px] h-[520px] bg-emerald-500/15 rounded-full blur-[140px]' />
-						<div className='absolute top-1/4 left-1/4 w-[300px] h-[300px] bg-emerald-400/10 rounded-full blur-[100px]' />
-						<div className='absolute bottom-1/4 right-1/4 w-[350px] h-[350px] bg-emerald-600/10 rounded-full blur-[110px]' />
-					</div>
-
+				<section className='relative min-h-screen flex items-center justify-center overflow-hidden py-20 z-10'>
 					{/* Content */}
 					<div className='relative z-10 max-w-6xl mx-auto px-6 text-center'>
 						{/* Headline */}
@@ -45,7 +25,7 @@ export default function Home() {
 								</span>
 								<br />
 								<span className='bg-gradient-to-r from-emerald-400 via-emerald-300 to-emerald-500 bg-clip-text text-transparent'>
-									actually ship
+									actually launch
 								</span>
 							</h1>
 						</FadeIn>
@@ -53,11 +33,12 @@ export default function Home() {
 						{/* Subtext */}
 						<FadeIn delay={0.1}>
 							<p className='text-lg md:text-xl text-gray-400 leading-relaxed mb-14 max-w-2xl mx-auto'>
-								A founder-led ecosystem for learning, building,
-								and launching.
+								A student-founder ecosystem for learning,
+								building, and shipping.
 								<br />
 								<span className='text-gray-300 font-medium'>
-									Join 1000+ builders growing together.
+									Join 1000+ student builders creating the
+									future.
 								</span>
 							</p>
 						</FadeIn>
@@ -103,113 +84,155 @@ export default function Home() {
 					</div>
 				</section>
 
-				{/* ================= VALUE PILLARS ================= */}
-				<section className='relative py-40 px-6 overflow-hidden'>
-					{/* Background accent */}
-					<div className='absolute top-20 right-0 w-[400px] h-[400px] bg-emerald-500/5 rounded-full blur-[100px]' />
-
+				{/* ================= VALUE PILLARS - BENTO GRID ================= */}
+				<section className='relative py-40 px-6 overflow-hidden z-10'>
 					<div className='relative z-10 max-w-7xl mx-auto'>
 						{/* Section header */}
-						<div className='text-center mb-24'>
+						<div className='text-center mb-16'>
 							<h2 className='text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6'>
-								Everything you need to move faster
+								Everything you need to launch faster
 							</h2>
 							<p className='text-lg text-gray-400 max-w-2xl mx-auto'>
-								Built for founders who want to focus on
+								Built for student founders who want to focus on
 								building, not bureaucracy.
 							</p>
 						</div>
 
-						{/* Cards grid */}
-						<div className='grid md:grid-cols-2 lg:grid-cols-4 gap-6'>
-							{[
-								{
-									icon: Calendar,
-									title: 'Events',
-									desc: 'Founder sessions, workshops, and private discussions.',
-									link: '/events',
-								},
-								{
-									icon: BookOpen,
-									title: 'Learn',
-									desc: 'Structured learning paths built for real teams.',
-									link: '/learn',
-								},
-								{
-									icon: Gift,
-									title: 'Perks',
-									desc: 'Startup credits, tools, and early-stage advantages.',
-									link: '/showcase',
-								},
-								{
-									icon: Compass,
-									title: 'Explore',
-									desc: 'Discover insights, opportunities, and patterns.',
-									link: '/explore',
-								},
-							].map((item, idx) => (
-								<Link
-									to={item.link}
-									key={item.title}
-									className='group relative border border-gray-800 hover:border-emerald-500/40 rounded-2xl p-8 bg-gradient-to-b from-black/60 to-black/40 backdrop-blur-sm transition-all duration-500 hover:bg-emerald-500/5 hover:shadow-[0_0_30px_rgba(16,185,129,0.1)] hover:-translate-y-1'
-									style={{
-										animationDelay: `${idx * 100}ms`,
-									}}>
-									{/* Icon with glow */}
-									<div className='relative inline-flex mb-6'>
-										<div className='absolute inset-0 bg-emerald-500/20 rounded-lg blur-xl group-hover:bg-emerald-500/30 transition-all' />
-										<div className='relative bg-emerald-500/10 p-3 rounded-lg border border-emerald-500/20 group-hover:border-emerald-500/40 transition-all'>
-											<item.icon
-												className='w-6 h-6 text-emerald-400 transition-transform group-hover:scale-110 '
-												strokeWidth={1.5}
-											/>
-										</div>
+						{/* Bento Grid - Organized 2x3 Pattern */}
+						<BentoGrid className='md:grid-cols-4 auto-rows-[16rem]'>
+							{/* Row 1: Events (2 cols) + Learn (1 col) + Explore (1 col, spans 2 rows) */}
+							<BentoCard
+								name='Events & Workshops'
+								className='md:col-span-2 md:row-span-1'
+								background={
+									<div className='absolute inset-0'>
+										<img
+											src='https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=800&q=80'
+											alt='Events'
+											className='w-full h-full object-cover'
+										/>
+										<div className='absolute inset-0 bg-gradient-to-br from-emerald-500/15 via-emerald-500/5 to-transparent' />
 									</div>
+								}
+								description='Connect with student founders through workshops, hackathons, and founder sessions with experienced builders.'
+								href='/events'
+								cta='Browse events'
+							/>
 
-									{/* Content */}
-									<h3 className='text-xl font-semibold text-white mb-3 group-hover:text-emerald-400 transition-colors'>
-										{item.title}
-									</h3>
-									<p className='text-sm text-gray-400 leading-relaxed mb-4'>
-										{item.desc}
-									</p>
-
-									{/* Arrow indicator */}
-									<div className='inline-flex items-center text-xs font-medium text-emerald-400 opacity-0 group-hover:opacity-100 transition-opacity'>
-										<span>Learn more</span>
-										<ArrowRight className='w-3 h-3 ml-1 group-hover:translate-x-1 transition-transform' />
+							<BentoCard
+								name='Learn to Build'
+								className='md:col-span-1 md:row-span-1'
+								background={
+									<div className='absolute inset-0'>
+										<img
+											src='https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=800&q=80'
+											alt='Learn'
+											className='w-full h-full object-cover'
+										/>
+										<div className='absolute inset-0 bg-gradient-to-br from-emerald-500/15 via-emerald-500/5 to-transparent' />
 									</div>
-								</Link>
-							))}
-						</div>
+								}
+								description='Courses and resources designed for student entrepreneurs.'
+								href='/learn'
+								cta='Start learning'
+							/>
+
+							<BentoCard
+								name='Opportunities'
+								className='md:col-span-1 md:row-span-2'
+								background={
+									<div className='absolute inset-0'>
+										<img
+											src='https://images.unsplash.com/photo-1559136555-9303baea8ebd?w=800&q=80'
+											alt='Opportunities'
+											className='w-full h-full object-cover'
+										/>
+										<div className='absolute inset-0 bg-gradient-to-br from-emerald-500/15 via-emerald-500/5 to-transparent' />
+									</div>
+								}
+								description='Discover internships, competitions, and resources to accelerate your startup journey.'
+								href='/explore'
+								cta='Explore now'
+							/>
+
+							{/* Row 2: Perks (1 col) + Community (1 col) + (Explore continues) */}
+							<BentoCard
+								name='Resources'
+								className='md:col-span-1 md:row-span-1'
+								background={
+									<div className='absolute inset-0'>
+										<img
+											src='https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=800&q=80'
+											alt='Resources'
+											className='w-full h-full object-cover'
+										/>
+										<div className='absolute inset-0 bg-gradient-to-br from-emerald-500/15 via-emerald-500/5 to-transparent' />
+									</div>
+								}
+								description='Tools, credits, and resources for student startups.'
+								href='/showcase'
+								cta='View resources'
+							/>
+
+							<BentoCard
+								name='Community'
+								className='md:col-span-1 md:row-span-1'
+								background={
+									<div className='absolute inset-0'>
+										<img
+											src='https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=800&q=80'
+											alt='Community'
+											className='w-full h-full object-cover'
+										/>
+										<div className='absolute inset-0 bg-gradient-to-br from-emerald-500/15 via-emerald-500/5 to-transparent' />
+									</div>
+								}
+								description='Join 1000+ student builders creating the future.'
+								href='/showcase'
+								cta='See projects'
+							/>
+
+							<BentoCard
+								name='Launch Faster'
+								className='md:col-span-1 md:row-span-1'
+								background={
+									<div className='absolute inset-0'>
+										<img
+											src='https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=800&q=80'
+											alt='Launch'
+											className='w-full h-full object-cover'
+										/>
+										<div className='absolute inset-0 bg-gradient-to-br from-emerald-500/15 via-emerald-500/5 to-transparent' />
+									</div>
+								}
+								description='From idea to launch in weeks, not months.'
+								href='/learn'
+								cta='Get started'
+							/>
+						</BentoGrid>
 					</div>
 				</section>
 
 				{/* ================= SOCIAL PROOF ================= */}
-				<section className='relative py-40 px-6 overflow-hidden'>
-					{/* Strategic glow for this section */}
-					<div className='absolute inset-0'>
-						<div className='absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-emerald-500/10 rounded-full blur-[140px]' />
-					</div>
-
+				<section className='relative py-40 px-6 overflow-hidden z-10'>
 					<div className='relative z-10 max-w-6xl mx-auto'>
 						{/* Stats grid */}
 						<div className='grid md:grid-cols-3 gap-12 md:gap-16'>
 							{[
 								{
 									value: '1000+',
-									label: 'Active builders',
-									sublabel: 'Growing daily',
+									label: 'Student builders',
+									sublabel: 'Growing every semester',
 								},
 								{
 									value: '50+',
-									label: 'Teams scaled',
-									sublabel: 'From idea to launch',
+									label: 'Projects launched',
+									sublabel: 'From idea to reality',
 								},
 								{
-									value: '200+',
-									label: 'Insights shipped',
-									sublabel: 'Actionable knowledge',
+									value: '20+',
+									label: 'Events per semester',
+									sublabel: 'Workshops & sessions',
 								},
 							].map((stat, idx) => (
 								<div
@@ -245,20 +268,15 @@ export default function Home() {
 				</section>
 
 				{/* ================= HOW IT WORKS ================= */}
-				<section className='relative py-40 px-6 overflow-hidden'>
-					{/* Decorative elements */}
-					<div className='absolute left-0 top-1/3 w-[350px] h-[350px] bg-emerald-500/5 rounded-full blur-[100px]' />
-					<div className='absolute right-0 bottom-1/3 w-[300px] h-[300px] bg-emerald-600/5 rounded-full blur-[90px]' />
-
+				<section className='relative py-40 px-6 overflow-hidden z-10'>
 					<div className='relative z-10 max-w-5xl mx-auto'>
 						{/* Section header */}
 						<div className='text-center mb-24'>
 							<h2 className='text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6'>
-								Designed to stay out of your way
+								From idea to launch in 3 steps
 							</h2>
 							<p className='text-lg text-gray-400 max-w-2xl mx-auto'>
-								Three simple steps to transform how your team
-								operates.
+								A simple process designed for student founders.
 							</p>
 						</div>
 
@@ -267,18 +285,18 @@ export default function Home() {
 							{[
 								{
 									num: '01',
-									title: 'Connect your calls and conversations',
-									desc: 'Integrate with your existing tools and workflows seamlessly.',
+									title: 'Join the community',
+									desc: 'Apply for membership and connect with fellow student builders, mentors, and resources.',
 								},
 								{
 									num: '02',
-									title: 'We analyze and extract what matters',
-									desc: 'Our AI processes your data to find patterns and insights.',
+									title: 'Learn and build',
+									desc: 'Access workshops, courses, and hands-on events to turn your ideas into reality.',
 								},
 								{
 									num: '03',
-									title: 'You get clear, actionable insights',
-									desc: 'Receive organized, ready-to-use information for your team.',
+									title: 'Launch and grow',
+									desc: 'Get support, feedback, and resources to launch your project and scale it.',
 								},
 							].map((step, idx) => (
 								<div
@@ -319,12 +337,7 @@ export default function Home() {
 
 				{/* ================= FINAL CTA ================= */}
 				{!isAuthenticated && (
-					<section className='relative py-40 px-6 overflow-hidden'>
-						{/* Strategic glow for CTA section */}
-						<div className='absolute inset-0'>
-							<div className='absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] bg-emerald-500/12 rounded-full blur-[150px] animate-pulse' />
-						</div>
-
+					<section className='relative py-40 px-6 overflow-hidden z-10'>
 						<div className='relative z-10 max-w-5xl mx-auto'>
 							<div className='relative border border-gray-800 rounded-3xl bg-gradient-to-b from-black/60 to-black/40 backdrop-blur-sm p-12 md:p-20 lg:p-24 overflow-hidden'>
 								{/* Decorative corner accents */}
@@ -340,24 +353,25 @@ export default function Home() {
 								<div className='relative text-center'>
 									{/* Heading */}
 									<h2 className='text-3xl md:text-4xl lg:text-6xl font-bold text-white mb-8 leading-tight'>
-										Ready to see{' '}
+										Ready to build{' '}
 										<br className='hidden md:block' />
 										<span className='bg-gradient-to-r from-emerald-400 via-emerald-300 to-emerald-500 bg-clip-text text-transparent'>
-											how it works?
+											something great?
 										</span>
 									</h2>
 									{/* Description */}
 									<p className='text-lg md:text-xl text-gray-400 mb-12 max-w-2xl mx-auto leading-relaxed'>
-										Start using insights your team actually
-										trusts. Join hundreds of founders
-										building the future.
+										Join hundreds of student founders
+										building the next generation of
+										startups. No equity. No fees. Just
+										builders helping builders.
 									</p>
 									{/* CTA buttons */}
 									<div className='flex flex-wrap items-center justify-center gap-5 mb-10'>
 										<Link
-											to='/login'
+											to='/check-eligibility'
 											className='inline-flex items-center gap-2.5 bg-emerald-500 hover:bg-emerald-400 text-black font-bold text-base px-12 py-5 rounded-full transition-all duration-300 hover:shadow-[0_0_50px_rgba(16,185,129,0.5)] hover:scale-105 shadow-[0_0_30px_rgba(16,185,129,0.2)] group'>
-											Get started now
+											Check eligibility
 											<ArrowRight
 												className='w-5 h-5 group-hover:translate-x-1 transition-transform'
 												strokeWidth={2.5}
@@ -367,9 +381,9 @@ export default function Home() {
 										<Link
 											to='/showcase'
 											className='inline-flex items-center gap-2 text-gray-300 hover:text-white font-semibold text-base px-12 py-5 rounded-full border-2 border-gray-800 hover:border-emerald-500/50 hover:bg-emerald-500/5 transition-all duration-300 backdrop-blur-sm'>
-											View showcase
+											See projects
 										</Link>
-									</div>{' '}
+									</div>
 									{/* Trust indicators */}
 									<div className='flex flex-wrap items-center justify-center gap-6 text-sm text-gray-500'>
 										<div className='flex items-center gap-2'>
@@ -383,7 +397,7 @@ export default function Home() {
 													clipRule='evenodd'
 												/>
 											</svg>
-											<span>Free trial</span>
+											<span>Free to join</span>
 										</div>
 										<div className='flex items-center gap-2'>
 											<svg
@@ -396,7 +410,7 @@ export default function Home() {
 													clipRule='evenodd'
 												/>
 											</svg>
-											<span>No credit card required</span>
+											<span>No equity taken</span>
 										</div>
 										<div className='flex items-center gap-2'>
 											<svg
@@ -409,7 +423,7 @@ export default function Home() {
 													clipRule='evenodd'
 												/>
 											</svg>
-											<span>Setup in 5 minutes</span>
+											<span>For students only</span>
 										</div>
 									</div>
 								</div>

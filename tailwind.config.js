@@ -21,7 +21,8 @@ export default {
 				border: 'rgb(40, 40, 40)',
 			},
 			fontFamily: {
-				display: ['Inter', 'system-ui', 'sans-serif'],
+				sans: ['Raleway', 'system-ui', 'sans-serif'],
+				display: ['Raleway', 'system-ui', 'sans-serif'],
 			},
 			backgroundImage: {
 				'grid-pattern':
