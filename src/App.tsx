@@ -1,7 +1,5 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { Suspense } from 'react';
 import { AuthProvider } from '@/contexts/AuthContext';
-import { LoadingScreen } from '@/components/ui/loader';
 import Layout from '@/components/layout/Layout';
 import Home from '@/pages/Home';
 import Events from '@/pages/Events';
