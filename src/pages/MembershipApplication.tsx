@@ -72,8 +72,12 @@ export default function MembershipApplication() {
 					<div className='text-center mb-8'>
 						<Link
 							to='/'
-							className='inline-block text-2xl font-bold text-white hover:text-blue-400 transition-colors mb-2'>
-							StartX
+							className='inline-block hover:opacity-80 transition-opacity'>
+							<img
+								src='/image.png'
+								alt='StartX Logo'
+								className='h-8 w-auto'
+							/>
 						</Link>
 					</div>
 
@@ -127,8 +131,12 @@ export default function MembershipApplication() {
 					<div className='text-center mb-8'>
 						<Link
 							to='/'
-							className='inline-block text-2xl font-bold text-white hover:text-blue-400 transition-colors mb-2'>
-							StartX
+							className='inline-block hover:opacity-80 transition-opacity'>
+							<img
+								src='/image.png'
+								alt='StartX Logo'
+								className='h-8 w-auto'
+							/>
 						</Link>
 					</div>
 
@@ -163,8 +171,12 @@ export default function MembershipApplication() {
 				<div className='text-center mb-8'>
 					<Link
 						to='/'
-						className='inline-block text-2xl font-bold text-white hover:text-blue-400 transition-colors mb-4'>
-						StartX
+						className='inline-block hover:opacity-80 transition-opacity'>
+						<img
+							src='/image.png'
+							alt='StartX Logo'
+							className='h-8 w-auto'
+						/>
 					</Link>
 					<h1 className='text-3xl font-bold text-white mb-2'>
 						Apply for Membership

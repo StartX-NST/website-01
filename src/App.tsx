@@ -9,6 +9,8 @@ import Explore from '@/pages/Explore';
 import CheckEligibility from '@/pages/CheckEligibility';
 import Login from '@/pages/Login';
 import Signup from '@/pages/Signup';
+import ForgotPassword from '@/pages/ForgotPassword';
+import ResetPassword from '@/pages/ResetPassword';
 import MembershipApplication from '@/pages/MembershipApplication';
 import MembershipRequired from '@/pages/MembershipRequired';
 
@@ -19,19 +21,27 @@ function App() {
 				<Routes>
 					{/* Auth routes without layout */}
 					<Route
-						path='login'
+						path='/login'
 						element={<Login />}
 					/>
 					<Route
-						path='signup'
+						path='/signup'
 						element={<Signup />}
 					/>
 					<Route
-						path='membership-required'
+						path='/forgot-password'
+						element={<ForgotPassword />}
+					/>
+					<Route
+						path='/reset-password'
+						element={<ResetPassword />}
+					/>
+					<Route
+						path='/membership-required'
 						element={<MembershipRequired />}
 					/>
 					<Route
-						path='apply-membership'
+						path='/apply-membership'
 						element={<MembershipApplication />}
 					/>{' '}
 					{/* Main app routes with layout */}
@@ -43,28 +53,28 @@ function App() {
 							element={<Home />}
 						/>
 						<Route
-							path='events'
+							path='/events'
 							element={<Events />}
 						/>
 						<Route
-							path='learn'
+							path='/learn'
 							element={<Learn />}
 						/>
 						<Route
-							path='showcase'
+							path='/showcase'
 							element={<Showcase />}
 						/>
 						<Route
-							path='explore'
+							path='/explore'
 							element={<Explore />}
 						/>
 						<Route
-							path='check-eligibility'
+							path='/check-eligibility'
 							element={<CheckEligibility />}
 						/>
 						{/* Placeholder routes for header navigation */}
 						<Route
-							path='resources'
+							path='/resources'
 							element={<Explore />}
 						/>
 						<Route
@@ -80,7 +90,7 @@ function App() {
 							element={<Explore />}
 						/>
 						<Route
-							path='login'
+							path='/login'
 							element={<CheckEligibility />}
 						/>
 					</Route>

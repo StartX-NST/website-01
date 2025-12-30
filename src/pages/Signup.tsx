@@ -13,11 +13,25 @@ export default function Signup() {
 		name: '',
 		email: '',
 		password: '',
+		confirmPassword: '',
 	});
 
 	const handleSubmit = async (e: React.FormEvent) => {
 		e.preventDefault();
 		setError('');
+
+		// Validate password match
+		if (formData.password !== formData.confirmPassword) {
+			setError('Passwords do not match');
+			return;
+		}
+
+		// Validate password strength
+		if (formData.password.length < 8) {
+			setError('Password must be at least 8 characters long');
+			return;
+		}
+
 		setLoading(true);
 
 		try {
@@ -36,15 +50,18 @@ export default function Signup() {
 				<div className='text-center mb-8'>
 					<Link
 						to='/'
-						className='inline-block text-2xl font-bold text-white hover:text-blue-400 transition-colors mb-2'>
-						StartX
+						className='inline-block hover:opacity-80 transition-opacity'>
+						<img
+							src='/image.png'
+							alt='StartX Logo'
+							className='h-8 w-auto'
+						/>
 					</Link>
 					<h1 className='text-3xl font-bold text-white mb-2'>
 						Create account
 					</h1>
 					<p className='text-gray-400'>Join the StartX community</p>
-				</div>
-
+				</div>{' '}
 				<div className='bg-black/80 border border-gray-800 rounded-xl p-8 backdrop-blur-xl'>
 					<form
 						onSubmit={handleSubmit}
@@ -54,7 +71,6 @@ export default function Signup() {
 								{error}
 							</div>
 						)}
-
 						<div>
 							<label className='block text-sm font-medium text-gray-300 mb-2'>
 								Name
@@ -73,7 +89,6 @@ export default function Signup() {
 								placeholder='Enter your name'
 							/>
 						</div>
-
 						<div>
 							<label className='block text-sm font-medium text-gray-300 mb-2'>
 								Email
@@ -92,7 +107,6 @@ export default function Signup() {
 								placeholder='Enter your email'
 							/>
 						</div>
-
 						<div>
 							<label className='block text-sm font-medium text-gray-300 mb-2'>
 								Password
@@ -100,6 +114,7 @@ export default function Signup() {
 							<input
 								type='password'
 								required
+								minLength={8}
 								value={formData.password}
 								onChange={(e) =>
 									setFormData({
@@ -110,8 +125,29 @@ export default function Signup() {
 								className='w-full px-4 py-2.5 bg-black/40 border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-blue-500/50 transition-all'
 								placeholder='Enter your password'
 							/>
+							<p className='text-xs text-gray-500 mt-1'>
+								Must be at least 8 characters
+							</p>
 						</div>
-
+						<div>
+							<label className='block text-sm font-medium text-gray-300 mb-2'>
+								Confirm Password
+							</label>
+							<input
+								type='password'
+								required
+								minLength={8}
+								value={formData.confirmPassword}
+								onChange={(e) =>
+									setFormData({
+										...formData,
+										confirmPassword: e.target.value,
+									})
+								}
+								className='w-full px-4 py-2.5 bg-black/40 border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-blue-500/50 transition-all'
+								placeholder='Confirm your password'
+							/>
+						</div>{' '}
 						<button
 							type='submit'
 							disabled={loading}
@@ -125,7 +161,6 @@ export default function Signup() {
 								<span>Create account</span>
 							)}
 						</button>
-
 						<p className='text-center text-sm text-gray-400'>
 							Already have an account?{' '}
 							<Link
@@ -134,7 +169,6 @@ export default function Signup() {
 								Sign in
 							</Link>
 						</p>
-
 						<div className='pt-4 border-t border-gray-800'>
 							<p className='text-xs text-gray-500 text-center mb-2'>
 								Demo: Use{' '}

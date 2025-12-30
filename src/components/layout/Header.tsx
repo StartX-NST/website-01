@@ -119,10 +119,14 @@ export default function Header() {
 							<Link
 								to='/'
 								className='
-								text-white text-lg font-semibold tracking-wide px-2
-								hover:text-blue-400 transition-colors duration-300
+								px-2 flex items-center
+								transition-opacity duration-300 hover:opacity-80
 							'>
-								StartX
+								<img
+									src='/image.png'
+									alt='StartX Logo'
+									className='h-8 w-auto'
+								/>
 							</Link>
 
 							{/* Navigation Links - Desktop with Tubelight Effect */}
@@ -137,11 +141,7 @@ export default function Header() {
 											className={`
 											relative px-5 py-2 rounded-full text-sm font-medium
 											transition-all duration-300
-											${
-												active
-													? 'text-blue-400'
-													: 'text-gray-300 hover:text-white hover:bg-white/5'
-											}
+											${active ? 'text-blue-400' : 'text-gray-300 hover:text-white hover:bg-white/5'}
 										`}>
 											{link.name}
 											{active && (
@@ -407,11 +407,7 @@ export default function Header() {
 												}
 												className={`
 											relative block px-4 py-3 rounded-xl text-base font-medium transition-all duration-300
-											${
-												active
-													? 'text-blue-400'
-													: 'text-gray-300 hover:text-white hover:bg-white/5'
-											}
+											${active ? 'text-blue-400' : 'text-gray-300 hover:text-white hover:bg-white/5'}
 										`}>
 												{link.name}
 												{active && (
