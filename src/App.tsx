@@ -13,6 +13,7 @@ import ForgotPassword from '@/pages/ForgotPassword';
 import ResetPassword from '@/pages/ResetPassword';
 import MembershipApplication from '@/pages/MembershipApplication';
 import MembershipRequired from '@/pages/MembershipRequired';
+import AdminDashboard from '@/pages/AdminDashboard';
 
 function App() {
 	return (
@@ -43,7 +44,11 @@ function App() {
 					<Route
 						path='/apply-membership'
 						element={<MembershipApplication />}
-					/>{' '}
+					/>
+					<Route
+						path='/admin'
+						element={<AdminDashboard />}
+					/>
 					{/* Main app routes with layout */}
 					<Route
 						path='/'

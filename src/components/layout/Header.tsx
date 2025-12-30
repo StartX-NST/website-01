@@ -10,6 +10,7 @@ import {
 	ChevronDown,
 	Menu,
 	X,
+	Shield,
 } from 'lucide-react';
 import { useAuth } from '@/contexts/AuthContext';
 
@@ -302,6 +303,25 @@ export default function Header() {
 
 														{/* Menu Items */}
 														<div className='py-2'>
+															{/* Show Admin Dashboard for admins */}
+															{user?.role ===
+																'admin' && (
+																<Link
+																	to='/admin'
+																	onClick={() => {
+																		setShowUserMenu(
+																			false
+																		);
+																	}}
+																	className='w-full px-4 py-3 text-left text-sm text-gray-300 hover:text-white hover:bg-purple-500/10 transition-all duration-200 flex items-center gap-3 group'>
+																	<Shield className='w-4 h-4 text-purple-400 group-hover:scale-110 transition-transform' />
+																	<span>
+																		Admin
+																		Dashboard
+																	</span>
+																</Link>
+															)}
+
 															{/* Show membership application for non-members */}
 															{user?.role ===
 																'user' && (
