@@ -1,116 +1,139 @@
-import { createContext, useContext, useState, useEffect } from 'react';
-import type { ReactNode } from 'react';
+import { createContext, useContext, useState, useEffect } from "react";
+import type { ReactNode } from "react";
+import axiosInstance from "@/lib/axios";
 
-export type UserRole = 'guest' | 'user' | 'member' | 'admin';
+export type UserRole = "guest" | "user" | "member" | "admin";
 
 export type ApplicationStatus =
-	| 'none'
-	| 'draft'
-	| 'submitted'
-	| 'under_review'
-	| 'approved'
-	| 'rejected';
+  | "none"
+  | "draft"
+  | "submitted"
+  | "under_review"
+  | "approved"
+  | "rejected";
 
 export interface User {
-	id: string;
-	name: string;
-	email: string;
-	role: UserRole;
-	applicationStatus: ApplicationStatus;
-	avatar?: string;
+  id: string;
+  name?: string;
+  email: string;
+  role: UserRole;
+  applicationStatus?: ApplicationStatus;
+  avatar?: string;
+  isEmailVerified: boolean;
 }
 
 interface AuthContextType {
-	user: User | null;
-	isAuthenticated: boolean;
-	login: (email: string, password: string) => Promise<void>;
-	signup: (name: string, email: string, password: string) => Promise<void>;
-	logout: () => void;
-	updateApplicationStatus: (status: ApplicationStatus) => void;
+  user: User | null;
+  isAuthenticated: boolean;
+  login: (email: string, password: string) => Promise<void>;
+  signup: (email: string, password: string) => Promise<void>;
+  logout: () => Promise<void>;
+  updateApplicationStatus: (status: ApplicationStatus) => void;
+  setAuthUser: (user: User) => void;
+  checkAuth: () => Promise<void>;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 export function AuthProvider({ children }: { children: ReactNode }) {
-	const [user, setUser] = useState<User | null>(null);
+  const [user, setUser] = useState<User | null>(null);
+  const [loading, setLoading] = useState(true);
 
-	// Check for stored user on mount
-	useEffect(() => {
-		const storedUser = localStorage.getItem('user');
-		if (storedUser) {
-			setUser(JSON.parse(storedUser));
-		}
-	}, []);
+  // Check for authenticated user on mount
+  useEffect(() => {
+    checkAuth();
+  }, []);
 
-	const login = async (email: string, _password: string) => {
-		// Simulate API call
-		await new Promise((resolve) => setTimeout(resolve, 1000));
+  const checkAuth = async () => {
+    try {
+      const response = await axiosInstance.get("/auth/me");
+      if (response.data.success) {
+        setUser(response.data.user);
+      }
+    } catch (error) {
+      setUser(null);
+      localStorage.removeItem("user");
+    } finally {
+      setLoading(false);
+    }
+  };
 
-		// Mock user data - in real app, this comes from backend
-		const mockUser: User = {
-			id: '1',
-			name: 'Demo User',
-			email,
-			role: email.includes('admin')
-				? 'admin'
-				: email.includes('member')
-				? 'member'
-				: 'user',
-			applicationStatus: email.includes('member') ? 'approved' : 'none',
-		};
+  const login = async (email: string, password: string) => {
+    const response = await axiosInstance.post("/auth/login", {
+      email,
+      password,
+    });
 
-		setUser(mockUser);
-		localStorage.setItem('user', JSON.stringify(mockUser));
-	};
+    if (response.data.success) {
+      setUser(response.data.user);
+      localStorage.setItem("user", JSON.stringify(response.data.user));
+    }
+  };
 
-	const signup = async (name: string, email: string, _password: string) => {
-		// Simulate API call
-		await new Promise((resolve) => setTimeout(resolve, 1000));
+  const signup = async (email: string, password: string) => {
+    const response = await axiosInstance.post("/auth/register", {
+      email,
+      password,
+    });
 
-		const newUser: User = {
-			id: Date.now().toString(),
-			name,
-			email,
-			role: 'user',
-			applicationStatus: 'none',
-		};
+    if (response.data.success && response.data.user) {
+      // Set the unverified user in context so EmailVerificationRequired can access it
+      const unverifiedUser = response.data.user;
+      setUser(unverifiedUser);
+      localStorage.setItem("user", JSON.stringify(unverifiedUser));
+    }
+  };
 
-		setUser(newUser);
-		localStorage.setItem('user', JSON.stringify(newUser));
-	};
+  const logout = async () => {
+    try {
+      await axiosInstance.post("/auth/logout");
+    } catch (error) {
+      console.error("Logout error:", error);
+    } finally {
+      setUser(null);
+      localStorage.removeItem("user");
+    }
+  };
 
-	const logout = () => {
-		setUser(null);
-		localStorage.removeItem('user');
-	};
+  const updateApplicationStatus = (status: ApplicationStatus) => {
+    if (user) {
+      const updatedUser = { ...user, applicationStatus: status };
+      setUser(updatedUser);
+      localStorage.setItem("user", JSON.stringify(updatedUser));
+    }
+  };
 
-	const updateApplicationStatus = (status: ApplicationStatus) => {
-		if (user) {
-			const updatedUser = { ...user, applicationStatus: status };
-			setUser(updatedUser);
-			localStorage.setItem('user', JSON.stringify(updatedUser));
-		}
-	};
+  const setAuthUser = (newUser: User) => {
+    setUser(newUser);
+    localStorage.setItem("user", JSON.stringify(newUser));
+  };
 
-	return (
-		<AuthContext.Provider
-			value={{
-				user,
-				isAuthenticated: !!user,
-				login,
-				signup,
-				logout,
-				updateApplicationStatus,
-			}}>
-			{children}
-		</AuthContext.Provider>
-	);
+  if (loading) {
+    return null; // Or a loading spinner
+  }
+
+  return (
+    <AuthContext.Provider
+      value={{
+        user,
+        isAuthenticated: !!user,
+        login,
+        signup,
+        logout,
+        updateApplicationStatus,
+        setAuthUser,
+        checkAuth,
+      }}
+    >
+      {children}
+    </AuthContext.Provider>
+  );
 }
 
 export function useAuth() {
-	const context = useContext(AuthContext);
-	if (context === undefined) {
-		throw new Error('useAuth must be used within an AuthProvider');
-	}
-	return context;
+  const context = useContext(AuthContext);
+  if (context === undefined) {
+    throw new Error("useAuth must be used within an AuthProvider");
+  }
+  return context;
 }
