@@ -1,6 +1,7 @@
 import { Outlet, useLocation } from 'react-router-dom';
 import { AnimatePresence } from 'framer-motion';
 import Header from './Header';
+import { BackToTop } from '@/components/ui/back-to-top';
 
 export default function Layout() {
 	const location = useLocation();
@@ -15,6 +16,7 @@ export default function Layout() {
 					<Outlet key={location.pathname} />
 				</AnimatePresence>
 			</main>
+			<BackToTop />
 		</div>
 	);
 }

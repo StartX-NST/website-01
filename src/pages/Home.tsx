@@ -61,7 +61,7 @@ export default function Home() {
 		<AnimatedPage>
 			<div className='min-h-screen bg-black relative'>
 				{/* Hero Section with Shapes Background */}
-				<section className='relative min-h-screen flex items-center justify-center overflow-hidden py-20 z-10'>
+				<section className='relative min-h-screen flex items-center justify-center overflow-hidden py-12 md:py-20 z-10'>
 					{/* Geometric Shapes Background - Only for hero */}
 					<ShapesBackground />
 
@@ -145,10 +145,10 @@ export default function Home() {
 				</div>
 
 				{/* ================= KEY FEATURES ================= */}
-				<section className='relative py-32 px-6 overflow-hidden z-10'>
+				<section className='relative py-16 md:py-24 lg:py-32 px-6 overflow-hidden z-10'>
 					<div className='relative z-10 max-w-7xl mx-auto'>
 						{/* Section header */}
-						<div className='text-center mb-20'>
+						<div className='text-center mb-12 md:mb-16 lg:mb-20'>
 							<h2 className='text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6'>
 								Everything you need to build
 							</h2>
@@ -279,10 +279,10 @@ export default function Home() {
 				</section>
 
 				{/* ================= WHY JOIN STARTX ================= */}
-				<section className='relative py-32 px-6 overflow-hidden z-10'>
+				<section className='relative py-16 md:py-24 lg:py-32 px-6 overflow-hidden z-10'>
 					<div className='relative z-10 max-w-7xl mx-auto'>
 						{/* Section header */}
-						<div className='text-center mb-20'>
+						<div className='text-center mb-12 md:mb-16 lg:mb-20'>
 							<h2 className='text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6'>
 								Built for builders, by builders
 							</h2>
@@ -331,10 +331,10 @@ export default function Home() {
 				</section>
 
 				{/* ================= MENTOR-GUIDED GROWTH STAGES ================= */}
-				<section className='relative py-20 px-6 overflow-hidden z-10'>
+				<section className='relative py-8 md:py-20 lg:py-24 px-6 overflow-hidden z-10'>
 					<div className='relative z-10 max-w-7xl mx-auto'>
 						{/* Section header */}
-						<div className='text-center mb-16'>
+						<div className='text-center mb-10 md:mb-14 lg:mb-16'>
 							<h2 className='text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6'>
 								Your roadmap from idea to launch
 							</h2>
@@ -498,9 +498,9 @@ export default function Home() {
 
 				{/* ================= FINAL CTA ================= */}
 				{!isAuthenticated && (
-					<section className='relative pt-32 pb-20 px-6 overflow-hidden z-10'>
+					<section className='relative md:pt-24 lg:pt-32 pb-12 md:pb-16 lg:pb-20 px-6 overflow-hidden z-10'>
 						<div className='relative z-10 max-w-5xl mx-auto'>
-							<div className='relative border border-gray-800 rounded-3xl bg-gradient-to-b from-black/60 to-black/40 backdrop-blur-sm p-12 md:p-20 lg:p-24 overflow-hidden'>
+							<div className='relative border border-gray-800 rounded-3xl bg-gradient-to-b from-black/60 to-black/40 backdrop-blur-sm p-8 md:p-12 lg:p-20 overflow-hidden'>
 								<div className='relative text-center'>
 									<h2 className='text-3xl md:text-4xl lg:text-6xl font-bold text-white mb-8 leading-tight'>
 										Ready to build{' '}

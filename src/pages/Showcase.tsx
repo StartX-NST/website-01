@@ -168,7 +168,7 @@ export default function Showcase() {
 								))}
 							</StaggerContainer>
 						) : (
-							<div className='text-center py-20'>
+							<div className='text-center py-12 md:py-16 lg:py-20'>
 								<div className='inline-flex items-center justify-center w-16 h-16 rounded-full bg-gray-800/50 border border-gray-700 mb-6'>
 									<Rocket className='w-8 h-8 text-gray-500' />
 								</div>
