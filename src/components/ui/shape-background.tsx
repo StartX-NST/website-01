@@ -67,7 +67,7 @@ function ElegantShape({
 
 export function ShapesBackground() {
 	return (
-		<div className='fixed inset-0 overflow-hidden pointer-events-none z-0'>
+		<div className='absolute inset-0 overflow-hidden pointer-events-none z-0'>
 			{/* Subtle gradient overlay */}
 			<div className='absolute inset-0 bg-gradient-to-br from-blue-500/[0.03] via-transparent to-blue-500/[0.02] blur-3xl' />
 

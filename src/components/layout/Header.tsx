@@ -58,6 +58,8 @@ export default function Header() {
 			rejected: null,
 		};
 
+		if (!user.applicationStatus) return null;
+
 		const status = statusConfig[user.applicationStatus];
 		if (!status) return null;
 

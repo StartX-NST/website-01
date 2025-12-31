@@ -7,6 +7,7 @@ import {
 	StaggerContainer,
 	StaggerItem,
 } from '@/components/animations';
+import { BGPattern } from '@/components/ui/bg-pattern';
 
 // Mock event data
 const eventsData = [
@@ -136,7 +137,15 @@ export default function Events() {
 
 	return (
 		<AnimatedPage>
-			<div className='min-h-screen bg-black'>
+			<div className='min-h-screen bg-black relative'>
+				{/* Diagonal Stripes Background Pattern */}
+				<BGPattern
+					variant='diagonal-stripes'
+					mask='fade-y'
+					size={60}
+					fill='rgba(255, 255, 255, 0.08)'
+				/>
+
 				{/* Events Section */}
 				<section className='relative py-20 px-6 overflow-hidden'>
 					<div className='relative z-10 max-w-7xl mx-auto'>

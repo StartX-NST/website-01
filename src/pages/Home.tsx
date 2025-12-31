@@ -1,20 +1,70 @@
-import { ArrowRight } from 'lucide-react';
+import {
+	ArrowRight,
+	GraduationCap,
+	Rocket,
+	DollarSign,
+	Zap,
+	Shield,
+	Users,
+} from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { AnimatedPage, FadeIn } from '@/components/animations';
 import { useAuth } from '@/contexts/AuthContext';
-import { BentoCard, BentoGrid } from '@/components/ui/bento-grid';
 import { ShapesBackground } from '@/components/ui/shape-background';
+import { BGPattern } from '@/components/ui/bg-pattern';
+import { BentoCard, BentoGrid } from '@/components/ui/bento-grid';
+import { Timeline } from '@/components/ui/timeline';
 
 export default function Home() {
 	const { isAuthenticated } = useAuth();
+
+	const whyJoin = [
+		{
+			icon: Zap,
+			title: "Build, don't just learn",
+			description:
+				'Turn ideas into real startups — prototypes, users, traction.',
+		},
+		{
+			icon: Users,
+			title: 'Find your tribe',
+			description:
+				'Meet founders, developers, designers, marketers — collaborate and grow together.',
+		},
+		{
+			icon: GraduationCap,
+			title: "Learn from people who've done it",
+			description:
+				'Workshops, mentor sessions, and guidance from startup builders — not just theory.',
+		},
+		{
+			icon: Rocket,
+			title: 'Get visibility & opportunities',
+			description:
+				'Showcase your startup, join demo days, internships, and startup roles.',
+		},
+		{
+			icon: DollarSign,
+			title: 'Support & funding pathways',
+			description:
+				'Get pitch-ready and unlock micro-grants, competitions, and investor connects.',
+		},
+		{
+			icon: Shield,
+			title: 'Safe space to experiment',
+			description:
+				'Fail fast, iterate, and learn — without pressure or judgment.',
+		},
+	];
+
 	return (
 		<AnimatedPage>
 			<div className='min-h-screen bg-black relative'>
-				{/* Geometric Shapes Background - Fixed across entire page */}
-				<ShapesBackground />
-
-				{/* Hero Section */}
+				{/* Hero Section with Shapes Background */}
 				<section className='relative min-h-screen flex items-center justify-center overflow-hidden py-20 z-10'>
+					{/* Geometric Shapes Background - Only for hero */}
+					<ShapesBackground />
+
 					{/* Content */}
 					<div className='relative z-10 max-w-6xl mx-auto px-6 text-center'>
 						{/* Headline */}
@@ -84,264 +134,374 @@ export default function Home() {
 					</div>
 				</section>
 
-				{/* ================= VALUE PILLARS - BENTO GRID ================= */}
-				<section className='relative pb-40 px-6 overflow-hidden z-10'>
+				{/* Continuous Grid Background Pattern for all sections below hero */}
+				<div className='absolute inset-0 top-[100vh] z-0'>
+					<BGPattern
+						variant='grid'
+						mask='fade-edges'
+						size={60}
+						fill='rgba(255, 255, 255, 0.08)'
+					/>
+				</div>
+
+				{/* ================= KEY FEATURES ================= */}
+				<section className='relative py-32 px-6 overflow-hidden z-10'>
 					<div className='relative z-10 max-w-7xl mx-auto'>
 						{/* Section header */}
-						<div className='text-center mb-16'>
-							<h2 className='text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6'>
-								Everything you need to launch faster
+						<div className='text-center mb-20'>
+							<h2 className='text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6'>
+								Everything you need to build
 							</h2>
-							<p className='text-lg text-gray-400 max-w-2xl mx-auto'>
-								Built for student founders who want to focus on
-								building, not bureaucracy.
+							<p className='text-lg md:text-xl text-gray-400 max-w-3xl mx-auto'>
+								From ideation to launch, we provide the tools,
+								community, and guidance to turn your startup
+								dreams into reality.
 							</p>
 						</div>
 
-						{/* Bento Grid - Organized 2x3 Pattern */}
-						<BentoGrid className='md:grid-cols-4 auto-rows-[16rem]'>
-							{/* Row 1: Events (2 cols) + Learn (1 col) + Explore (1 col, spans 2 rows) */}
+						{/* Bento Grid */}
+						<BentoGrid className='md:grid-cols-3 auto-rows-[12rem]'>
+							{/* Post Your Startup Idea - Large card */}
 							<BentoCard
-								name='Events & Workshops'
+								name='Post Your Startup Idea'
 								className='md:col-span-2 md:row-span-1'
 								background={
 									<div className='absolute inset-0'>
 										<img
-											src='https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=800&q=80'
-											alt='Events'
+											src='https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=800&q=80'
+											alt='Team collaboration'
 											className='w-full h-full object-cover'
 										/>
-										<div className='absolute inset-0 bg-gradient-to-br from-blue-500/15 via-blue-500/5 to-transparent' />
+										<div className='absolute inset-0 bg-gradient-to-br from-blue-500/20 via-blue-500/10 to-transparent' />
 									</div>
 								}
-								description='Connect with student founders through workshops, hackathons, and founder sessions with experienced builders.'
-								href='/events'
-								cta='Browse events'
+								description='Share your idea with the StartX community and tell others what you need — co-founders, devs, designers, or marketers.'
+								href='/showcase'
+								cta='Share your idea'
 							/>
 
+							{/* Join Startup Teams */}
 							<BentoCard
-								name='Learn to Build'
+								name='Join Startup Teams'
 								className='md:col-span-1 md:row-span-1'
 								background={
 									<div className='absolute inset-0'>
 										<img
-											src='https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=800&q=80'
-											alt='Learn'
+											src='https://images.unsplash.com/photo-1531482615713-2afd69097998?w=800&q=80'
+											alt='Join teams'
 											className='w-full h-full object-cover'
 										/>
-										<div className='absolute inset-0 bg-gradient-to-br from-blue-500/15 via-blue-500/5 to-transparent' />
+										<div className='absolute inset-0 bg-gradient-to-br from-blue-500/20 via-blue-500/10 to-transparent' />
 									</div>
 								}
-								description='Courses and resources designed for student entrepreneurs.'
-								href='/learn'
-								cta='Start learning'
+								description='Browse ideas, join teams, collaborate, and help promising startups grow faster.'
+								href='/showcase'
+								cta='Browse teams'
 							/>
 
+							{/* Roadmap & Progress */}
 							<BentoCard
-								name='Opportunities'
+								name='Roadmap & Progress'
+								className='md:col-span-1 md:row-span-1'
+								background={
+									<div className='absolute inset-0'>
+										<img
+											src='https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=800&q=80'
+											alt='Roadmap planning'
+											className='w-full h-full object-cover'
+										/>
+										<div className='absolute inset-0 bg-gradient-to-br from-blue-500/20 via-blue-500/10 to-transparent' />
+									</div>
+								}
+								description='Get a clear roadmap with milestones and tasks — from idea → prototype → MVP.'
+								href='/learn'
+								cta='View roadmap'
+							/>
+
+							{/* On-Demand Mentorship */}
+							<BentoCard
+								name='On-Demand Mentorship'
+								className='md:col-span-1 md:row-span-1'
+								background={
+									<div className='absolute inset-0'>
+										<img
+											src='https://images.unsplash.com/photo-1573164713988-8665fc963095?w=800&q=80'
+											alt='Mentorship'
+											className='w-full h-full object-cover'
+										/>
+										<div className='absolute inset-0 bg-gradient-to-br from-blue-500/20 via-blue-500/10 to-transparent' />
+									</div>
+								}
+								description='Get guidance from mentors at the right stage: validation, tech, GTM, pitching, and more.'
+								href='/events'
+								cta='Find mentors'
+							/>
+
+							{/* Learn & Build - Large card */}
+							<BentoCard
+								name='Learn & Build (Workshops)'
 								className='md:col-span-1 md:row-span-2'
 								background={
 									<div className='absolute inset-0'>
 										<img
-											src='https://images.unsplash.com/photo-1559136555-9303baea8ebd?w=800&q=80'
-											alt='Opportunities'
+											src='https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=800&q=80'
+											alt='Workshops'
 											className='w-full h-full object-cover'
 										/>
-										<div className='absolute inset-0 bg-gradient-to-br from-blue-500/15 via-blue-500/5 to-transparent' />
+										<div className='absolute inset-0 bg-gradient-to-br from-blue-500/20 via-blue-500/10 to-transparent' />
 									</div>
 								}
-								description='Discover internships, competitions, and resources to accelerate your startup journey.'
+								description='Hands-on sessions, founder talks, hackathons, and sprint labs designed to build real startups.'
+								href='/events'
+								cta='Browse events'
+							/>
+
+							{/* Pathway to Funding */}
+							<BentoCard
+								name='Pathway to Funding'
+								className='md:col-span-2 md:row-span-1'
+								background={
+									<div className='absolute inset-0'>
+										<img
+											src='https://images.unsplash.com/photo-1559526324-4b87b5e36e44?w=800&q=80'
+											alt='Funding opportunities'
+											className='w-full h-full object-cover'
+										/>
+										<div className='absolute inset-0 bg-gradient-to-br from-blue-500/20 via-blue-500/10 to-transparent' />
+									</div>
+								}
+								description='Prepare your pitch, connect with investors, and apply for StartX funding opportunities.'
 								href='/explore'
-								cta='Explore now'
-							/>
-
-							{/* Row 2: Perks (1 col) + Community (1 col) + (Explore continues) */}
-							<BentoCard
-								name='Resources'
-								className='md:col-span-1 md:row-span-1'
-								background={
-									<div className='absolute inset-0'>
-										<img
-											src='https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=800&q=80'
-											alt='Resources'
-											className='w-full h-full object-cover'
-										/>
-										<div className='absolute inset-0 bg-gradient-to-br from-blue-500/15 via-blue-500/5 to-transparent' />
-									</div>
-								}
-								description='Tools, credits, and resources for student startups.'
-								href='/showcase'
-								cta='View resources'
-							/>
-
-							<BentoCard
-								name='Community'
-								className='md:col-span-1 md:row-span-1'
-								background={
-									<div className='absolute inset-0'>
-										<img
-											src='https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=800&q=80'
-											alt='Community'
-											className='w-full h-full object-cover'
-										/>
-										<div className='absolute inset-0 bg-gradient-to-br from-blue-500/15 via-blue-500/5 to-transparent' />
-									</div>
-								}
-								description='Join 1000+ student builders creating the future.'
-								href='/showcase'
-								cta='See projects'
-							/>
-
-							<BentoCard
-								name='Launch Faster'
-								className='md:col-span-1 md:row-span-1'
-								background={
-									<div className='absolute inset-0'>
-										<img
-											src='https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=800&q=80'
-											alt='Launch'
-											className='w-full h-full object-cover'
-										/>
-										<div className='absolute inset-0 bg-gradient-to-br from-blue-500/15 via-blue-500/5 to-transparent' />
-									</div>
-								}
-								description='From idea to launch in weeks, not months.'
-								href='/learn'
-								cta='Get started'
+								cta='Explore opportunities'
 							/>
 						</BentoGrid>
 					</div>
 				</section>
 
-				{/* ================= SOCIAL PROOF ================= */}
-				<section className='relative px-6 overflow-hidden z-10'>
-					<div className='relative z-10 max-w-6xl mx-auto'>
-						{/* Stats grid */}
-						<div className='grid md:grid-cols-3 gap-12 md:gap-16'>
-							{[
-								{
-									value: '1000+',
-									label: 'Student builders',
-									sublabel: 'Growing every semester',
-								},
-								{
-									value: '50+',
-									label: 'Projects launched',
-									sublabel: 'From idea to reality',
-								},
-								{
-									value: '20+',
-									label: 'Events per semester',
-									sublabel: 'Workshops & sessions',
-								},
-							].map((stat, idx) => (
+				{/* ================= WHY JOIN STARTX ================= */}
+				<section className='relative py-32 px-6 overflow-hidden z-10'>
+					<div className='relative z-10 max-w-7xl mx-auto'>
+						{/* Section header */}
+						<div className='text-center mb-20'>
+							<h2 className='text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6'>
+								Built for builders, by builders
+							</h2>
+							<p className='text-lg md:text-xl text-gray-400 max-w-3xl mx-auto'>
+								Join a community where action beats theory, and
+								every student founder gets the support they need
+								to succeed.
+							</p>
+						</div>
+
+						{/* Why Join Grid - Modern card design */}
+						<div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6'>
+							{whyJoin.map((reason, idx) => (
 								<div
-									key={stat.label}
-									className='group text-center'
-									style={{
-										animationDelay: `${idx * 150}ms`,
-									}}>
-									{/* Value */}
-									<div className='text-5xl md:text-6xl lg:text-7xl font-bold mb-4 bg-gradient-to-br from-white via-blue-100 to-white bg-clip-text text-transparent group-hover:scale-105 transition-transform'>
-										{stat.value}
+									key={idx}
+									className='group relative overflow-hidden rounded-2xl border border-gray-800/60 bg-gradient-to-br from-gray-900/80 to-black/90 backdrop-blur-sm p-8 transition-all duration-500 hover:border-blue-500/40 hover:shadow-[0_0_30px_rgba(59,130,246,0.1)] hover:-translate-y-2'>
+									{/* Subtle background gradient on hover */}
+									<div className='absolute inset-0 bg-gradient-to-br from-blue-500/[0.03] via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500' />
+
+									{/* Minimal icon */}
+									<div className='relative mb-6'>
+										<div className='relative inline-flex p-3 rounded-xl bg-blue-500/5 border border-blue-500/10 group-hover:border-blue-500/20 transition-all duration-300'>
+											<reason.icon
+												className='w-6 h-6 text-blue-400/80 group-hover:text-blue-400 transition-colors'
+												strokeWidth={1.5}
+											/>
+										</div>
 									</div>
 
-									{/* Label */}
-									<div className='text-base md:text-lg font-semibold text-white mb-2 uppercase tracking-wide'>
-										{stat.label}
+									{/* Content */}
+									<div className='relative'>
+										<h3 className='text-xl font-semibold text-white mb-3 transition-colors duration-300'>
+											{reason.title}
+										</h3>
+										<p className='text-base text-gray-400 leading-relaxed transition-colors duration-300'>
+											{reason.description}
+										</p>
 									</div>
 
-									{/* Sublabel */}
-									<div className='text-sm text-gray-500 font-medium'>
-										{stat.sublabel}
-									</div>
+									{/* Bottom accent line */}
+									<div className='absolute bottom-0 left-0 w-0 h-[2px] bg-gradient-to-r from-blue-500 via-blue-400 to-blue-600 group-hover:w-full transition-all duration-700 ease-out' />
 								</div>
 							))}
 						</div>
 					</div>
 				</section>
 
-				{/* ================= HOW IT WORKS ================= */}
-				<section className='relative pt-40 pb-10 px-6 overflow-hidden z-10'>
-					<div className='relative z-10 max-w-5xl mx-auto'>
+				{/* ================= MENTOR-GUIDED GROWTH STAGES ================= */}
+				<section className='relative py-20 px-6 overflow-hidden z-10'>
+					<div className='relative z-10 max-w-7xl mx-auto'>
 						{/* Section header */}
-						<div className='text-center mb-24'>
-							<h2 className='text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6'>
-								From idea to launch in 3 steps
+						<div className='text-center mb-16'>
+							<h2 className='text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6'>
+								Your roadmap from idea to launch
 							</h2>
-							<p className='text-lg text-gray-400 max-w-2xl mx-auto'>
-								A simple process designed for student founders.
+							<p className='text-lg md:text-xl text-gray-400 max-w-3xl mx-auto'>
+								Follow a proven path with expert mentorship at
+								every critical stage of your startup journey.
 							</p>
 						</div>
 
-						{/* Steps */}
-						<div className='space-y-6'>
-							{[
+						{/* Timeline Component */}
+						<Timeline
+							data={[
 								{
-									num: '01',
-									title: 'Join the community',
-									desc: 'Apply for membership and connect with fellow student builders, mentors, and resources.',
-								},
-								{
-									num: '02',
-									title: 'Learn and build',
-									desc: 'Access workshops, courses, and hands-on events to turn your ideas into reality.',
-								},
-								{
-									num: '03',
-									title: 'Launch and grow',
-									desc: 'Get support, feedback, and resources to launch your project and scale it.',
-								},
-							].map((step, idx) => (
-								<div
-									key={step.num}
-									className='group relative'
-									style={{
-										animationDelay: `${idx * 100}ms`,
-									}}>
-									{/* Connecting line */}
-									{idx < 2 && (
-										<div className='absolute left-5 top-16 w-0.5 h-12 bg-gradient-to-b from-blue-500/30 to-transparent' />
-									)}
+									title: 'Idea Check',
+									content: (
+										<div className='mb-8'>
+											<div className='bg-gradient-to-br from-gray-900/60 to-black/80 backdrop-blur-sm border border-gray-800/50 rounded-xl p-6 hover:border-blue-500/30 transition-all duration-300'>
+												{/* Subtle mono number */}
+												<span className='inline-block text-xs font-mono text-gray-500/60 mb-3'>
+													01
+												</span>
 
-									<div className='flex items-start gap-6 md:gap-8 border border-gray-800 rounded-xl p-6 md:p-7 bg-gradient-to-br from-black/60 to-black/40 backdrop-blur-sm hover:border-blue-500/30 transition-all duration-500 hover:shadow-[0_0_30px_rgba(19,40,85,0.1)] hover:-translate-y-1'>
-										{/* Number badge */}
-										<div className='flex-shrink-0 relative'>
-											<div className='absolute inset-0 bg-blue-500/20 rounded-full blur-lg group-hover:bg-blue-500/30 transition-all' />
-											<div className='relative w-11 h-11 rounded-full border-2 border-gray-800 group-hover:border-blue-500/50 bg-gradient-to-br from-black to-blue-950/20 flex items-center justify-center text-blue-400 font-bold text-base transition-all duration-500 group-hover:scale-110 group-hover:rotate-3'>
-												{step.num}
+												<h4 className='text-lg font-semibold text-white mb-2'>
+													Validate Your Vision
+												</h4>
+												<p className='text-sm text-gray-400 leading-relaxed'>
+													Start with clarity. We help
+													you refine your idea, test
+													its uniqueness, and validate
+													real market need.
+												</p>
 											</div>
 										</div>
+									),
+								},
+								{
+									title: 'User Insights',
+									content: (
+										<div className='mb-8'>
+											<div className='bg-gradient-to-br from-gray-900/60 to-black/80 backdrop-blur-sm border border-gray-800/50 rounded-xl p-6 hover:border-blue-500/30 transition-all duration-300'>
+												{/* Subtle mono number */}
+												<span className='inline-block text-xs font-mono text-gray-500/60 mb-3'>
+													02
+												</span>
 
-										{/* Content */}
-										<div className='flex-1 pt-1'>
-											<h3 className='text-lg md:text-xl font-bold text-white group-hover:text-blue-400 transition-colors mb-2'>
-												{step.title}
-											</h3>
-											<p className='text-sm md:text-base text-gray-400 leading-relaxed'>
-												{step.desc}
-											</p>
+												<h4 className='text-lg font-semibold text-white mb-2'>
+													Know Your Customer
+												</h4>
+												<p className='text-sm text-gray-400 leading-relaxed mb-4'>
+													Deep dive into user
+													research. Learn to conduct
+													interviews, analyze behavior
+													patterns, and understand
+													what your customers need.
+												</p>
+												<div className='space-y-2'>
+													<div className='flex items-center gap-2 text-gray-400 text-xs'>
+														<div className='w-1 h-1 rounded-full bg-blue-400/60' />
+														Customer interviews &
+														surveys
+													</div>
+													<div className='flex items-center gap-2 text-gray-400 text-xs'>
+														<div className='w-1 h-1 rounded-full bg-blue-400/60' />
+														Pain point
+														identification
+													</div>
+													<div className='flex items-center gap-2 text-gray-400 text-xs'>
+														<div className='w-1 h-1 rounded-full bg-blue-400/60' />
+														Market size validation
+													</div>
+												</div>
+											</div>
 										</div>
-									</div>
-								</div>
-							))}
-						</div>
+									),
+								},
+								{
+									title: 'Model & Strategy',
+									content: (
+										<div className='mb-8'>
+											<div className='bg-gradient-to-br from-gray-900/60 to-black/80 backdrop-blur-sm border border-gray-800/50 rounded-xl p-6 hover:border-blue-500/30 transition-all duration-300'>
+												{/* Subtle mono number */}
+												<span className='inline-block text-xs font-mono text-gray-500/60 mb-3'>
+													03
+												</span>
+
+												<h4 className='text-lg font-semibold text-white mb-2'>
+													Build Your Business Plan
+												</h4>
+												<p className='text-sm text-gray-400 leading-relaxed'>
+													Design a winning strategy.
+													From pricing models to
+													go-to-market plans, we help
+													you create a roadmap that
+													actually works.
+												</p>
+											</div>
+										</div>
+									),
+								},
+								{
+									title: 'Prototype Sprint',
+									content: (
+										<div className='mb-8'>
+											<div className='bg-gradient-to-br from-gray-900/60 to-black/80 backdrop-blur-sm border border-gray-800/50 rounded-xl p-6 hover:border-blue-500/30 transition-all duration-300'>
+												{/* Subtle mono number */}
+												<span className='inline-block text-xs font-mono text-gray-500/60 mb-3'>
+													04
+												</span>
+
+												<h4 className='text-lg font-semibold text-white mb-2'>
+													Ship Fast, Learn Faster
+												</h4>
+												<p className='text-sm text-gray-400 leading-relaxed mb-4'>
+													Build your MVP in weeks, not
+													months. Get hands-on with
+													rapid prototyping, testing,
+													and iterating based on real
+													user feedback.
+												</p>
+												<div className='bg-gradient-to-br from-blue-500/5 to-transparent border border-blue-500/10 rounded-lg p-4'>
+													<p className='text-white font-medium text-sm mb-1'>
+														2-4 Week Sprint
+													</p>
+													<p className='text-gray-400 text-xs'>
+														Intensive development
+														with mentor check-ins
+													</p>
+												</div>
+											</div>
+										</div>
+									),
+								},
+								{
+									title: 'Market Entry',
+									content: (
+										<div className='mb-8'>
+											<div className='bg-gradient-to-br from-gray-900/60 to-black/80 backdrop-blur-sm border border-gray-800/50 rounded-xl p-6 hover:border-blue-500/30 transition-all duration-300'>
+												{/* Subtle mono number */}
+												<span className='inline-block text-xs font-mono text-gray-500/60 mb-3'>
+													05
+												</span>
+
+												<h4 className='text-lg font-semibold text-white mb-2'>
+													Launch & Scale
+												</h4>
+												<p className='text-sm text-gray-400 leading-relaxed'>
+													Perfect your pitch, launch
+													to real users, and start
+													scaling. Get ready for demo
+													days, investor meetings, and
+													growth.
+												</p>
+											</div>
+										</div>
+									),
+								},
+							]}
+						/>
 					</div>
 				</section>
 
 				{/* ================= FINAL CTA ================= */}
 				{!isAuthenticated && (
-					<section className='relative pt-40 pb-20 px-6 overflow-hidden z-10'>
+					<section className='relative pt-32 pb-20 px-6 overflow-hidden z-10'>
 						<div className='relative z-10 max-w-5xl mx-auto'>
 							<div className='relative border border-gray-800 rounded-3xl bg-gradient-to-b from-black/60 to-black/40 backdrop-blur-sm p-12 md:p-20 lg:p-24 overflow-hidden'>
-								{/* Decorative corner accents */}
-								<div className='absolute top-0 left-0 w-20 h-20 border-t-2 border-l-2 border-blue-400/30 rounded-tl-3xl' />
-								<div className='absolute top-0 right-0 w-20 h-20 border-t-2 border-r-2 border-blue-400/30 rounded-tr-3xl' />
-								<div className='absolute bottom-0 left-0 w-20 h-20 border-b-2 border-l-2 border-blue-400/30 rounded-bl-3xl' />
-								<div className='absolute bottom-0 right-0 w-20 h-20 border-b-2 border-r-2 border-blue-400/30 rounded-br-3xl' />
-
 								<div className='relative text-center'>
-									{/* Heading */}
 									<h2 className='text-3xl md:text-4xl lg:text-6xl font-bold text-white mb-8 leading-tight'>
 										Ready to build{' '}
 										<br className='hidden md:block' />
@@ -349,15 +509,13 @@ export default function Home() {
 											something great?
 										</span>
 									</h2>
-									{/* Description */}
 									<p className='text-lg md:text-xl text-gray-400 mb-12 max-w-2xl mx-auto leading-relaxed'>
 										Join hundreds of student founders
 										building the next generation of
 										startups. No equity. No fees. Just
 										builders helping builders.
 									</p>
-									{/* CTA buttons */}
-									<div className='flex flex-wrap items-center justify-center gap-5 mb-10'>
+									<div className='flex flex-wrap items-center justify-center gap-5'>
 										<Link
 											to='/check-eligibility'
 											className='inline-flex items-center gap-2.5 bg-blue-500 hover:bg-blue-400 text-black font-bold text-base px-12 py-5 rounded-full transition-all duration-300 hover:shadow-[0_0_50px_rgba(19,40,85,0.5)] hover:scale-105 shadow-[0_0_30px_rgba(19,40,85,0.2)] group'>
@@ -373,48 +531,6 @@ export default function Home() {
 											className='inline-flex items-center gap-2 text-gray-300 hover:text-white font-semibold text-base px-12 py-5 rounded-full border-2 border-gray-800 hover:border-blue-500/50 hover:bg-blue-500/5 transition-all duration-300 backdrop-blur-sm'>
 											See projects
 										</Link>
-									</div>
-									{/* Trust indicators */}
-									<div className='flex flex-wrap items-center justify-center gap-6 text-sm text-gray-500'>
-										<div className='flex items-center gap-2'>
-											<svg
-												className='w-5 h-5 text-blue-400'
-												fill='currentColor'
-												viewBox='0 0 20 20'>
-												<path
-													fillRule='evenodd'
-													d='M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z'
-													clipRule='evenodd'
-												/>
-											</svg>
-											<span>Free to join</span>
-										</div>
-										<div className='flex items-center gap-2'>
-											<svg
-												className='w-5 h-5 text-blue-400'
-												fill='currentColor'
-												viewBox='0 0 20 20'>
-												<path
-													fillRule='evenodd'
-													d='M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z'
-													clipRule='evenodd'
-												/>
-											</svg>
-											<span>No equity taken</span>
-										</div>
-										<div className='flex items-center gap-2'>
-											<svg
-												className='w-5 h-5 text-blue-400'
-												fill='currentColor'
-												viewBox='0 0 20 20'>
-												<path
-													fillRule='evenodd'
-													d='M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z'
-													clipRule='evenodd'
-												/>
-											</svg>
-											<span>For students only</span>
-										</div>
 									</div>
 								</div>
 							</div>

@@ -6,6 +6,7 @@ import {
 	StaggerContainer,
 	StaggerItem,
 } from '@/components/animations';
+import { BGPattern } from '@/components/ui/bg-pattern';
 
 // Mock course data
 const coursesData = [
@@ -112,7 +113,15 @@ export default function Learn() {
 
 	return (
 		<AnimatedPage>
-			<div className='min-h-screen bg-black'>
+			<div className='min-h-screen bg-black relative'>
+				{/* Diagonal Stripes Background Pattern */}
+				<BGPattern
+					variant='diagonal-stripes'
+					mask='fade-y'
+					size={60}
+					fill='rgba(255, 255, 255, 0.08)'
+				/>
+
 				{/* All Courses Section */}
 				<section className='relative py-20 px-6 overflow-hidden'>
 					<div className='relative z-10 max-w-7xl mx-auto'>

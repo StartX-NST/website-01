@@ -6,6 +6,7 @@ import {
 	StaggerContainer,
 	StaggerItem,
 } from '@/components/animations';
+import { BGPattern } from '@/components/ui/bg-pattern';
 
 // Mock projects data
 const projectsData = [
@@ -123,7 +124,15 @@ export default function Showcase() {
 
 	return (
 		<AnimatedPage>
-			<div className='min-h-screen bg-black'>
+			<div className='min-h-screen bg-black relative'>
+				{/* Diagonal Stripes Background Pattern */}
+				<BGPattern
+					variant='diagonal-stripes'
+					mask='fade-y'
+					size={60}
+					fill='rgba(255, 255, 255, 0.08)'
+				/>
+
 				{/* Featured Projects Section */}
 				<section className='relative py-20 px-6 overflow-hidden'>
 					<div className='absolute right-0 top-1/3 w-[400px] h-[400px] bg-blue-500/5 rounded-full blur-[100px]' />
