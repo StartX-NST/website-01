@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Rocket, Target } from 'lucide-react';
+import { Target } from 'lucide-react';
 import { ProjectCard, ShowcaseFilters } from '@/components/showcase';
 import {
 	AnimatedPage,
@@ -138,48 +138,58 @@ export default function Showcase() {
 					<div className='absolute right-0 top-1/3 w-[400px] h-[400px] bg-blue-500/5 rounded-full blur-[100px]' />
 
 					<div className='relative z-10 max-w-7xl mx-auto'>
-						{/* Section header */}
-						<div className='mb-8'>
-							<div className='flex items-center gap-3 mb-4'>
-								<Target className='w-6 h-6 text-blue-400' />
-								<h2 className='text-2xl md:text-3xl font-bold text-white'>
-									Featured Projects
-								</h2>
-							</div>
-							<p className='text-gray-400 max-w-2xl mb-8'>
-								Startups and projects built by our community
-								members. Real products solving real problems.
-							</p>
-						</div>
-
-						{/* Filters */}
-						<ShowcaseFilters
-							selectedCategory={selectedCategory}
-							onCategoryChange={setSelectedCategory}
-						/>
-
-						{/* Projects grid */}
-						{filteredProjects.length > 0 ? (
-							<StaggerContainer className='grid md:grid-cols-2 lg:grid-cols-3 gap-6'>
-								{filteredProjects.map((project) => (
-									<StaggerItem key={project.id}>
-										<ProjectCard {...project} />
-									</StaggerItem>
-								))}
-							</StaggerContainer>
-						) : (
-							<div className='text-center py-12 md:py-16 lg:py-20'>
-								<div className='inline-flex items-center justify-center w-16 h-16 rounded-full bg-gray-800/50 border border-gray-700 mb-6'>
-									<Rocket className='w-8 h-8 text-gray-500' />
+						{/* Show empty state if no projects exist at all */}
+						{projectsData.length === 0 ? (
+							<div className='flex items-center justify-center min-h-[60vh]'>
+								<div className='text-center max-w-md'>
+									<h2 className='text-2xl md:text-3xl font-bold text-white mb-3'>
+										No Projects Yet
+									</h2>
+									<p className='text-gray-400 text-lg'>
+										Student projects and startups will be
+										featured here soon.
+									</p>
 								</div>
-								<h3 className='text-xl font-semibold text-white mb-2'>
-									No projects found
-								</h3>
-								<p className='text-gray-400'>
-									Try adjusting your filters or check back
-									later.
-								</p>
 							</div>
+						) : (
+							<>
+								{/* Section header */}
+								<div className='mb-8'>
+									<div className='flex items-center gap-3 mb-4'>
+										<Target className='w-6 h-6 text-blue-400' />
+										<h2 className='text-2xl md:text-3xl font-bold text-white'>
+											Featured Projects
+										</h2>
+									</div>
+								</div>
+
+								{/* Filters */}
+								<ShowcaseFilters
+									selectedCategory={selectedCategory}
+									onCategoryChange={setSelectedCategory}
+								/>
+
+								{/* Projects grid or filtered empty state */}
+								{filteredProjects.length > 0 ? (
+									<StaggerContainer className='grid md:grid-cols-2 lg:grid-cols-3 gap-6'>
+										{filteredProjects.map((project) => (
+											<StaggerItem key={project.id}>
+												<ProjectCard {...project} />
+											</StaggerItem>
+										))}
+									</StaggerContainer>
+								) : (
+									<div className='text-center py-12 md:py-16 lg:py-20'>
+										<h3 className='text-xl font-semibold text-white mb-2'>
+											No projects found
+										</h3>
+										<p className='text-gray-400'>
+											Try adjusting your filters or check
+											back later.
+										</p>
+									</div>
+								)}
+							</>
 						)}
 					</div>
 				</section>

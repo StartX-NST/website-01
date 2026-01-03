@@ -107,7 +107,7 @@ export default function Home() {
 								</Link>
 
 								<Link
-									to='/explore'
+									to='/opportunities'
 									className='inline-flex items-center gap-2 text-gray-300 hover:text-white font-medium text-base px-10 py-4 rounded-full border border-gray-800 hover:border-blue-500/50 hover:bg-blue-500/5 transition-all duration-300 backdrop-blur-sm'>
 									See what members build
 								</Link>
@@ -271,7 +271,7 @@ export default function Home() {
 									</div>
 								}
 								description='Prepare your pitch, connect with investors, and apply for StartX funding opportunities.'
-								href='/explore'
+								href='/opportunities'
 								cta='Explore opportunities'
 							/>
 						</BentoGrid>

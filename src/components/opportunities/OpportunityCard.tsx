@@ -12,6 +12,8 @@ interface OpportunityCardProps {
 	location: string;
 	stipend?: string;
 	link?: string;
+	applied?: boolean;
+	ineligible?: boolean; // TODO: Replace with actual eligibility criteria logic
 }
 
 const typeConfig = {
@@ -31,12 +33,21 @@ export default function OpportunityCard({
 	location,
 	stipend,
 	link,
+	applied = false,
+	ineligible = false,
 }: OpportunityCardProps) {
 	const config = typeConfig[type];
 
 	return (
 		<ProtectedAction requireMembership={false}>
-			<div className='group relative border border-gray-800 rounded-xl overflow-hidden bg-gradient-to-br from-black/60 to-black/40 backdrop-blur-sm transition-all duration-500 hover:-translate-y-1 hover:border-blue-500/30 hover:shadow-[0_0_25px_rgba(19,40,85,0.1)] h-full flex flex-col'>
+			<div
+				className={`group relative border rounded-xl overflow-hidden backdrop-blur-sm transition-all duration-500 h-full flex flex-col min-h-[400px] ${
+					ineligible
+						? 'border-orange-900/30 bg-gradient-to-br from-black/90 to-black/70 opacity-60'
+						: applied
+						? 'border-gray-800/50 bg-gradient-to-br from-black/90 to-black/70 opacity-60'
+						: 'border-gray-800 bg-gradient-to-br from-black/60 to-black/40 hover:-translate-y-1 hover:border-blue-500/30 hover:shadow-[0_0_25px_rgba(19,40,85,0.1)]'
+				}`}>
 				<div className='p-6 flex flex-col flex-1'>
 					{/* Header with type badge and stipend */}
 					<div className='flex items-start justify-between mb-4'>
@@ -103,14 +114,24 @@ export default function OpportunityCard({
 
 					{/* CTA - pushed to bottom */}
 					<div className='mt-auto'>
-						<a
-							href={link || '#'}
-							target='_blank'
-							rel='noopener noreferrer'
-							className='inline-flex items-center gap-2 text-sm font-semibold text-blue-400 hover:text-blue-300 transition-colors group/cta'>
-							<span>Apply now</span>
-							<ExternalLink className='w-4 h-4 group-hover/cta:translate-x-0.5 group-hover/cta:-translate-y-0.5 transition-transform' />
-						</a>
+						{ineligible ? (
+							<button className='inline-flex items-center gap-2 text-sm font-semibold text-orange-500/70 cursor-default'>
+								<span>Not eligible</span>
+							</button>
+						) : applied ? (
+							<button className='inline-flex items-center gap-2 text-sm font-semibold text-gray-500 cursor-default'>
+								<span>Already applied</span>
+							</button>
+						) : (
+							<a
+								href={link || '#'}
+								target='_blank'
+								rel='noopener noreferrer'
+								className='inline-flex items-center gap-2 text-sm font-semibold text-blue-400 hover:text-blue-300 transition-colors group/cta'>
+								<span>Show interest</span>
+								<ExternalLink className='w-4 h-4 group-hover/cta:translate-x-0.5 group-hover/cta:-translate-y-0.5 transition-transform' />
+							</a>
+						)}
 					</div>
 				</div>
 			</div>

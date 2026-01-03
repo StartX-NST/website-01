@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Plus, CheckCircle } from 'lucide-react';
+import { Plus, CheckCircle, Link2, FileCode } from 'lucide-react';
 
 interface ShowcaseFormData {
 	title: string;
@@ -9,6 +9,8 @@ interface ShowcaseFormData {
 	metricsLabel: string;
 	metricsValue: string;
 	link: string;
+	htmlFile: File | null;
+	linkType: 'url' | 'html';
 }
 
 export default function AddShowcaseForm() {
@@ -20,6 +22,8 @@ export default function AddShowcaseForm() {
 		metricsLabel: '',
 		metricsValue: '',
 		link: '',
+		htmlFile: null,
+		linkType: 'url',
 	});
 	const [loading, setLoading] = useState(false);
 	const [success, setSuccess] = useState(false);
@@ -40,6 +44,25 @@ export default function AddShowcaseForm() {
 	) => {
 		const { name, value } = e.target;
 		setFormData((prev) => ({ ...prev, [name]: value }));
+	};
+
+	const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+		const file = e.target.files?.[0];
+		if (file && file.type === 'text/html') {
+			setFormData((prev) => ({ ...prev, htmlFile: file }));
+		} else if (file) {
+			alert('Please upload a valid HTML file');
+			e.target.value = '';
+		}
+	};
+
+	const handleLinkTypeChange = (type: 'url' | 'html') => {
+		setFormData((prev) => ({
+			...prev,
+			linkType: type,
+			link: '',
+			htmlFile: null,
+		}));
 	};
 
 	const handleSubmit = async (e: React.FormEvent) => {
@@ -65,6 +88,8 @@ export default function AddShowcaseForm() {
 			metricsLabel: '',
 			metricsValue: '',
 			link: '',
+			htmlFile: null,
+			linkType: 'url',
 		});
 
 		// Hide success message after 3 seconds
@@ -206,22 +231,76 @@ export default function AddShowcaseForm() {
 					</div>
 				</div>
 
-				{/* Link */}
+				{/* Link or HTML File */}
 				<div>
-					<label
-						htmlFor='link'
-						className='block text-sm font-medium text-gray-300 mb-2'>
-						Project Link
+					<label className='block text-sm font-medium text-gray-300 mb-3'>
+						Project Link / File
 					</label>
-					<input
-						type='url'
-						id='link'
-						name='link'
-						value={formData.link}
-						onChange={handleChange}
-						className='w-full px-4 py-3 bg-black/60 border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-blue-500 transition-colors'
-						placeholder='https://example.com'
-					/>
+
+					{/* Toggle between URL and HTML */}
+					<div className='flex gap-3 mb-4'>
+						<button
+							type='button'
+							onClick={() => handleLinkTypeChange('url')}
+							className={`flex-1 px-4 py-3 rounded-lg font-medium transition-all duration-300 flex items-center justify-center gap-2 ${
+								formData.linkType === 'url'
+									? 'bg-blue-500/20 border-2 border-blue-500 text-blue-400'
+									: 'bg-black/60 border border-gray-700 text-gray-400 hover:border-gray-600'
+							}`}>
+							<Link2 className='w-4 h-4' />
+							Project URL
+						</button>
+						<button
+							type='button'
+							onClick={() => handleLinkTypeChange('html')}
+							className={`flex-1 px-4 py-3 rounded-lg font-medium transition-all duration-300 flex items-center justify-center gap-2 ${
+								formData.linkType === 'html'
+									? 'bg-blue-500/20 border-2 border-blue-500 text-blue-400'
+									: 'bg-black/60 border border-gray-700 text-gray-400 hover:border-gray-600'
+							}`}>
+							<FileCode className='w-4 h-4' />
+							HTML File
+						</button>
+					</div>
+
+					{/* URL Input */}
+					{formData.linkType === 'url' && (
+						<input
+							type='url'
+							id='link'
+							name='link'
+							value={formData.link}
+							onChange={handleChange}
+							className='w-full px-4 py-3 bg-black/60 border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-blue-500 transition-colors'
+							placeholder='https://example.com'
+						/>
+					)}
+
+					{/* HTML File Upload */}
+					{formData.linkType === 'html' && (
+						<div>
+							<input
+								type='file'
+								id='htmlFile'
+								accept='.html,.htm'
+								onChange={handleFileChange}
+								className='hidden'
+							/>
+							<label
+								htmlFor='htmlFile'
+								className='w-full px-4 py-3 bg-black/60 border border-gray-700 rounded-lg text-gray-400 hover:border-blue-500 transition-colors cursor-pointer flex items-center justify-center gap-2 group'>
+								<FileCode className='w-5 h-5 group-hover:text-blue-400 transition-colors' />
+								<span className='group-hover:text-white transition-colors'>
+									{formData.htmlFile
+										? formData.htmlFile.name
+										: 'Choose HTML file...'}
+								</span>
+							</label>
+							<p className='mt-2 text-xs text-gray-500'>
+								Upload an HTML file for your project showcase
+							</p>
+						</div>
+					)}
 				</div>
 
 				{/* Submit Button */}

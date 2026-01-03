@@ -36,7 +36,7 @@ export default function CourseCard({
 }: CourseCardProps) {
 	return (
 		<ProtectedAction requireMembership={true}>
-			<div className='group relative border border-gray-800 rounded-xl overflow-hidden bg-gradient-to-br from-black/60 to-black/40 backdrop-blur-sm transition-all duration-500 hover:-translate-y-1 hover:border-blue-500/30 hover:shadow-[0_0_25px_rgba(19,40,85,0.1)]'>
+			<div className='group relative border border-gray-800 rounded-xl overflow-hidden bg-gradient-to-br from-black/60 to-black/40 backdrop-blur-sm transition-all duration-500 hover:-translate-y-1 hover:border-blue-500/30 hover:shadow-[0_0_25px_rgba(19,40,85,0.1)] h-full flex flex-col min-h-[320px]'>
 				{/* Completed badge */}
 				{completed && (
 					<div className='absolute top-4 right-4 z-10'>
@@ -49,7 +49,7 @@ export default function CourseCard({
 					</div>
 				)}
 
-				<div className='p-6'>
+				<div className='p-6 flex flex-col flex-1'>
 					{/* Difficulty badge */}
 					<div className='inline-flex mb-4'>
 						<div
@@ -88,15 +88,17 @@ export default function CourseCard({
 						)}
 					</div>
 
-					{/* CTA */}
-					<Link
-						to='#'
-						className='inline-flex items-center gap-2 text-sm font-semibold text-blue-400 hover:text-blue-300 transition-colors group/cta'>
-						<span>
-							{completed ? 'Review course' : 'Start learning'}
-						</span>
-						<ArrowRight className='w-4 h-4 group-hover/cta:translate-x-1 transition-transform' />
-					</Link>
+					{/* CTA - pushed to bottom */}
+					<div className='mt-auto'>
+						<Link
+							to='#'
+							className='inline-flex items-center gap-2 text-sm font-semibold text-blue-400 hover:text-blue-300 transition-colors group/cta'>
+							<span>
+								{completed ? 'Review course' : 'Start learning'}
+							</span>
+							<ArrowRight className='w-4 h-4 group-hover/cta:translate-x-1 transition-transform' />
+						</Link>
+					</div>
 				</div>
 			</div>
 		</ProtectedAction>

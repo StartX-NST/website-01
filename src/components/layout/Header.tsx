@@ -19,7 +19,7 @@ const navLinks = [
 	{ name: 'Events', path: '/events' },
 	{ name: 'Learn', path: '/learn' },
 	{ name: 'Showcase', path: '/showcase' },
-	{ name: 'Explore', path: '/explore' },
+	{ name: 'Opportunities', path: '/opportunities' },
 ];
 
 export default function Header() {

@@ -1,4 +1,4 @@
-interface ExploreFiltersProps {
+interface OpportunityFiltersProps {
 	selectedType: string;
 	onTypeChange: (type: string) => void;
 }
@@ -11,10 +11,10 @@ const filterOptions = [
 	{ value: 'accelerator', label: 'Accelerators' },
 ];
 
-export default function ExploreFilters({
+export default function OpportunityFilters({
 	selectedType,
 	onTypeChange,
-}: ExploreFiltersProps) {
+}: OpportunityFiltersProps) {
 	return (
 		<div className='flex flex-wrap gap-3 mb-8'>
 			{filterOptions.map((option) => (

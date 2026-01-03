@@ -33,7 +33,7 @@ export default function EventCard({
 	return (
 		<ProtectedAction requireMembership={false}>
 			<div
-				className={`group relative border rounded-xl overflow-hidden transition-all duration-500 hover:-translate-y-1 ${
+				className={`group relative border rounded-xl overflow-hidden transition-all duration-500 hover:-translate-y-1 h-full flex flex-col min-h-[400px] ${
 					isCompleted
 						? 'border-gray-800/50 bg-gradient-to-br from-black/90 to-black/70 opacity-60'
 						: 'border-gray-800 bg-gradient-to-br from-black/60 to-black/40 hover:border-blue-500/30 hover:shadow-[0_0_25px_rgba(19,40,85,0.1)]'
@@ -49,7 +49,7 @@ export default function EventCard({
 					</div>
 				)}
 
-				<div className='p-6'>
+				<div className='p-6 flex flex-col flex-1'>
 					{/* Type badge */}
 					<div className='inline-flex mb-4'>
 						<div className='px-3 py-1.5 rounded-lg bg-blue-500/10 border border-blue-500/20 backdrop-blur-sm'>
@@ -98,21 +98,23 @@ export default function EventCard({
 								</div>
 							</div>
 						)}
-					</div>{' '}
-					{/* CTA */}
-					{isUpcoming && (
-						<Link
-							to='#'
-							className='inline-flex items-center gap-2 text-sm font-semibold text-blue-400 hover:text-blue-300 transition-colors group/cta'>
-							<span>Register now</span>
-							<ArrowRight className='w-4 h-4 group-hover/cta:translate-x-1 transition-transform' />
-						</Link>
-					)}
-					{isCompleted && (
-						<button className='inline-flex items-center gap-2 text-sm font-semibold text-gray-500 cursor-default'>
-							<span>Event ended</span>
-						</button>
-					)}
+					</div>
+					{/* CTA - pushed to bottom */}
+					<div className='mt-auto'>
+						{isUpcoming && (
+							<Link
+								to='#'
+								className='inline-flex items-center gap-2 text-sm font-semibold text-blue-400 hover:text-blue-300 transition-colors group/cta'>
+								<span>Register now</span>
+								<ArrowRight className='w-4 h-4 group-hover/cta:translate-x-1 transition-transform' />
+							</Link>
+						)}
+						{isCompleted && (
+							<button className='inline-flex items-center gap-2 text-sm font-semibold text-gray-500 cursor-default'>
+								<span>Event ended</span>
+							</button>
+						)}
+					</div>
 				</div>
 			</div>
 		</ProtectedAction>

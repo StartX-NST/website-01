@@ -27,7 +27,7 @@ export function Footer() {
 				{ label: 'Events', href: '/events' },
 				{ label: 'Learn', href: '/learn' },
 				{ label: 'Showcase', href: '/showcase' },
-				{ label: 'Explore', href: '/explore' },
+				{ label: 'Opportunities', href: '/opportunities' },
 			],
 		},
 	];

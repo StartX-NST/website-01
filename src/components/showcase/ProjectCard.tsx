@@ -25,7 +25,7 @@ export default function ProjectCard({
 }: ProjectCardProps) {
 	return (
 		<ProtectedAction requireMembership={false}>
-			<div className='group relative border border-gray-800 rounded-xl overflow-hidden bg-gradient-to-br from-black/60 to-black/40 backdrop-blur-sm transition-all duration-500 hover:-translate-y-1 hover:border-blue-500/30 hover:shadow-[0_0_25px_rgba(19,40,85,0.1)] h-full flex flex-col'>
+			<div className='group relative border border-gray-800 rounded-xl overflow-hidden bg-gradient-to-br from-black/60 to-black/40 backdrop-blur-sm transition-all duration-500 hover:-translate-y-1 hover:border-blue-500/30 hover:shadow-[0_0_25px_rgba(19,40,85,0.1)] h-full flex flex-col min-h-[360px]'>
 				<div className='p-6 flex flex-col flex-1'>
 					{/* Category badge */}
 					<div className='inline-flex mb-4'>

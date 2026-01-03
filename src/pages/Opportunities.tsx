@@ -1,6 +1,9 @@
 import { useState } from 'react';
 import { Briefcase, Trophy } from 'lucide-react';
-import { OpportunityCard, ExploreFilters } from '@/components/explore';
+import {
+	OpportunityCard,
+	OpportunityFilters,
+} from '@/components/opportunities';
 import {
 	AnimatedPage,
 	StaggerContainer,
@@ -34,6 +37,7 @@ const opportunitiesData = [
 		location: 'San Francisco, CA',
 		stipend: '$50k prize',
 		link: 'https://example.com',
+		ineligible: true,
 	},
 	{
 		id: '3',
@@ -60,6 +64,7 @@ const opportunitiesData = [
 		location: 'New York, NY',
 		stipend: '$150k investment',
 		link: 'https://example.com',
+		ineligible: true,
 	},
 	{
 		id: '5',
@@ -73,6 +78,7 @@ const opportunitiesData = [
 		location: 'Remote',
 		stipend: '$3k/month',
 		link: 'https://example.com',
+		applied: true,
 	},
 	{
 		id: '6',
@@ -98,6 +104,7 @@ const opportunitiesData = [
 		location: 'Online',
 		stipend: '$15k prizes',
 		link: 'https://example.com',
+		applied: true,
 	},
 	{
 		id: '8',
@@ -114,7 +121,7 @@ const opportunitiesData = [
 	},
 ];
 
-export default function Explore() {
+export default function Opportunities() {
 	const [selectedType, setSelectedType] = useState('all');
 
 	// Filter opportunities based on selected type
@@ -146,15 +153,10 @@ export default function Explore() {
 									Active Opportunities
 								</h2>
 							</div>
-							<p className='text-gray-400 max-w-2xl mb-8'>
-								Time-bound programs to gain experience, win
-								prizes, and grow your skills. Apply before
-								deadlines to secure your spot.
-							</p>
 						</div>
 
 						{/* Filters */}
-						<ExploreFilters
+						<OpportunityFilters
 							selectedType={selectedType}
 							onTypeChange={setSelectedType}
 						/>

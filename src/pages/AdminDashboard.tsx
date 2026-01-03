@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Navigate } from 'react-router-dom';
-import { LayoutGrid, Users } from 'lucide-react';
+import { LayoutGrid, Users, Trophy } from 'lucide-react';
 import { useAuth } from '@/contexts/AuthContext';
 import {
 	AnimatedPage,
@@ -8,9 +8,10 @@ import {
 	StaggerItem,
 } from '@/components/animations';
 import AddShowcaseForm from '@/components/admin/AddShowcaseForm';
+import AddOpportunityForm from '@/components/admin/AddOpportunityForm';
 import ApplicationsManager from '@/components/admin/ApplicationsManager';
 
-type ActiveTab = 'showcase' | 'applications';
+type ActiveTab = 'showcase' | 'opportunities' | 'applications';
 
 export default function AdminDashboard() {
 	const { user } = useAuth();
@@ -31,6 +32,11 @@ export default function AdminDashboard() {
 			id: 'showcase' as ActiveTab,
 			label: 'Add Showcase Project',
 			icon: LayoutGrid,
+		},
+		{
+			id: 'opportunities' as ActiveTab,
+			label: 'Add Opportunity',
+			icon: Trophy,
 		},
 		{
 			id: 'applications' as ActiveTab,
@@ -88,6 +94,9 @@ export default function AdminDashboard() {
 							<div className='bg-black/40 border border-gray-800 rounded-xl p-8 backdrop-blur-sm'>
 								{activeTab === 'showcase' && (
 									<AddShowcaseForm />
+								)}
+								{activeTab === 'opportunities' && (
+									<AddOpportunityForm />
 								)}
 								{activeTab === 'applications' && (
 									<ApplicationsManager />

@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Calendar, Sparkles, TrendingUp } from 'lucide-react';
+import { Sparkles, TrendingUp } from 'lucide-react';
 import EventCard from '@/components/events/EventCard';
 import EventFilters from '@/components/events/EventFilters';
 import {
@@ -149,70 +149,84 @@ export default function Events() {
 				{/* Events Section */}
 				<section className='relative py-12 md:py-16 lg:py-20 px-6 overflow-hidden'>
 					<div className='relative z-10 max-w-7xl mx-auto'>
-						{/* Filters */}
-						<EventFilters
-							selectedType={selectedType}
-							selectedStatus={selectedStatus}
-							onTypeChange={setSelectedType}
-							onStatusChange={setSelectedStatus}
-						/>
-
-						{/* Upcoming Events */}
-						{(selectedStatus === 'all' ||
-							selectedStatus === 'upcoming') &&
-							upcomingEvents.length > 0 && (
-								<div className='mb-20'>
-									<div className='flex items-center gap-3 mb-8'>
-										<Sparkles className='w-6 h-6 text-blue-400' />
-										<h2 className='text-2xl md:text-3xl font-bold text-white'>
-											Upcoming Events
-										</h2>
-									</div>
-									<StaggerContainer className='grid md:grid-cols-2 lg:grid-cols-3 gap-6'>
-										{upcomingEvents.map((event) => (
-											<StaggerItem key={event.id}>
-												<EventCard {...event} />
-											</StaggerItem>
-										))}
-									</StaggerContainer>
+						{/* Show empty state if no events exist at all */}
+						{eventsData.length === 0 ? (
+							<div className='flex items-center justify-center min-h-[60vh]'>
+								<div className='text-center max-w-md'>
+									<h2 className='text-2xl md:text-3xl font-bold text-white mb-3'>
+										No Events Yet
+									</h2>
+									<p className='text-gray-400 text-lg'>
+										Check back soon for upcoming workshops,
+										talks, and networking events.
+									</p>
 								</div>
-							)}
-
-						{/* Past Events */}
-						{(selectedStatus === 'all' ||
-							selectedStatus === 'completed') &&
-							pastEvents.length > 0 && (
-								<div>
-									<div className='flex items-center gap-3 mb-8'>
-										<TrendingUp className='w-6 h-6 text-gray-400' />
-										<h2 className='text-2xl md:text-3xl font-bold text-white'>
-											Past Events
-										</h2>
-									</div>
-									<StaggerContainer className='grid md:grid-cols-2 lg:grid-cols-3 gap-6'>
-										{pastEvents.map((event) => (
-											<StaggerItem key={event.id}>
-												<EventCard {...event} />
-											</StaggerItem>
-										))}
-									</StaggerContainer>
-								</div>
-							)}
-
-						{/* Empty state */}
-						{filteredEvents.length === 0 && (
-							<div className='text-center py-12 md:py-16 lg:py-20'>
-								<div className='inline-flex items-center justify-center w-16 h-16 rounded-full bg-gray-800/50 border border-gray-700 mb-6'>
-									<Calendar className='w-8 h-8 text-gray-500' />
-								</div>
-								<h3 className='text-xl font-semibold text-white mb-2'>
-									No events found
-								</h3>
-								<p className='text-gray-400'>
-									Try adjusting your filters or check back
-									later for new events.
-								</p>
 							</div>
+						) : (
+							<>
+								{/* Filters */}
+								<EventFilters
+									selectedType={selectedType}
+									selectedStatus={selectedStatus}
+									onTypeChange={setSelectedType}
+									onStatusChange={setSelectedStatus}
+								/>
+
+								{/* Upcoming Events */}
+								{(selectedStatus === 'all' ||
+									selectedStatus === 'upcoming') &&
+									upcomingEvents.length > 0 && (
+										<div className='mb-20'>
+											<div className='flex items-center gap-3 mb-8'>
+												<Sparkles className='w-6 h-6 text-blue-400' />
+												<h2 className='text-2xl md:text-3xl font-bold text-white'>
+													Upcoming Events
+												</h2>
+											</div>
+											<StaggerContainer className='grid md:grid-cols-2 lg:grid-cols-3 gap-6'>
+												{upcomingEvents.map((event) => (
+													<StaggerItem key={event.id}>
+														<EventCard {...event} />
+													</StaggerItem>
+												))}
+											</StaggerContainer>
+										</div>
+									)}
+
+								{/* Past Events */}
+								{(selectedStatus === 'all' ||
+									selectedStatus === 'completed') &&
+									pastEvents.length > 0 && (
+										<div>
+											<div className='flex items-center gap-3 mb-8'>
+												<TrendingUp className='w-6 h-6 text-gray-400' />
+												<h2 className='text-2xl md:text-3xl font-bold text-white'>
+													Past Events
+												</h2>
+											</div>
+											<StaggerContainer className='grid md:grid-cols-2 lg:grid-cols-3 gap-6'>
+												{pastEvents.map((event) => (
+													<StaggerItem key={event.id}>
+														<EventCard {...event} />
+													</StaggerItem>
+												))}
+											</StaggerContainer>
+										</div>
+									)}
+
+								{/* Empty state for filtered results */}
+								{filteredEvents.length === 0 && (
+									<div className='text-center py-12 md:py-16 lg:py-20'>
+										<h3 className='text-xl font-semibold text-white mb-2'>
+											No events found
+										</h3>
+										<p className='text-gray-400'>
+											Try adjusting your filters or check
+											back later for new events.
+										</p>
+									</div>
+								)}
+							</>
 						)}
 					</div>
 				</section>
