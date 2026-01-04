@@ -236,7 +236,10 @@ export default function AddOpportunityForm({
             value={formData.deadline}
             onChange={handleChange}
             required
-            className="w-full px-4 py-3 bg-black/60 border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-blue-500 transition-colors"
+            className="w-full px-4 py-3 bg-gray-900 border border-gray-700 rounded-lg text-white focus:outline-none focus:border-blue-500 transition-colors [color-scheme:dark]"
+            style={{
+              colorScheme: "dark",
+            }}
           />
         </div>
 
