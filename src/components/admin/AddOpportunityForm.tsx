@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Plus, CheckCircle, Save } from "lucide-react";
 import axiosInstance from "@/lib/axios";
+import Toast from "@/components/ui/toast";
 
 interface OpportunityFormData {
   type: "internship" | "challenge" | "hackathon" | "accelerator";
@@ -106,13 +107,12 @@ export default function AddOpportunityForm({
         });
       }
 
-      // Hide success message after 1.5 seconds
-      setTimeout(() => {
-        setSuccess(false);
-        if (isEditMode) {
+      // Redirect after delay if editing
+      if (isEditMode) {
+        setTimeout(() => {
           window.location.href = "/opportunities";
-        }
-      }, 1500);
+        }, 2000);
+      }
     } catch (error: any) {
       console.error("Error saving opportunity:", error);
       alert(error.response?.data?.message || "Failed to save opportunity");
@@ -123,18 +123,18 @@ export default function AddOpportunityForm({
 
   return (
     <div>
+      {success && (
+        <Toast
+          message={`Opportunity ${
+            isEditMode ? "updated" : "added"
+          } successfully!`}
+          onClose={() => setSuccess(false)}
+        />
+      )}
+
       <h2 className="text-2xl font-bold text-white mb-6">
         {isEditMode ? "Edit Opportunity" : "Add New Opportunity"}
       </h2>
-
-      {success && (
-        <div className="mb-6 p-4 bg-blue-500/10 border border-blue-500/20 rounded-lg flex items-center gap-3">
-          <CheckCircle className="w-5 h-5 text-blue-400" />
-          <span className="text-blue-400 font-medium">
-            Opportunity {isEditMode ? "updated" : "added"} successfully!
-          </span>
-        </div>
-      )}
 
       <form onSubmit={handleSubmit} className="space-y-6">
         {/* Type */}
