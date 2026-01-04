@@ -15,7 +15,7 @@ interface Application {
   createdAt: string;
   user: {
     email: string;
-  };
+  } | null;
 }
 
 export default function ApplicationsManager() {
@@ -137,10 +137,20 @@ export default function ApplicationsManager() {
                     {getStatusBadge(app.status)}
                   </div>
                   <div className="flex flex-wrap gap-4 text-sm text-gray-400">
-                    <div className="flex items-center gap-1.5">
-                      <Mail className="w-4 h-4" />
-                      <span>{app.user.email}</span>
-                    </div>
+                    {app.user && (
+                      <div className="flex items-center gap-1.5">
+                        <Mail className="w-4 h-4" />
+                        <span>{app.user.email}</span>
+                      </div>
+                    )}
+                    {!app.user && (
+                      <div className="flex items-center gap-1.5">
+                        <Mail className="w-4 h-4" />
+                        <span className="text-gray-500 italic">
+                          User deleted
+                        </span>
+                      </div>
+                    )}
                     <div className="flex items-center gap-1.5">
                       <Phone className="w-4 h-4" />
                       <span>{app.phoneNumber}</span>

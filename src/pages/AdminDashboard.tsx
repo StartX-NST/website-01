@@ -1,111 +1,116 @@
-import { useState } from 'react';
-import { Navigate } from 'react-router-dom';
-import { LayoutGrid, Users, Trophy } from 'lucide-react';
-import { useAuth } from '@/contexts/AuthContext';
+import { useState, useEffect } from "react";
+import { Navigate, useLocation } from "react-router-dom";
+import { LayoutGrid, Users, Trophy } from "lucide-react";
+import { useAuth } from "@/contexts/AuthContext";
 import {
-	AnimatedPage,
-	StaggerContainer,
-	StaggerItem,
-} from '@/components/animations';
-import AddShowcaseForm from '@/components/admin/AddShowcaseForm';
-import AddOpportunityForm from '@/components/admin/AddOpportunityForm';
-import ApplicationsManager from '@/components/admin/ApplicationsManager';
+  AnimatedPage,
+  StaggerContainer,
+  StaggerItem,
+} from "@/components/animations";
+import AddShowcaseForm from "@/components/admin/AddShowcaseForm";
+import AddOpportunityForm from "@/components/admin/AddOpportunityForm";
+import ApplicationsManager from "@/components/admin/ApplicationsManager";
 
-type ActiveTab = 'showcase' | 'opportunities' | 'applications';
+type ActiveTab = "showcase" | "opportunities" | "applications";
 
 export default function AdminDashboard() {
-	const { user } = useAuth();
-	const [activeTab, setActiveTab] = useState<ActiveTab>('showcase');
+  const { user } = useAuth();
+  const location = useLocation();
+  const [activeTab, setActiveTab] = useState<ActiveTab>("showcase");
+  const [editData, setEditData] = useState<any>(null);
 
-	// Redirect if not admin
-	if (!user || user.role !== 'admin') {
-		return (
-			<Navigate
-				to='/'
-				replace
-			/>
-		);
-	}
+  useEffect(() => {
+    if (location.state?.editOpportunity) {
+      setActiveTab("opportunities");
+      setEditData(location.state.editOpportunity);
+    } else if (location.state?.editShowcase) {
+      setActiveTab("showcase");
+      setEditData(location.state.editShowcase);
+    }
+  }, [location.state]);
 
-	const tabs = [
-		{
-			id: 'showcase' as ActiveTab,
-			label: 'Add Showcase Project',
-			icon: LayoutGrid,
-		},
-		{
-			id: 'opportunities' as ActiveTab,
-			label: 'Add Opportunity',
-			icon: Trophy,
-		},
-		{
-			id: 'applications' as ActiveTab,
-			label: 'Membership Applications',
-			icon: Users,
-		},
-	];
+  // Redirect if not admin
+  if (!user || user.role !== "admin") {
+    return <Navigate to="/" replace />;
+  }
 
-	return (
-		<AnimatedPage>
-			<div className='min-h-screen bg-black pt-32 pb-20 px-6'>
-				<div className='max-w-7xl mx-auto'>
-					<StaggerContainer>
-						{/* Header */}
-						<StaggerItem>
-							<div className='text-center mb-12'>
-								<h1 className='text-4xl md:text-5xl font-bold text-white mb-4'>
-									Admin Dashboard
-								</h1>
-								<p className='text-gray-400 text-lg'>
-									Manage showcase projects and membership
-									applications
-								</p>
-							</div>
-						</StaggerItem>
+  const tabs = [
+    {
+      id: "showcase" as ActiveTab,
+      label: "Add Showcase Project",
+      icon: LayoutGrid,
+    },
+    {
+      id: "opportunities" as ActiveTab,
+      label: "Add Opportunity",
+      icon: Trophy,
+    },
+    {
+      id: "applications" as ActiveTab,
+      label: "Membership Applications",
+      icon: Users,
+    },
+  ];
 
-						{/* Tab Navigation */}
-						<StaggerItem>
-							<div className='flex gap-4 mb-8 border-b border-gray-800'>
-								{tabs.map((tab) => {
-									const Icon = tab.icon;
-									const isActive = activeTab === tab.id;
+  return (
+    <AnimatedPage>
+      <div className="min-h-screen bg-black pt-32 pb-20 px-6">
+        <div className="max-w-7xl mx-auto">
+          <StaggerContainer>
+            {/* Header */}
+            <StaggerItem>
+              <div className="text-center mb-12">
+                <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">
+                  Admin Dashboard
+                </h1>
+                <p className="text-gray-400 text-lg">
+                  Manage showcase projects and membership applications
+                </p>
+              </div>
+            </StaggerItem>
 
-									return (
-										<button
-											key={tab.id}
-											onClick={() => setActiveTab(tab.id)}
-											className={`
+            {/* Tab Navigation */}
+            <StaggerItem>
+              <div className="flex gap-4 mb-8 border-b border-gray-800">
+                {tabs.map((tab) => {
+                  const Icon = tab.icon;
+                  const isActive = activeTab === tab.id;
+
+                  return (
+                    <button
+                      key={tab.id}
+                      onClick={() => setActiveTab(tab.id)}
+                      className={`
 												flex items-center gap-2 px-6 py-4 font-semibold transition-all relative
-												${isActive ? 'text-blue-400' : 'text-gray-400 hover:text-white'}
-											`}>
-											<Icon className='w-5 h-5' />
-											<span>{tab.label}</span>
-											{isActive && (
-												<div className='absolute bottom-0 left-0 right-0 h-0.5 bg-blue-400' />
-											)}
-										</button>
-									);
-								})}
-							</div>
-						</StaggerItem>
+												${isActive ? "text-blue-400" : "text-gray-400 hover:text-white"}
+											`}
+                    >
+                      <Icon className="w-5 h-5" />
+                      <span>{tab.label}</span>
+                      {isActive && (
+                        <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-blue-400" />
+                      )}
+                    </button>
+                  );
+                })}
+              </div>
+            </StaggerItem>
 
-						{/* Content */}
-						<StaggerItem>
-							<div className='bg-black/40 border border-gray-800 rounded-xl p-8 backdrop-blur-sm'>
-								{activeTab === 'showcase' && (
-									<AddShowcaseForm />
-								)}
-								{activeTab === 'opportunities' && (
-									<AddOpportunityForm />
-								)}
-								{activeTab === 'applications' && (
-									<ApplicationsManager />
-								)}
-							</div>
-						</StaggerItem>
-					</StaggerContainer>
-				</div>
-			</div>
-		</AnimatedPage>
-	);
+            {/* Content */}
+            <StaggerItem>
+              <div className="bg-black/40 border border-gray-800 rounded-xl p-8 backdrop-blur-sm">
+                {activeTab === "showcase" && (
+                  <AddShowcaseForm editData={editData} />
+                )}
+                {activeTab === "opportunities" && (
+                  <AddOpportunityForm editData={editData} />
+                )}
+                {activeTab === "applications" && <ApplicationsManager />}
+              </div>
+            </StaggerItem>
+          </StaggerContainer>
+        </div>
+      </div>
+    </AnimatedPage>
+  );
 }
