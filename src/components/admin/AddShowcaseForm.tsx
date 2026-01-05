@@ -1,15 +1,19 @@
 import { useState, useEffect } from "react";
-import { Plus, CheckCircle, Link2, FileCode, Save } from "lucide-react";
+import { Plus, Link2, FileCode, Save, X } from "lucide-react";
 import axiosInstance from "@/lib/axios";
 import Toast from "@/components/ui/toast";
+
+interface Metric {
+  label: string;
+  value: string;
+}
 
 interface ShowcaseFormData {
   title: string;
   description: string;
   founder: string;
   category: string;
-  metricsLabel: string;
-  metricsValue: string;
+  metrics: Metric[];
   link: string;
   htmlFile: File | null;
   linkType: "url" | "html";
@@ -26,8 +30,7 @@ export default function AddShowcaseForm({ editData }: AddShowcaseFormProps) {
     description: "",
     founder: "",
     category: "saas",
-    metricsLabel: "",
-    metricsValue: "",
+    metrics: [],
     link: "",
     htmlFile: null,
     linkType: "url",
@@ -42,11 +45,10 @@ export default function AddShowcaseForm({ editData }: AddShowcaseFormProps) {
         description: editData.description || "",
         founder: editData.founder || "",
         category: editData.category?.toLowerCase() || "saas",
-        metricsLabel: editData.metrics?.label || "",
-        metricsValue: editData.metrics?.value || "",
-        link: "",
+        metrics: editData.metrics || [],
+        link: editData.projectLink || "",
         htmlFile: null,
-        linkType: "url",
+        linkType: editData.projectLink ? "url" : "html",
       });
     }
   }, [editData]);
@@ -88,29 +90,63 @@ export default function AddShowcaseForm({ editData }: AddShowcaseFormProps) {
     }));
   };
 
+  const addMetric = () => {
+    setFormData((prev) => ({
+      ...prev,
+      metrics: [...prev.metrics, { label: "", value: "" }],
+    }));
+  };
+
+  const removeMetric = (index: number) => {
+    setFormData((prev) => ({
+      ...prev,
+      metrics: prev.metrics.filter((_, i) => i !== index),
+    }));
+  };
+
+  const updateMetric = (
+    index: number,
+    field: "label" | "value",
+    value: string
+  ) => {
+    setFormData((prev) => ({
+      ...prev,
+      metrics: prev.metrics.map((metric, i) =>
+        i === index ? { ...metric, [field]: value } : metric
+      ),
+    }));
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
     setSuccess(false);
 
     try {
+      // Map frontend category values to backend enum values
+      const categoryMap: Record<string, string> = {
+        saas: "SaaS",
+        marketplace: "Marketplace",
+        ai: "AI",
+        fintech: "Fintech",
+        consumer: "Consumer",
+        other: "Other",
+      };
+
       const submitData = new FormData();
       submitData.append("title", formData.title);
       submitData.append("description", formData.description);
       submitData.append("founders", formData.founder);
       submitData.append(
         "category",
-        formData.category.charAt(0).toUpperCase() + formData.category.slice(1)
+        categoryMap[formData.category] || formData.category
       );
 
-      const metrics = [];
-      if (formData.metricsLabel && formData.metricsValue) {
-        metrics.push({
-          label: formData.metricsLabel,
-          value: formData.metricsValue,
-        });
-      }
-      submitData.append("metrics", JSON.stringify(metrics));
+      // Filter out empty metrics
+      const validMetrics = formData.metrics.filter(
+        (m) => m.label.trim() && m.value.trim()
+      );
+      submitData.append("metrics", JSON.stringify(validMetrics));
 
       if (formData.linkType === "url" && formData.link) {
         submitData.append("projectLink", formData.link);
@@ -141,8 +177,7 @@ export default function AddShowcaseForm({ editData }: AddShowcaseFormProps) {
           description: "",
           founder: "",
           category: "saas",
-          metricsLabel: "",
-          metricsValue: "",
+          metrics: [],
           link: "",
           htmlFile: null,
           linkType: "url",
@@ -262,41 +297,67 @@ export default function AddShowcaseForm({ editData }: AddShowcaseFormProps) {
         </div>
 
         {/* Metrics */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div>
-            <label
-              htmlFor="metricsValue"
-              className="block text-sm font-medium text-gray-300 mb-2"
-            >
-              Metrics Value
+        <div>
+          <div className="flex items-center justify-between mb-3">
+            <label className="block text-sm font-medium text-gray-300">
+              Metrics
             </label>
-            <input
-              type="text"
-              id="metricsValue"
-              name="metricsValue"
-              value={formData.metricsValue}
-              onChange={handleChange}
-              className="w-full px-4 py-3 bg-black/60 border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-blue-500 transition-colors"
-              placeholder="e.g., 2.5k"
-            />
-          </div>
-          <div>
-            <label
-              htmlFor="metricsLabel"
-              className="block text-sm font-medium text-gray-300 mb-2"
+            <button
+              type="button"
+              onClick={addMetric}
+              className="px-3 py-1.5 bg-blue-500/10 hover:bg-blue-500/20 border border-blue-500/20 text-blue-400 text-sm font-medium rounded-lg transition-all flex items-center gap-1.5"
             >
-              Metrics Label
-            </label>
-            <input
-              type="text"
-              id="metricsLabel"
-              name="metricsLabel"
-              value={formData.metricsLabel}
-              onChange={handleChange}
-              className="w-full px-4 py-3 bg-black/60 border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-blue-500 transition-colors"
-              placeholder="e.g., active users"
-            />
+              <Plus className="w-4 h-4" />
+              Add Metric
+            </button>
           </div>
+
+          {formData.metrics.length === 0 ? (
+            <div className="text-center py-8 border border-dashed border-gray-700 rounded-lg">
+              <p className="text-gray-500 text-sm">
+                No metrics added yet. Click "Add Metric" to add project metrics.
+              </p>
+            </div>
+          ) : (
+            <div className="space-y-3">
+              {formData.metrics.map((metric, index) => (
+                <div
+                  key={index}
+                  className="grid grid-cols-1 md:grid-cols-2 gap-3 p-4 bg-black/40 border border-gray-700 rounded-lg"
+                >
+                  <div>
+                    <input
+                      type="text"
+                      value={metric.value}
+                      onChange={(e) =>
+                        updateMetric(index, "value", e.target.value)
+                      }
+                      placeholder="e.g., 2.5k"
+                      className="w-full px-4 py-2 bg-black/60 border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-blue-500 transition-colors"
+                    />
+                  </div>
+                  <div className="flex gap-2">
+                    <input
+                      type="text"
+                      value={metric.label}
+                      onChange={(e) =>
+                        updateMetric(index, "label", e.target.value)
+                      }
+                      placeholder="e.g., active users"
+                      className="flex-1 px-4 py-2 bg-black/60 border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-blue-500 transition-colors"
+                    />
+                    <button
+                      type="button"
+                      onClick={() => removeMetric(index)}
+                      className="px-3 py-2 bg-red-500/10 hover:bg-red-500/20 border border-red-500/20 text-red-400 rounded-lg transition-all"
+                    >
+                      <X className="w-4 h-4" />
+                    </button>
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
         </div>
 
         {/* Link or HTML File */}

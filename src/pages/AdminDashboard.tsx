@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Navigate, useLocation } from "react-router-dom";
-import { LayoutGrid, Users, Trophy } from "lucide-react";
+import { LayoutGrid, Users, Trophy, Heart } from "lucide-react";
 import { useAuth } from "@/contexts/AuthContext";
 import {
   AnimatedPage,
@@ -10,8 +10,9 @@ import {
 import AddShowcaseForm from "@/components/admin/AddShowcaseForm";
 import AddOpportunityForm from "@/components/admin/AddOpportunityForm";
 import ApplicationsManager from "@/components/admin/ApplicationsManager";
+import OpportunityInterestsManager from "@/components/admin/OpportunityInterestsManager";
 
-type ActiveTab = "showcase" | "opportunities" | "applications";
+type ActiveTab = "showcase" | "opportunities" | "applications" | "interests";
 
 export default function AdminDashboard() {
   const { user } = useAuth();
@@ -49,6 +50,11 @@ export default function AdminDashboard() {
       id: "applications" as ActiveTab,
       label: "Membership Applications",
       icon: Users,
+    },
+    {
+      id: "interests" as ActiveTab,
+      label: "Opportunity Interests",
+      icon: Heart,
     },
   ];
 
@@ -106,6 +112,7 @@ export default function AdminDashboard() {
                   <AddOpportunityForm editData={editData} />
                 )}
                 {activeTab === "applications" && <ApplicationsManager />}
+                {activeTab === "interests" && <OpportunityInterestsManager />}
               </div>
             </StaggerItem>
           </StaggerContainer>

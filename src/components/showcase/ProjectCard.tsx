@@ -104,8 +104,22 @@ export default function ProjectCard({
           </div>
 
           {/* CTA - pushed to bottom */}
-          <div className="mt-auto">
-            {isAdmin ? (
+          <div className="mt-auto space-y-2">
+            {/* View Project Link - always show if link exists */}
+            {link && (
+              <a
+                href={link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 text-sm font-semibold text-blue-400 hover:text-blue-300 transition-colors group/cta mb-3"
+              >
+                <span>View project</span>
+                <ExternalLink className="w-4 h-4 group-hover/cta:translate-x-0.5 group-hover/cta:-translate-y-0.5 transition-transform" />
+              </a>
+            )}
+
+            {/* Admin Actions */}
+            {isAdmin && (
               <div className="flex gap-2">
                 <button
                   onClick={handleEdit}
@@ -122,24 +136,6 @@ export default function ProjectCard({
                   <span>Delete</span>
                 </button>
               </div>
-            ) : link ? (
-              <a
-                href={link}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 text-sm font-semibold text-blue-400 hover:text-blue-300 transition-colors group/cta"
-              >
-                <span>View project</span>
-                <ExternalLink className="w-4 h-4 group-hover/cta:translate-x-0.5 group-hover/cta:-translate-y-0.5 transition-transform" />
-              </a>
-            ) : (
-              <a
-                href="#"
-                className="inline-flex items-center gap-2 text-sm font-semibold text-blue-400 hover:text-blue-300 transition-colors group/cta"
-              >
-                <span>View project</span>
-                <ExternalLink className="w-4 h-4 group-hover/cta:translate-x-0.5 group-hover/cta:-translate-y-0.5 transition-transform" />
-              </a>
             )}
           </div>
         </div>

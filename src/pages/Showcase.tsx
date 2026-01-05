@@ -109,13 +109,12 @@ export default function Showcase() {
                           category={project.category.toLowerCase()}
                           metrics={project.metrics?.[0]}
                           link={
-                            project.showcaseFile?.startsWith("http")
-                              ? project.showcaseFile
-                              : project.showcaseFile
+                            project.projectLink ||
+                            (project.showcaseFile
                               ? `${
                                   import.meta.env.VITE_API_URL
                                 }/showcase/file/${project.showcaseFile}`
-                              : project.projectLink
+                              : undefined)
                           }
                         />
                       </StaggerItem>
