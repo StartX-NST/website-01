@@ -86,15 +86,15 @@ export default function AdminDashboard() {
 									Admin Dashboard
 								</h1>
 								<p className='text-gray-400 text-lg'>
-									Manage showcase projects and membership
-									applications
+									Manage showcase projects, opportunities,
+									events, and membership applications
 								</p>
 							</div>
 						</StaggerItem>
 
 						{/* Tab Navigation */}
 						<StaggerItem>
-							<div className='flex gap-4 mb-8 border-b border-gray-800'>
+							<div className='flex gap-4 mb-8 border-b border-gray-800 overflow-x-auto'>
 								{tabs.map((tab) => {
 									const Icon = tab.icon;
 									const isActive = activeTab === tab.id;
@@ -104,7 +104,7 @@ export default function AdminDashboard() {
 											key={tab.id}
 											onClick={() => setActiveTab(tab.id)}
 											className={`
-												flex items-center gap-2 px-6 py-4 font-semibold transition-all relative
+												flex items-center gap-2 px-6 py-4 font-semibold transition-all relative whitespace-nowrap
 												${isActive ? 'text-blue-400' : 'text-gray-400 hover:text-white'}
 											`}>
 											<Icon className='w-5 h-5' />

@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { CheckCircle, Calendar } from 'lucide-react';
+import { Plus, CheckCircle, Calendar } from 'lucide-react';
 
 interface EventFormData {
 	title: string;
@@ -8,9 +8,8 @@ interface EventFormData {
 	time: string;
 	location: string;
 	type: 'workshop' | 'talk' | 'panel' | 'competition' | 'networking';
-	maxAttendees: string;
+	maxAttendees: number;
 	status: 'upcoming' | 'ongoing' | 'completed';
-	image?: string;
 }
 
 export default function AddEventForm() {
@@ -21,9 +20,8 @@ export default function AddEventForm() {
 		time: '',
 		location: '',
 		type: 'workshop',
-		maxAttendees: '',
+		maxAttendees: 50,
 		status: 'upcoming',
-		image: '',
 	});
 	const [loading, setLoading] = useState(false);
 	const [success, setSuccess] = useState(false);
@@ -48,7 +46,10 @@ export default function AddEventForm() {
 		>
 	) => {
 		const { name, value } = e.target;
-		setFormData((prev) => ({ ...prev, [name]: value }));
+		setFormData((prev) => ({
+			...prev,
+			[name]: name === 'maxAttendees' ? parseInt(value) || 0 : value,
+		}));
 	};
 
 	const handleSubmit = async (e: React.FormEvent) => {
@@ -73,9 +74,8 @@ export default function AddEventForm() {
 			time: '',
 			location: '',
 			type: 'workshop',
-			maxAttendees: '',
+			maxAttendees: 50,
 			status: 'upcoming',
-			image: '',
 		});
 
 		// Hide success message after 3 seconds
@@ -115,7 +115,7 @@ export default function AddEventForm() {
 						onChange={handleChange}
 						required
 						className='w-full px-4 py-3 bg-black/60 border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-blue-500 transition-colors'
-						placeholder='e.g., AI/ML Workshop: Build Your First Model'
+						placeholder='e.g., Building Your MVP in 48 Hours'
 					/>
 				</div>
 
@@ -134,7 +134,67 @@ export default function AddEventForm() {
 						required
 						rows={4}
 						className='w-full px-4 py-3 bg-black/60 border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-blue-500 transition-colors resize-none'
-						placeholder='Describe what attendees will learn and experience...'
+						placeholder='Describe the event...'
+					/>
+				</div>
+
+				{/* Date and Time */}
+				<div className='grid grid-cols-1 md:grid-cols-2 gap-6'>
+					<div>
+						<label
+							htmlFor='date'
+							className='block text-sm font-medium text-gray-300 mb-2'>
+							Date *
+						</label>
+						<div className='relative'>
+							<input
+								type='text'
+								id='date'
+								name='date'
+								value={formData.date}
+								onChange={handleChange}
+								required
+								className='w-full px-4 py-3 bg-black/60 border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-blue-500 transition-colors'
+								placeholder='e.g., Jan 15, 2026'
+							/>
+							<Calendar className='absolute right-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-500 pointer-events-none' />
+						</div>
+					</div>
+					<div>
+						<label
+							htmlFor='time'
+							className='block text-sm font-medium text-gray-300 mb-2'>
+							Time *
+						</label>
+						<input
+							type='text'
+							id='time'
+							name='time'
+							value={formData.time}
+							onChange={handleChange}
+							required
+							className='w-full px-4 py-3 bg-black/60 border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-blue-500 transition-colors'
+							placeholder='e.g., 10:00 AM - 6:00 PM'
+						/>
+					</div>
+				</div>
+
+				{/* Location */}
+				<div>
+					<label
+						htmlFor='location'
+						className='block text-sm font-medium text-gray-300 mb-2'>
+						Location *
+					</label>
+					<input
+						type='text'
+						id='location'
+						name='location'
+						value={formData.location}
+						onChange={handleChange}
+						required
+						className='w-full px-4 py-3 bg-black/60 border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-blue-500 transition-colors'
+						placeholder='e.g., Online (Zoom) or Building 360, Room 105'
 					/>
 				</div>
 
@@ -162,7 +222,6 @@ export default function AddEventForm() {
 							))}
 						</select>
 					</div>
-
 					<div>
 						<label
 							htmlFor='status'
@@ -187,68 +246,12 @@ export default function AddEventForm() {
 					</div>
 				</div>
 
-				{/* Date and Time */}
-				<div className='grid grid-cols-1 md:grid-cols-2 gap-6'>
-					<div>
-						<label
-							htmlFor='date'
-							className='block text-sm font-medium text-gray-300 mb-2'>
-							Date *
-						</label>
-						<input
-							type='date'
-							id='date'
-							name='date'
-							value={formData.date}
-							onChange={handleChange}
-							required
-							className='w-full px-4 py-3 bg-black/60 border border-gray-700 rounded-lg text-white focus:outline-none focus:border-blue-500 transition-colors'
-						/>
-					</div>
-
-					<div>
-						<label
-							htmlFor='time'
-							className='block text-sm font-medium text-gray-300 mb-2'>
-							Time *
-						</label>
-						<input
-							type='time'
-							id='time'
-							name='time'
-							value={formData.time}
-							onChange={handleChange}
-							required
-							className='w-full px-4 py-3 bg-black/60 border border-gray-700 rounded-lg text-white focus:outline-none focus:border-blue-500 transition-colors'
-						/>
-					</div>
-				</div>
-
-				{/* Location */}
-				<div>
-					<label
-						htmlFor='location'
-						className='block text-sm font-medium text-gray-300 mb-2'>
-						Location *
-					</label>
-					<input
-						type='text'
-						id='location'
-						name='location'
-						value={formData.location}
-						onChange={handleChange}
-						required
-						className='w-full px-4 py-3 bg-black/60 border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-blue-500 transition-colors'
-						placeholder='e.g., Main Campus Auditorium or Online (Zoom)'
-					/>
-				</div>
-
 				{/* Max Attendees */}
 				<div>
 					<label
 						htmlFor='maxAttendees'
 						className='block text-sm font-medium text-gray-300 mb-2'>
-						Max Attendees
+						Maximum Attendees *
 					</label>
 					<input
 						type='number'
@@ -256,31 +259,15 @@ export default function AddEventForm() {
 						name='maxAttendees'
 						value={formData.maxAttendees}
 						onChange={handleChange}
+						required
 						min='1'
 						className='w-full px-4 py-3 bg-black/60 border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-blue-500 transition-colors'
 						placeholder='e.g., 50'
 					/>
 					<p className='mt-2 text-xs text-gray-500'>
-						Leave empty for unlimited capacity
+						Set the maximum number of people who can attend this
+						event
 					</p>
-				</div>
-
-				{/* Image URL (Optional) */}
-				<div>
-					<label
-						htmlFor='image'
-						className='block text-sm font-medium text-gray-300 mb-2'>
-						Event Image URL (Optional)
-					</label>
-					<input
-						type='url'
-						id='image'
-						name='image'
-						value={formData.image}
-						onChange={handleChange}
-						className='w-full px-4 py-3 bg-black/60 border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-blue-500 transition-colors'
-						placeholder='https://example.com/event-image.jpg'
-					/>
 				</div>
 
 				{/* Submit Button */}
@@ -295,7 +282,7 @@ export default function AddEventForm() {
 						</>
 					) : (
 						<>
-							<Calendar className='w-5 h-5' />
+							<Plus className='w-5 h-5' />
 							<span>Add Event</span>
 						</>
 					)}
