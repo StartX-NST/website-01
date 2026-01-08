@@ -1,4 +1,3 @@
-import { BookOpen } from 'lucide-react';
 import { AnimatedPage } from '@/components/animations';
 import { BGPattern } from '@/components/ui/bg-pattern';
 

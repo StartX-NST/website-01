@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Plus, CheckCircle, Save } from "lucide-react";
+import { Plus, Save } from "lucide-react";
 import axiosInstance from "@/lib/axios";
 import Toast from "@/components/ui/toast";
 

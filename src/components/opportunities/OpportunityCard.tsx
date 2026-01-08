@@ -46,7 +46,6 @@ export default function OpportunityCard({
   duration,
   location,
   stipend,
-  link,
   applied: initialApplied = false,
   ineligible = false,
 }: OpportunityCardProps) {
