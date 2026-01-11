@@ -27,6 +27,7 @@ interface AuthContextType {
   isAuthenticated: boolean;
   login: (email: string, password: string) => Promise<void>;
   signup: (email: string, password: string) => Promise<void>;
+  loginWithGoogle: () => Promise<void>;
   logout: () => Promise<void>;
   updateApplicationStatus: (status: ApplicationStatus) => void;
   setAuthUser: (user: User) => void;
@@ -84,6 +85,19 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     }
   };
 
+  const loginWithGoogle = async () => {
+    try {
+      const response = await axiosInstance.get("/auth/google");
+      if (response.data.url) {
+        // Redirect to Google OAuth URL
+        window.location.href = response.data.url;
+      }
+    } catch (error) {
+      console.error("Google OAuth error:", error);
+      throw error;
+    }
+  };
+
   const logout = async () => {
     try {
       await axiosInstance.post("/auth/logout");
@@ -119,6 +133,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         isAuthenticated: !!user,
         login,
         signup,
+        loginWithGoogle,
         logout,
         updateApplicationStatus,
         setAuthUser,
