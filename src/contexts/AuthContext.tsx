@@ -15,6 +15,8 @@ export type ApplicationStatus =
 export interface User {
   id: string;
   name?: string;
+  firstName?: string;
+  lastName?: string;
   email: string;
   role: UserRole;
   applicationStatus?: ApplicationStatus;

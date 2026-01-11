@@ -24,6 +24,7 @@ interface OpportunityCardProps {
   duration?: string;
   location: string;
   stipend?: string;
+  memberOnly?: boolean;
   link?: string;
   applied?: boolean;
   ineligible?: boolean; // TODO: Replace with actual eligibility criteria logic
@@ -46,6 +47,7 @@ export default function OpportunityCard({
   duration,
   location,
   stipend,
+  memberOnly = false,
   applied: initialApplied = false,
   ineligible = false,
 }: OpportunityCardProps) {
@@ -218,6 +220,12 @@ export default function OpportunityCard({
               <button className="inline-flex items-center gap-2 text-sm font-semibold text-green-500 cursor-default">
                 <span>Already Applied</span>
               </button>
+            ) : memberOnly &&
+              user?.role !== "member" &&
+              user?.role !== "admin" ? (
+              <div className="inline-flex items-center gap-2 text-sm font-semibold text-orange-400">
+                <span>Members Only</span>
+              </div>
             ) : (
               <button
                 onClick={handleShowInterest}
