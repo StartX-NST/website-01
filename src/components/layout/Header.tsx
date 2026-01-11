@@ -252,6 +252,7 @@ export default function Header() {
                         className="flex items-center gap-2 md:gap-2.5 px-3 md:px-4 py-2 md:py-2.5 rounded-full bg-white/10 hover:bg-white/15 border border-white/10 transition-all duration-300 group"
                       >
                         <div className="flex items-center justify-center w-7 h-7 rounded-full bg-blue-500/20 border border-blue-500/30">
+                          {user?.firstName}{" "}
                           <User className="w-4 h-4 text-blue-400" />
                         </div>
                         <span className="text-sm font-medium text-white hidden lg:block">
