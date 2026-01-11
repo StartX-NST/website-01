@@ -34,11 +34,11 @@ export default function Learn() {
 							<div className='flex items-center justify-center min-h-[60vh]'>
 								<div className='text-center max-w-md'>
 									<h2 className='text-2xl md:text-3xl font-bold text-white mb-3'>
-										No Courses Yet
+										Coming Soon
 									</h2>
 									<p className='text-gray-400 text-lg'>
 										Learning resources and courses will be
-										available here soon.
+										available here soon!
 									</p>
 								</div>
 							</div>
@@ -74,8 +74,7 @@ export default function Learn() {
 											No courses found
 										</h3>
 										<p className='text-gray-400'>
-											Try adjusting your filters or check back
-											later for new courses.
+											Try selecting a different difficulty level to see more courses.
 										</p>
 									</div>
 								)}

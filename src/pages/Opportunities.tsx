@@ -15,19 +15,20 @@ import { BGPattern } from '@/components/ui/bg-pattern';
 export default function Opportunities() {
 	const [selectedType, setSelectedType] = useState('all');
 	const [opportunities, setOpportunities] = useState<any[]>([]);
+	const [allOpportunities, setAllOpportunities] = useState<any[]>([]);
 	const [loading, setLoading] = useState(true);
 
 	useEffect(() => {
-		fetchOpportunities();
+		fetchAllOpportunities();
 	}, []);
 
-	const fetchOpportunities = async () => {
+	const fetchAllOpportunities = async () => {
 		try {
 			setLoading(true);
-			const response = await axiosInstance.get('/oppurtunities', {
-				params: selectedType !== 'all' ? { type: selectedType } : {},
-			});
-			setOpportunities(response.data.opportunities || []);
+			const response = await axiosInstance.get('/oppurtunities');
+			const allOpps = response.data.opportunities || [];
+			setAllOpportunities(allOpps);
+			setOpportunities(allOpps);
 		} catch (error) {
 			console.error('Error fetching opportunities:', error);
 		} finally {
@@ -36,15 +37,15 @@ export default function Opportunities() {
 	};
 
 	useEffect(() => {
-		fetchOpportunities();
-	}, [selectedType]);
-
-	// Filter opportunities based on selected type
-	const filteredOpportunities = opportunities.filter((opp) => {
-		return (
-			selectedType === 'all' || opp.type.toLowerCase() === selectedType
-		);
-	});
+		if (selectedType === 'all') {
+			setOpportunities(allOpportunities);
+		} else {
+			const filtered = allOpportunities.filter(
+				(opp) => opp.type.toLowerCase() === selectedType
+			);
+			setOpportunities(filtered);
+		}
+	}, [selectedType, allOpportunities]);
 
 	return (
 		<AnimatedPage>
@@ -70,16 +71,15 @@ export default function Opportunities() {
 									Loading opportunities...
 								</p>
 							</div>
-						) : opportunities.length === 0 ? (
+						) : allOpportunities.length === 0 ? (
 							<div className='flex items-center justify-center min-h-[60vh]'>
 								<div className='text-center max-w-md'>
 									<h2 className='text-2xl md:text-3xl font-bold text-white mb-3'>
-										No Opportunities Yet
+										Coming Soon
 									</h2>
 									<p className='text-gray-400 text-lg'>
-										Check back soon for internships,
-										hackathons, and other exciting
-										opportunities.
+										Exciting opportunities will be posted
+										here soon!
 									</p>
 								</div>
 							</div>
@@ -101,55 +101,45 @@ export default function Opportunities() {
 									onTypeChange={setSelectedType}
 								/>
 
-								{filteredOpportunities.length > 0 ? (
+								{opportunities.length > 0 ? (
 									<StaggerContainer className='grid md:grid-cols-2 lg:grid-cols-3 gap-6'>
-										{filteredOpportunities.map(
-											(opportunity) => (
-												<StaggerItem
-													key={opportunity._id}>
-													<OpportunityCard
-														id={opportunity._id}
-														title={
-															opportunity.title
-														}
-														description={
-															opportunity.desc
-														}
-														type={opportunity.type.toLowerCase()}
-														organization={
-															opportunity.org
-														}
-														deadline={new Date(
-															opportunity.deadline
-														).toLocaleDateString()}
-														duration={
-															opportunity.duration
-														}
-														location={
-															opportunity.location
-														}
-														stipend={
-															opportunity.reward
-														}
-														link={
-															opportunity.projectLink
-														}
-													/>
-												</StaggerItem>
-											)
-										)}
+										{opportunities.map((opportunity) => (
+											<StaggerItem key={opportunity._id}>
+												<OpportunityCard
+													id={opportunity._id}
+													title={opportunity.title}
+													description={
+														opportunity.desc
+													}
+													type={opportunity.type.toLowerCase()}
+													organization={
+														opportunity.org
+													}
+													deadline={new Date(
+														opportunity.deadline
+													).toLocaleDateString()}
+													duration={
+														opportunity.duration
+													}
+													location={
+														opportunity.location
+													}
+													stipend={opportunity.reward}
+													link={
+														opportunity.projectLink
+													}
+												/>
+											</StaggerItem>
+										))}
 									</StaggerContainer>
 								) : (
 									<div className='text-center py-12 md:py-16 lg:py-20'>
-										<div className='inline-flex items-center justify-center w-16 h-16 rounded-full bg-gray-800/50 border border-gray-700 mb-6'>
-											<Briefcase className='w-8 h-8 text-gray-500' />
-										</div>
 										<h3 className='text-xl font-semibold text-white mb-2'>
 											No opportunities found
 										</h3>
 										<p className='text-gray-400'>
-											Try adjusting your filters or check
-											back later.
+											Try selecting a different type to
+											see more opportunities.
 										</p>
 									</div>
 								)}
