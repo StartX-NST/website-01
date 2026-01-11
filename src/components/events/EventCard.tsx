@@ -37,7 +37,6 @@ export default function EventCard({
   location,
   attendees = 0,
   maxAttendees,
-  memberOnly = false,
   status,
   onRefresh,
 }: EventCardProps) {

@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Briefcase, Trophy } from 'lucide-react';
+import { Trophy } from 'lucide-react';
 import axiosInstance from '@/lib/axios';
 import {
 	OpportunityCard,
