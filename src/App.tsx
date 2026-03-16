@@ -10,7 +10,6 @@ import Showcase from '@/pages/Showcase';
 import Opportunities from '@/pages/Opportunities';
 import CheckEligibility from '@/pages/CheckEligibility';
 import Login from '@/pages/Login';
-import ForgotPassword from '@/pages/ForgotPassword';
 import ResetPassword from '@/pages/ResetPassword';
 import MembershipApplication from '@/pages/MembershipApplication';
 import MembershipRequired from '@/pages/MembershipRequired';
@@ -67,10 +66,6 @@ function App() {
 								replace
 							/>
 						}
-					/>
-					<Route
-						path='/forgot-password'
-						element={<ForgotPassword />}
 					/>
 					<Route
 						path='/reset-password/:token'
