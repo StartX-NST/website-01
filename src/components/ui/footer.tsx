@@ -2,6 +2,9 @@ import { Link } from 'react-router-dom';
 import { Mail, MapPin, Linkedin, Instagram } from 'lucide-react';
 import { TextHoverEffect, FooterBackgroundGradient } from './hover-footer';
 
+// CUSTOMIZABLE FOOTER BACKGROUND IMAGE
+const FOOTER_BG_IMAGE_URL = "https://ik.imagekit.io/yatharth/STAR-BG.png";
+
 export function Footer() {
 	// Footer link data
 	const footerLinks = [
@@ -63,7 +66,16 @@ export function Footer() {
 	];
 
 	return (
-		<footer className='bg-black relative h-fit overflow-hidden border-t border-gray-800/50'>
+		<footer className='relative h-fit overflow-hidden border-t border-gray-800/50 bg-black'>
+			{/* Background Image with Dark Mask */}
+			<div className="absolute inset-0 w-full h-full pointer-events-none select-none z-0">
+				<img
+					src={FOOTER_BG_IMAGE_URL}
+					alt="Footer background"
+					className="w-full h-full object-cover opacity-15"
+				/>
+				<div className="absolute inset-0 bg-black/90" />
+			</div>
 			<div className='max-w-7xl mx-auto px-6 py-16 md:py-20 z-40 relative'>
 				<div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 md:gap-8 lg:gap-16 pb-12'>
 					{/* Brand section */}

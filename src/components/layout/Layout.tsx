@@ -17,7 +17,7 @@ export default function Layout() {
 					<Outlet key={location.pathname} />
 				</AnimatePresence>
 			</main>
-			<Footer />
+			{location.pathname !== '/' && <Footer />}
 			<BackToTop />
 		</div>
 	);
