@@ -4,9 +4,6 @@ import {
   MapPin,
   Linkedin,
   Instagram,
-  TrendingUp,
-  Sparkles,
-  Maximize2,
 } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useRef, useState } from "react";
@@ -17,13 +14,8 @@ import {
   AnimatePresence,
 } from "framer-motion";
 import { AnimatedPage, FadeIn } from "@/components/animations";
-import { useAuth } from "@/contexts/AuthContext";
 import { BGPattern } from "@/components/ui/bg-pattern";
 import Grainient from "@/components/Grainient";
-
-// CUSTOMIZABLE HERO BACKGROUND IMAGE URL
-// Replace this link with your own 3D asset render or graphic URL!
-const HERO_BG_IMAGE_URL = "https://ik.imagekit.io/yatharth/STAR-BG.png";
 
 // CUSTOMIZABLE MOUNTAIN BACKGROUND IMAGE FOR STEPS TO REGISTER
 // Replace this link with your own mountain rendering or image URL!
@@ -653,8 +645,6 @@ function EverythingYouBuildSection() {
 }
 
 export default function Home() {
-  const { isAuthenticated } = useAuth();
-
   const [activeBuilderIndex, setActiveBuilderIndex] = useState(0);
 
   return (

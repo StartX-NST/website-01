@@ -6,13 +6,17 @@
 export function smoothScrollToElement(elementId: string, offset: number = 100) {
 	const element = document.getElementById(elementId);
 	if (element) {
-		const elementPosition = element.getBoundingClientRect().top;
-		const offsetPosition = elementPosition + window.scrollY - offset;
+		if (window.__lenis) {
+			window.__lenis.scrollTo(element, { offset: -offset });
+		} else {
+			const elementPosition = element.getBoundingClientRect().top;
+			const offsetPosition = elementPosition + window.scrollY - offset;
 
-		window.scrollTo({
-			top: offsetPosition,
-			behavior: 'smooth',
-		});
+			window.scrollTo({
+				top: offsetPosition,
+				behavior: 'smooth',
+			});
+		}
 	}
 }
 
@@ -20,8 +24,12 @@ export function smoothScrollToElement(elementId: string, offset: number = 100) {
  * Smooth scroll to top of page
  */
 export function smoothScrollToTop() {
-	window.scrollTo({
-		top: 0,
-		behavior: 'smooth',
-	});
+	if (window.__lenis) {
+		window.__lenis.scrollTo(0);
+	} else {
+		window.scrollTo({
+			top: 0,
+			behavior: 'smooth',
+		});
+	}
 }

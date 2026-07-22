@@ -2,13 +2,17 @@ import { useState, useEffect } from 'react';
 import { ArrowUp } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { smoothScrollToTop } from '@/lib/scroll';
+import { useLenis } from 'lenis/react';
 
 export function BackToTop() {
 	const [isVisible, setIsVisible] = useState(false);
 
+	useLenis(({ scroll }) => {
+		setIsVisible(scroll > 300);
+	});
+
 	useEffect(() => {
 		const toggleVisibility = () => {
-			// Show button when page is scrolled down 300px
 			if (window.scrollY > 300) {
 				setIsVisible(true);
 			} else {
@@ -17,7 +21,6 @@ export function BackToTop() {
 		};
 
 		window.addEventListener('scroll', toggleVisibility);
-
 		return () => {
 			window.removeEventListener('scroll', toggleVisibility);
 		};

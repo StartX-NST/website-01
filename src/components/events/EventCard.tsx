@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import {
-  Calendar,
   Clock,
   MapPin,
   Users,
@@ -8,7 +7,6 @@ import {
   Edit,
   Trash2,
   Loader2,
-  Sparkles,
 } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "@/contexts/AuthContext";

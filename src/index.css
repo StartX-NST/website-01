@@ -1,6 +1,7 @@
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
 @import "@fontsource-variable/geist";
+@import "lenis/dist/lenis.css";
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -53,8 +54,7 @@
 	}
 
 	html {
-		scroll-behavior: smooth;
-    @apply font-sans;
+		@apply font-sans;
 	}
 
 	/* Custom scrollbar */
