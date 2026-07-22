@@ -65,7 +65,7 @@ export function ComingSoon({
             {errorCode}
           </div>
 
-          <div className="flex items-center justify-center gap-3 mt-2">
+          <div className="flex items-center justify-center gap-3 mt-6">
             <div className="h-px flex-1 max-w-[60px] bg-white/30" />
             <span className="text-xs font-semibold tracking-[0.25em] uppercase text-white/60">
               Service Unavailable
@@ -98,7 +98,7 @@ export function ComingSoon({
           </h1>
 
           {/* Message */}
-          <p className="text-base md:text-lg text-white/50 leading-relaxed mb-10 max-w-sm">
+          <p className="text-base md:text-md text-white/50 leading-relaxed mb-10 max-w-sm">
             {message}
           </p>
 
