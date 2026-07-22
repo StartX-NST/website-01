@@ -82,18 +82,29 @@ export default function Events() {
           showHomeButton={false}
         />
       ) : (
-        <div className="min-h-screen bg-black relative">
+        <div className="min-h-screen bg-black relative pt-20">
           {/* Diagonal Stripes Background Pattern */}
           <BGPattern
             variant="diagonal-stripes"
             mask="fade-y"
             size={60}
-            fill="rgba(255, 255, 255, 0.08)"
+            fill="rgba(255, 255, 255, 0.05)"
           />
 
           {/* Events Section */}
-          <section className="relative py-12 md:py-16 lg:py-20 px-6 overflow-hidden">
+          <section className="relative py-8 md:py-12 lg:py-16 px-6 overflow-hidden z-10">
             <div className="relative z-10 max-w-7xl mx-auto">
+              {/* Page Title Header */}
+              <div className="text-center mb-10">
+                <h1 className="text-3xl md:text-5xl font-normal text-white tracking-tight mb-3">
+                  StartX <span className="text-[#0673f9]">Events</span>
+                </h1>
+                <p className="text-neutral-400 text-sm md:text-base max-w-xl mx-auto font-normal">
+                  Explore upcoming workshops, bootcamps, and past ecosystem
+                  gatherings.
+                </p>
+              </div>
+
               {/* Filters */}
               <EventFilters
                 selectedStatus={selectedStatus}
@@ -102,11 +113,11 @@ export default function Events() {
 
               {/* Check if there are any filtered results */}
               {filteredEvents.length === 0 ? (
-                <div className="text-center py-12 md:py-16 lg:py-20">
-                  <h3 className="text-xl font-semibold text-white mb-2">
+                <div className="text-center py-16 md:py-20 bg-black rounded-3xl border border-white/10 max-w-2xl mx-auto">
+                  <h3 className="text-xl font-normal text-white mb-2">
                     No events found
                   </h3>
-                  <p className="text-gray-400">
+                  <p className="text-gray-400 text-sm font-normal">
                     Try adjusting your filters or check back later for new
                     events.
                   </p>
@@ -119,12 +130,14 @@ export default function Events() {
                     upcomingEvents.length > 0 && (
                       <div className="mb-20">
                         <div className="flex items-center gap-3 mb-8">
-                          <Sparkles className="w-6 h-6 text-blue-400" />
-                          <h2 className="text-2xl md:text-3xl font-bold text-white">
+                          <div className="p-2 rounded-xl bg-blue-500/10 text-blue-400 border border-blue-500/20">
+                            <Sparkles className="w-5 h-5" />
+                          </div>
+                          <h2 className="text-2xl md:text-3xl font-normal text-white tracking-tight">
                             Upcoming Events
                           </h2>
                         </div>
-                        <StaggerContainer className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        <StaggerContainer className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                           {upcomingEvents.map((event) => (
                             <StaggerItem key={event._id}>
                               <EventCard
@@ -151,12 +164,14 @@ export default function Events() {
                     pastEvents.length > 0 && (
                       <div>
                         <div className="flex items-center gap-3 mb-8">
-                          <TrendingUp className="w-6 h-6 text-gray-400" />
-                          <h2 className="text-2xl md:text-3xl font-bold text-white">
+                          <div className="p-2 rounded-xl bg-white/5 text-gray-400 border border-white/10">
+                            <TrendingUp className="w-5 h-5" />
+                          </div>
+                          <h2 className="text-2xl md:text-3xl font-normal text-white tracking-tight">
                             Past Events
                           </h2>
                         </div>
-                        <StaggerContainer className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        <StaggerContainer className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                           {pastEvents.map((event) => (
                             <StaggerItem key={event._id}>
                               <EventCard
