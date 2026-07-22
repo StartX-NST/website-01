@@ -1,4 +1,13 @@
-import { ArrowRight, Mail, MapPin, Linkedin, Instagram } from "lucide-react";
+import {
+  ArrowRight,
+  Mail,
+  MapPin,
+  Linkedin,
+  Instagram,
+  TrendingUp,
+  Sparkles,
+  Maximize2,
+} from "lucide-react";
 import { Link } from "react-router-dom";
 import { useRef, useState } from "react";
 import {
@@ -10,6 +19,7 @@ import {
 import { AnimatedPage, FadeIn } from "@/components/animations";
 import { useAuth } from "@/contexts/AuthContext";
 import { BGPattern } from "@/components/ui/bg-pattern";
+import Grainient from "@/components/Grainient";
 
 // CUSTOMIZABLE HERO BACKGROUND IMAGE URL
 // Replace this link with your own 3D asset render or graphic URL!
@@ -60,15 +70,17 @@ function ScrollRevealText({
   );
 }
 
-// Premium Scroll-linked word-by-word Split Heading (White / Muted Gray transition)
+// Premium Scroll-linked word-by-word Split Heading (White / Muted Gray or Custom Accent transition)
 function ScrollRevealHeading({
   text1,
   text2,
   className = "",
+  text2ColorClass = "text-neutral-500",
 }: {
   text1: string;
   text2: string;
   className?: string;
+  text2ColorClass?: string;
 }) {
   const containerRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
@@ -107,7 +119,7 @@ function ScrollRevealHeading({
           <motion.span
             key={`h2-${index}`}
             style={{ opacity }}
-            className="inline-block mr-[0.25em] text-neutral-500 transition-opacity duration-75"
+            className={`inline-block mr-[0.25em] ${text2ColorClass} transition-opacity duration-75`}
           >
             {word}
           </motion.span>
@@ -518,6 +530,128 @@ function BuilderValueRow({
   );
 }
 
+function EverythingYouBuildSection() {
+  const sectionRef = useRef<HTMLElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start 0.85", "start 0.25", "end 0.35", "end 0.05"],
+  });
+
+  // Smoothly transform background color from dark (#000000) to electric blue (#0673f9) and back to dark
+  const backgroundColor = useTransform(
+    scrollYProgress,
+    [0, 0.3, 0.7, 1],
+    ["#000000", "#0673f9", "#0673f9", "#000000"],
+  );
+
+  // Subtext color transition for optimal contrast and readability
+  const subtextColor = useTransform(
+    scrollYProgress,
+    [0, 0.3, 0.7, 1],
+    [
+      "rgba(163, 163, 163, 1)",
+      "rgba(255, 255, 255, 0.95)",
+      "rgba(255, 255, 255, 0.95)",
+      "rgba(163, 163, 163, 1)",
+    ],
+  );
+
+  // Ambient Radial Glow opacity mapping
+  const ambientGlowOpacity = useTransform(
+    scrollYProgress,
+    [0, 0.3, 0.7, 1],
+    [0, 0.6, 0.6, 0],
+  );
+
+  return (
+    <motion.section
+      ref={sectionRef}
+      style={{ backgroundColor }}
+      className="relative py-28 md:py-36 px-6 md:px-12 z-10 transition-colors duration-500 ease-out"
+    >
+      {/* Ambient Glow Overlay */}
+      <motion.div
+        style={{ opacity: ambientGlowOpacity }}
+        className="absolute inset-0 pointer-events-none z-0 bg-[radial-gradient(circle_at_50%_40%,rgba(255,255,255,0.18),transparent_70%)] overflow-hidden"
+      />
+
+      <div className="max-w-8xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-start relative z-10">
+        {/* Left Side: Sticky Header with Scroll Reveal */}
+        <div className="lg:col-span-5 lg:sticky lg:top-32 h-fit flex flex-col gap-6">
+          <ScrollRevealText
+            className="text-4xl md:text-5xl lg:text-6xl font-normal text-white tracking-tight leading-tight"
+            text="Everything you need to build"
+          />
+          <motion.p
+            style={{ color: subtextColor }}
+            className="text-lg leading-relaxed font-medium mt-2 transition-colors duration-300"
+          >
+            From ideation to launch, we provide the tools, community, and
+            guidance to turn your startup dreams into reality.
+          </motion.p>
+        </div>
+
+        {/* Right Side: Features Cards Stack */}
+        <div className="lg:col-span-7 flex flex-col gap-6 md:gap-8">
+          {features.map((feature, index) => (
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{
+                duration: 0.8,
+                ease: "easeOut",
+                delay: index * 0.05,
+              }}
+              className="group relative w-full rounded-[2rem] md:rounded-[2.5rem] bg-[#f2f4f7] border border-white/30 p-6 md:p-8 flex flex-col md:flex-row justify-between items-start md:items-center gap-6 shadow-[0_16px_45px_rgba(0,0,0,0.25)] hover:shadow-[0_24px_60px_rgba(0,0,0,0.35)] hover:-translate-y-1 transition-all duration-300 overflow-hidden"
+            >
+              {/* Left Side Content */}
+              <div className="flex-grow flex flex-col justify-between">
+                <div>
+                  <span className="text-[10px] font-bold tracking-widest text-neutral-500 uppercase block mb-1">
+                    {feature.tag}
+                  </span>
+                  <h3 className="text-xl md:text-2xl font-bold text-black mb-2">
+                    {feature.title}
+                  </h3>
+                  <p className="text-sm md:text-base text-neutral-600 font-medium leading-relaxed mb-6 max-w-md">
+                    {feature.description}
+                  </p>
+                </div>
+
+                {/* CTA Link */}
+                <div>
+                  <Link
+                    to={feature.href}
+                    className="inline-flex items-center gap-2 group/btn"
+                  >
+                    <span className="bg-black text-white px-5 py-2.5 rounded-full text-xs font-semibold transition-colors group-hover/btn:bg-neutral-800">
+                      Explore
+                    </span>
+                    <span className="w-8 h-8 rounded-full bg-black text-white flex items-center justify-center transition-transform group-hover/btn:translate-x-1 shrink-0">
+                      <ArrowRight className="w-3.5 h-3.5" />
+                    </span>
+                  </Link>
+                </div>
+              </div>
+
+              {/* Right Side Image */}
+              <div className="w-full md:w-[180px] h-[130px] rounded-2xl overflow-hidden shrink-0 shadow-md border border-neutral-200">
+                <img
+                  src={feature.image}
+                  alt={feature.title}
+                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                />
+              </div>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+    </motion.section>
+  );
+}
+
 export default function Home() {
   const { isAuthenticated } = useAuth();
 
@@ -526,50 +660,80 @@ export default function Home() {
   return (
     <AnimatedPage>
       <div className="min-h-screen bg-black relative">
-        {/* Premium Minimal Hero Section */}
-        <section className="relative w-full pt-20 pb-12 px-6 md:px-12 z-10">
-          <div className="max-w-8xl mx-auto">
+        {/* Full-Screen Landing Hero Section without Card Layout */}
+        <section className="relative w-full min-h-[92vh] md:min-h-screen flex flex-col justify-center pt-24 pb-16 px-6 sm:px-12 md:px-20 z-10 bg-black overflow-hidden border-b border-zinc-900">
+          {/* Background Grainient Canvas Covering Entire Screen Width including Far Left */}
+          <div className="absolute inset-0 w-full h-full pointer-events-none select-none z-0 overflow-hidden">
+            {/* Grainient Canvas stretching 100% full width and height */}
+            <div className="absolute inset-0 w-full h-full opacity-100">
+              <Grainient
+                color1="#0673f9"
+                color2="#3612c8"
+                color3="#0f46a1"
+                timeSpeed={0.85}
+                colorBalance={0.11}
+                warpStrength={2.75}
+                warpFrequency={4.5}
+                warpSpeed={2}
+                warpAmplitude={50}
+                blendAngle={92}
+                blendSoftness={0.18}
+                rotationAmount={500}
+                noiseScale={2.75}
+                grainAmount={0.26}
+                grainScale={2}
+                grainAnimated={false}
+                contrast={1.5}
+                gamma={1}
+                saturation={1}
+                centerX={0}
+                centerY={0}
+                zoom={0.9}
+              />
+            </div>
+
+            {/* Smooth Top & Bottom Fade Out into black background */}
+            <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-transparent to-black pointer-events-none" />
+            <div className="absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-black/40 to-transparent pointer-events-none" />
+          </div>
+
+          {/* Hero Main Content */}
+          <div className="max-w-7xl mx-auto w-full flex flex-col justify-between relative z-10 py-6 md:py-12">
             <FadeIn>
-              {/* Rounded White Hero Card */}
-              <div className="relative w-full rounded-[2.5rem] md:rounded-[3.5rem] bg-[#f2f4f7] border border-white/20 p-8 md:p-16 lg:p-20 overflow-hidden min-h-[500px] md:min-h-[580px] lg:min-h-[750px] flex flex-col justify-between shadow-[0_24px_80px_rgba(0,0,0,0.3)]">
-                {/* Background Graphic Image - covers whole card */}
-                <div className="absolute inset-0 w-full h-full pointer-events-none select-none z-0">
-                  <img
-                    src={HERO_BG_IMAGE_URL}
-                    alt="Hero abstract graphic"
-                    className="w-full h-full object-cover opacity-90 transition-all duration-300"
-                  />
-                  {/* Subtle white fade overlay from left to right to preserve text contrast */}
-                  <div className="absolute inset-0 bg-gradient-to-r from-[#f2f4f7] via-[#f2f4f7]/70 to-transparent w-full md:w-3/4" />
-                </div>
-
-                {/* Top Row: Huge typography and aligned subtext paragraph */}
-                <div className="flex flex-col gap-8 md:gap-10 z-10 relative">
-                  <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-6">
-                    <h1 className="text-[4rem] sm:text-[6rem] md:text-[8rem] font-bold text-black leading-[0.8] tracking-tighter">
-                      Build
-                    </h1>
-                  </div>
-
-                  <h1 className="text-[4rem] sm:text-[6rem] md:text-[8rem] font-bold text-black leading-[0.8] tracking-tighter">
+              <div className="flex flex-col gap-6 md:gap-8 max-w-4xl">
+                {/* Main Hero Headline */}
+                <div className="flex flex-col gap-2 md:gap-3">
+                  <h1 className="text-[4.2rem] sm:text-[6.5rem] md:text-[8.5rem] lg:text-[10.5rem] font-normal text-white leading-[0.85] tracking-tighter">
+                    Build
+                  </h1>
+                  <h1 className="text-[4.2rem] sm:text-[6.5rem] md:text-[8.5rem] lg:text-[10.5rem] font-normal text-white leading-[0.85] tracking-tighter">
                     to launch
                   </h1>
                 </div>
 
-                {/* Bottom Row: CTA Button */}
-                <div className="z-10 relative mt-16 md:mt-24">
-                  <Link
-                    to="/check-eligibility"
-                    className="inline-flex items-center gap-2 group"
-                  >
-                    <span className="bg-black text-white px-7 py-3.5 md:py-4 rounded-full text-sm md:text-base font-semibold transition-colors group-hover:bg-neutral-800 shadow-[0_4px_20px_rgba(0,0,0,0.1)]">
-                      Check eligibility
-                    </span>
-                    <span className="w-12 h-12 md:w-14 md:h-14 rounded-full bg-black text-white flex items-center justify-center transition-transform group-hover:translate-x-1 shrink-0 shadow-[0_4px_20px_rgba(0,0,0,0.1)]">
-                      <ArrowRight className="w-5 h-5 md:w-6 h-6" />
-                    </span>
-                  </Link>
-                </div>
+                {/* Expanded Copy detailing Build to Launch */}
+                <p className="text-md sm:text-lg md:text-xl text-neutral-300 font-normal max-w-2xl leading-relaxed mt-2">
+                  Turn your boldest ideas into venture-backed startups. StartX
+                  equips student builders with hands-on development sprints,
+                  team matching, expert mentorship, and direct capital access.
+                </p>
+              </div>
+            </FadeIn>
+
+            {/* Bottom Row: CTA Button (Preserved structure & button action) */}
+            <FadeIn delay={0.15}>
+              <div className="mt-12 md:mt-16">
+                <Link
+                  to="/check-eligibility"
+                  className="inline-flex items-center gap-2 group"
+                >
+                  <span className="bg-white text-black px-7 py-3.5 md:py-4 rounded-full text-sm md:text-base font-semibold transition-colors group-hover:bg-neutral-200 shadow-[0_4px_25px_rgba(255,255,255,0.2)]">
+                    Check eligibility
+                  </span>
+                  <span className="w-12 h-12 md:w-14 md:h-14 rounded-full bg-white text-black flex items-center justify-center transition-transform group-hover:translate-x-1 shrink-0 shadow-[0_4px_25px_rgba(255,255,255,0.2)]">
+                    <ArrowRight className="w-5 h-5 md:w-6 h-6" />
+                  </span>
+                </Link>
               </div>
             </FadeIn>
           </div>
@@ -857,78 +1021,7 @@ export default function Home() {
         </div>
 
         {/* ================= KEY FEATURES ================= */}
-        <section className="relative py-24 px-6 md:px-12 z-10 bg-black">
-          <div className="max-w-8xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20">
-            {/* Left Side: Sticky Header with Scroll Reveal */}
-            <div className="lg:col-span-5 lg:sticky lg:top-32 h-fit flex flex-col gap-6">
-              <ScrollRevealText
-                className="text-4xl md:text-5xl lg:text-6xl font-normal text-white tracking-tight leading-tight"
-                text="Everything you need to build"
-              />
-              <p className="text-lg text-neutral-400 leading-relaxed font-medium mt-2">
-                From ideation to launch, we provide the tools, community, and
-                guidance to turn your startup dreams into reality.
-              </p>
-            </div>
-
-            {/* Right Side: Features Cards Stack */}
-            <div className="lg:col-span-7 flex flex-col gap-6 md:gap-8">
-              {features.map((feature, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: "-50px" }}
-                  transition={{
-                    duration: 0.8,
-                    ease: "easeOut",
-                    delay: index * 0.05,
-                  }}
-                  className="group relative w-full rounded-[2rem] md:rounded-[2.5rem] bg-[#f2f4f7] border border-white/20 p-6 md:p-8 flex flex-col md:flex-row justify-between items-start md:items-center gap-6 shadow-[0_12px_40px_rgba(0,0,0,0.2)] hover:shadow-[0_20px_50px_rgba(255,255,255,0.03)] hover:-translate-y-1 transition-all duration-300 overflow-hidden"
-                >
-                  {/* Left Side Content */}
-                  <div className="flex-grow flex flex-col justify-between">
-                    <div>
-                      <span className="text-[10px] font-bold tracking-widest text-neutral-500 uppercase block mb-1">
-                        {feature.tag}
-                      </span>
-                      <h3 className="text-xl md:text-2xl font-bold text-black mb-2">
-                        {feature.title}
-                      </h3>
-                      <p className="text-sm md:text-base text-neutral-600 font-medium leading-relaxed mb-6 max-w-md">
-                        {feature.description}
-                      </p>
-                    </div>
-
-                    {/* CTA Link styled matching new theme */}
-                    <div>
-                      <Link
-                        to={feature.href}
-                        className="inline-flex items-center gap-2 group/btn"
-                      >
-                        <span className="bg-black text-white px-5 py-2.5 rounded-full text-xs font-semibold transition-colors group-hover/btn:bg-neutral-800">
-                          Explore
-                        </span>
-                        <span className="w-8 h-8 rounded-full bg-black text-white flex items-center justify-center transition-transform group-hover/btn:translate-x-1 shrink-0">
-                          <ArrowRight className="w-3.5 h-3.5" />
-                        </span>
-                      </Link>
-                    </div>
-                  </div>
-
-                  {/* Right Side Image */}
-                  <div className="w-full md:w-[180px] h-[130px] rounded-2xl overflow-hidden shrink-0 shadow-md border border-neutral-200">
-                    <img
-                      src={feature.image}
-                      alt={feature.title}
-                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                    />
-                  </div>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-        </section>
+        <EverythingYouBuildSection />
 
         {/* ================= WHY JOIN STARTX ================= */}
         <section className="relative pt-44 pb-32 px-6 md:px-12 z-10 bg-black border-t border-zinc-900/50">
@@ -984,214 +1077,221 @@ export default function Home() {
           </div>
         </section>
 
-        {/* ================= MENTOR-GUIDED GROWTH STAGES ================= */}
-        <section className="relative pt-44 pb-32 px-6 md:px-12 z-10 bg-black border-t border-zinc-900/50">
+        {/* ================= MENTOR-GUIDED GROWTH STAGES (ASYMMETRIC 3-COLOR BENTO GRID ROADMAP) ================= */}
+        <section className="relative pt-36 pb-32 px-6 md:px-12 z-10 bg-black border-t border-white/10">
           <div className="max-w-8xl mx-auto">
-            {/* Split Header: Left Aligned */}
-            <div className="max-w-4xl mb-24">
+            {/* Section Header */}
+            <div className="max-w-4xl mb-16">
               <ScrollRevealHeading
-                className="text-[5.5vw] md:text-[4.5vw] font-normal leading-[1.1] tracking-[-0.04em] mb-8"
+                className="text-4xl md:text-5xl lg:text-6xl font-normal tracking-tight leading-tight mb-4"
                 text1="Your roadmap from"
                 text2="idea to launch."
+                text2ColorClass="text-[#0673f9]"
               />
-              <p className="text-lg text-neutral-400 font-medium max-w-2xl mt-4 leading-relaxed">
-                Follow a proven path with expert mentorship at every critical
-                stage of your startup journey.
+              <p className="text-base md:text-lg text-white/70 font-normal max-w-2xl leading-relaxed">
+                Follow an interactive, proven pathway powered by founder
+                analytics, 1-on-1 mentorship, and venture scaling systems.
               </p>
             </div>
 
-            {/* Unique Scrolling Metro Transit Roadmap */}
-            <div className="grid grid-cols-1 lg:grid-cols-[0.8fr_2.2fr] gap-12 lg:gap-20 items-start relative">
-              {/* Left Column: Metro Track Progress Indicator (Sticky on Desktop) */}
-              <div className="hidden lg:flex flex-col sticky top-44 h-fit border-l-2 border-zinc-900/60 pl-8 gap-8 py-4">
-                <span className="text-[10px] tracking-[0.4em] uppercase text-zinc-500 font-bold mb-2">
-                  Transit Progress
-                </span>
+            {/* Asymmetric 3-Column Bento Grid - Strict 3 Colors (Black, White, #0673f9), No Icons, No Gradients, font-normal Headings */}
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-8 items-stretch">
+              {/* CARD 1: Ideation & Validation (Electric Blue Theme #0673f9) */}
+              <div className="group relative rounded-[2.5rem] bg-[#0673f9] text-white p-8 md:p-10 flex flex-col justify-between overflow-hidden shadow-2xl min-h-[560px] border border-[#0673f9]">
+                {/* Top Content */}
+                <div>
+                  <h3 className="text-2xl md:text-3xl font-normal text-white tracking-tight leading-tight">
+                    Ideation & Validation
+                  </h3>
+                  <p className="text-sm text-white/80 font-normal leading-relaxed mt-3 max-w-sm">
+                    Refine your concept, test market demand, and prove
+                    problem-solution fit with active student feedback.
+                  </p>
+                </div>
 
-                {[
-                  { num: "01", name: "Idea Check", desc: "Validate Vision" },
-                  { num: "02", name: "User Insights", desc: "Know Customers" },
-                  {
-                    num: "03",
-                    name: "Model & Strategy",
-                    desc: "Build Business",
-                  },
-                  { num: "04", name: "Prototype Sprint", desc: "Ship Fast" },
-                  { num: "05", name: "Market Entry", desc: "Launch & Scale" },
-                ].map((stop, idx) => (
-                  <div
-                    key={stop.num}
-                    className="flex flex-col gap-1.5 group cursor-pointer relative"
-                    onClick={() => {
-                      const el = document.getElementById(
-                        `roadmap-stage-${idx + 1}`,
-                      );
-                      if (el) {
-                        el.scrollIntoView({
-                          behavior: "smooth",
-                          block: "center",
-                        });
-                      }
-                    }}
+                {/* Interactive Inner Widget (Solid White Card) */}
+                <div className="mt-10">
+                  <motion.div
+                    whileHover={{ y: -6, scale: 1.02 }}
+                    transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                    className="rounded-2xl bg-white text-black p-6 shadow-2xl transition-transform duration-300"
                   >
-                    {/* Glowing active node indicator */}
-                    <div className="absolute -left-[41px] top-1.5 w-4 h-4 rounded-full bg-black border-2 border-zinc-800 flex items-center justify-center transition-all duration-300 group-hover:border-white">
-                      <div className="w-1.5 h-1.5 rounded-full bg-zinc-800 transition-all duration-300 group-hover:bg-white" />
+                    {/* Header Row */}
+                    <div className="pb-4 mb-4 border-b border-black/10">
+                      <h4 className="text-xs font-normal text-[#0673f9] tracking-wider uppercase">
+                        StartX Accelerator
+                      </h4>
+                      <p className="text-xs text-black/70 font-normal mt-1">
+                        Cohort Traction Metrics:
+                      </p>
                     </div>
-                    <span className="text-xs font-mono text-zinc-600 font-bold tracking-wider group-hover:text-zinc-400 transition-colors">
-                      {stop.num} · {stop.name}
-                    </span>
-                    <span className="text-sm font-semibold text-zinc-400 group-hover:text-white transition-colors">
-                      {stop.desc}
-                    </span>
-                  </div>
-                ))}
+
+                    {/* Metrics Stack */}
+                    <div className="space-y-4">
+                      <div className="flex items-center justify-between">
+                        <span className="text-xl md:text-2xl font-normal text-[#0673f9] font-mono">
+                          82%
+                        </span>
+                        <span className="text-xs text-black/80 font-normal">
+                          Prototype Velocity
+                        </span>
+                      </div>
+
+                      <div className="flex items-center justify-between">
+                        <span className="text-xl md:text-2xl font-normal text-[#0673f9] font-mono">
+                          62%
+                        </span>
+                        <span className="text-xs text-black/80 font-normal">
+                          Problem Validation Score
+                        </span>
+                      </div>
+
+                      <div className="flex items-center justify-between">
+                        <span className="text-xl md:text-2xl font-normal text-[#0673f9] font-mono">
+                          +2%
+                        </span>
+                        <span className="text-xs text-black/80 font-normal">
+                          Value Proposition Index
+                        </span>
+                      </div>
+                    </div>
+                  </motion.div>
+                </div>
               </div>
 
-              {/* Right Column: Roadmap Cards Stack */}
-              <div className="flex flex-col gap-12 md:gap-16 w-full z-10 relative">
-                {[
-                  {
-                    num: "01",
-                    phase: "Idea Check",
-                    title: "Validate Your Vision",
-                    body: "Start with clarity. We help you refine your idea, test its uniqueness, and validate real market need.",
-                    tags: ["Refine Idea", "Validate Uniqueness", "Market Need"],
-                    highlights: [
-                      "1-on-1 ideation sessions",
-                      "Competitor analysis",
-                      "Value proposition validation",
-                    ],
-                  },
-                  {
-                    num: "02",
-                    phase: "User Insights",
-                    title: "Know Your Customer",
-                    body: "Deep dive into user research. Learn to conduct interviews, analyze behavior patterns, and understand what your customers need.",
-                    tags: ["Interviews", "Behavior Patterns", "Customer Needs"],
-                    highlights: [
-                      "Customer interviews & surveys",
-                      "Pain point identification",
-                      "Market size validation",
-                    ],
-                  },
-                  {
-                    num: "03",
-                    phase: "Model & Strategy",
-                    title: "Build Your Business Plan",
-                    body: "Design a winning strategy. From pricing models to go-to-market plans, we help you create a roadmap that actually works.",
-                    tags: [
-                      "Pricing Models",
-                      "Go-To-Market Plans",
-                      "Business Roadmap",
-                    ],
-                    highlights: [
-                      "Unit economics design",
-                      "Pricing strategy testing",
-                      "Go-to-market plan formulation",
-                    ],
-                  },
-                  {
-                    num: "04",
-                    phase: "Prototype Sprint",
-                    title: "Ship Fast, Learn Faster",
-                    body: "Build your MVP in weeks, not months. Get hands-on with rapid prototyping, testing, and iterating based on real user feedback.",
-                    tags: [
-                      "MVP In Weeks",
-                      "Rapid Prototyping",
-                      "User Feedback",
-                    ],
-                    highlights: [
-                      "2-4 Week Sprint",
-                      "Intensive development",
-                      "Mentor check-ins & reviews",
-                    ],
-                  },
-                  {
-                    num: "05",
-                    phase: "Market Entry",
-                    title: "Launch & Scale",
-                    body: "Perfect your pitch, launch to real users, and start scaling. Get ready for demo days, investor meetings, and growth.",
-                    tags: ["Pitch Perfect", "Demo Days", "Investor Meetings"],
-                    highlights: [
-                      "Investor pitch optimization",
-                      "Public product launch",
-                      "Growth metrics tracking",
-                    ],
-                  },
-                ].map((stage, idx) => {
-                  return (
-                    <motion.div
-                      id={`roadmap-stage-${idx + 1}`}
-                      key={stage.num}
-                      initial={{ opacity: 0, y: 50, rotateX: 6 }}
-                      whileInView={{ opacity: 1, y: 0, rotateX: 0 }}
-                      viewport={{ once: true, margin: "-10%" }}
-                      transition={{
-                        duration: 0.6,
-                        ease: [0.215, 0.61, 0.355, 1],
-                      }}
-                      className="relative rounded-[2rem] md:rounded-[2.5rem] bg-[#f2f4f7] border border-white/20 p-8 md:p-12 lg:p-14 shadow-[0_24px_80px_rgba(0,0,0,0.05)] hover:shadow-[0_32px_100px_rgba(0,0,0,0.1)] transition-all duration-500 group overflow-hidden"
+              {/* CARD 2: Co-Founder & Team Match (Solid White Theme with Visible Orbit Curves, No Hover) */}
+              <div className="relative rounded-[2.5rem] bg-white text-black p-8 md:p-10 flex flex-col justify-between overflow-hidden shadow-2xl min-h-[560px] border border-white">
+                {/* Top Content */}
+                <div className="relative z-10">
+                  <h3 className="text-2xl md:text-3xl font-normal text-black tracking-tight leading-tight">
+                    Co-Founder & Team Match
+                  </h3>
+                  <p className="text-sm text-black/70 font-normal leading-relaxed mt-3 max-w-sm">
+                    Connect with ambitious developers, UI/UX designers, and
+                    marketers to build your dream founding team.
+                  </p>
+                </div>
+
+                {/* Inner Widget with Clearly Visible Concentric Orbit Curves & Static Badges (No Hover) */}
+                <div className="relative z-10 mt-6 flex flex-col gap-4">
+                  {/* Floating Tags Grid over Visible Concentric Orbit Curves */}
+                  <div className="relative h-44 w-full flex items-center justify-center">
+                    {/* SVG Concentric Orbit Rings - Clearly Visible */}
+                    <svg
+                      className="absolute inset-0 w-full h-full pointer-events-none"
+                      viewBox="0 0 350 180"
+                      fill="none"
                     >
-                      {/* Monospace Step Number */}
-                      <div className="absolute top-8 right-8 md:top-12 md:right-12 text-[4rem] md:text-[6rem] font-bold text-black/5 font-mono select-none leading-none">
-                        {stage.num}
-                      </div>
+                      <ellipse
+                        cx="175"
+                        cy="90"
+                        rx="150"
+                        ry="75"
+                        stroke="rgba(0, 0, 0, 0.22)"
+                        strokeWidth="1.5"
+                        strokeDasharray="6 6"
+                      />
+                      <ellipse
+                        cx="175"
+                        cy="90"
+                        rx="95"
+                        ry="45"
+                        stroke="rgba(6, 115, 249, 0.35)"
+                        strokeWidth="1.5"
+                        strokeDasharray="4 4"
+                      />
+                    </svg>
 
-                      {/* Header row */}
-                      <div className="flex flex-col gap-4 max-w-xl">
-                        <div className="flex items-center gap-3">
-                          <span className="text-[10px] tracking-[0.3em] font-extrabold uppercase bg-black text-white px-3 py-1 rounded-full">
-                            Stage {stage.num}
-                          </span>
-                          <span className="text-xs text-neutral-500 font-bold tracking-wider">
-                            {stage.phase}
-                          </span>
-                        </div>
+                    <span className="absolute top-1 right-2 bg-black text-white px-3.5 py-1.5 rounded-full text-xs font-normal">
+                      Co-Founder Matching
+                    </span>
 
-                        <h3 className="text-2xl md:text-4xl font-semibold tracking-tight text-black mt-2">
-                          {stage.title}
-                        </h3>
+                    <span className="absolute top-10 left-1 bg-[#0673f9] text-white px-3.5 py-1.5 rounded-full text-xs font-normal">
+                      Lead Developer
+                    </span>
 
-                        <p className="text-sm md:text-base leading-[1.75] text-neutral-600 font-medium mt-2">
-                          {stage.body}
-                        </p>
+                    <span className="absolute top-16 right-8 bg-black text-white px-3.5 py-1.5 rounded-full text-xs font-normal">
+                      UI/UX Designer
+                    </span>
 
-                        {/* Staggered Tag pills */}
-                        <div className="flex flex-wrap gap-2 mt-4">
-                          {stage.tags.map((tag) => (
-                            <span
-                              key={tag}
-                              className="text-[9px] tracking-widest uppercase font-black px-3 py-1.5 border border-black/10 text-neutral-500 rounded-full"
-                            >
-                              {tag}
-                            </span>
-                          ))}
-                        </div>
+                    <span className="absolute bottom-2 left-2 bg-black text-white px-3.5 py-1.5 rounded-full text-xs font-normal">
+                      Growth Marketer
+                    </span>
 
-                        {/* Custom visual element - highlights list inside the card */}
-                        <div className="mt-8 border-t border-black/5 pt-6 space-y-3">
-                          <p className="text-[10px] font-black tracking-[0.2em] uppercase text-neutral-400">
-                            Key Milestones
-                          </p>
-                          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                            {stage.highlights.map((highlight, hIdx) => (
-                              <div
-                                key={hIdx}
-                                className="flex items-center gap-2"
-                              >
-                                <span className="w-1.5 h-1.5 rounded-full bg-blue-500 shrink-0" />
-                                <span className="text-xs text-neutral-600 font-semibold leading-none">
-                                  {highlight}
-                                </span>
-                              </div>
-                            ))}
-                          </div>
-                        </div>
-                      </div>
-                    </motion.div>
-                  );
-                })}
+                    <span className="absolute bottom-4 right-1 bg-[#0673f9] text-white px-3.5 py-1.5 rounded-full text-xs font-normal">
+                      Domain Expert
+                    </span>
+                  </div>
+
+                  {/* AI Prompt Box Below (Static - No Hover Effect) */}
+                  <div className="bg-black text-white p-5 rounded-2xl shadow-xl">
+                    <h4 className="text-xs font-normal text-[#0673f9] uppercase tracking-wider mb-1">
+                      StartX Incubator
+                    </h4>
+                    <p className="text-xs text-white/90 font-normal leading-relaxed">
+                      What specific skills and values are you looking for in
+                      your ideal co-founder?
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              {/* CARD 3: Venture Launch & Capital (Solid Black Theme) */}
+              <div className="group relative rounded-[2.5rem] bg-black text-white p-8 md:p-10 flex flex-col justify-between overflow-hidden shadow-2xl min-h-[560px] border border-white/20">
+                {/* Top Content */}
+                <div>
+                  <h3 className="text-2xl md:text-3xl font-normal text-white tracking-tight leading-tight">
+                    Venture Launch & Capital
+                  </h3>
+                  <p className="text-sm text-white/70 font-normal leading-relaxed mt-3 max-w-sm">
+                    Prepare your pitch, unlock equity-free micro-grants, and
+                    gain direct access to angel investors and VCs.
+                  </p>
+                </div>
+
+                {/* Interactive Inner Widget (Mention & Feedback Card) */}
+                <div className="mt-8 flex flex-col gap-4">
+                  {/* Floating Mention Tag */}
+                  <motion.div
+                    whileHover={{ y: -4, scale: 1.02 }}
+                    className="bg-white text-black p-4 rounded-2xl text-xs font-normal shadow-md transition-transform duration-300 border border-white"
+                  >
+                    <span className="text-[#0673f9] font-normal">
+                      @StartXVentures
+                    </span>{" "}
+                    Remind me of our upcoming Demo Day pitch schedule?
+                  </motion.div>
+
+                  {/* Bottom Interactive Feedback Card */}
+                  <motion.div
+                    whileHover={{ y: -4 }}
+                    className="bg-white text-black p-6 rounded-2xl shadow-xl transition-transform duration-300 border border-white"
+                  >
+                    <h4 className="text-xs font-normal text-[#0673f9] uppercase tracking-wider mb-1">
+                      StartX Ventures
+                    </h4>
+                    <h4 className="text-sm font-normal text-black mb-3">
+                      How to build a venture-ready pitch deck
+                    </h4>
+
+                    {/* Progress Bar */}
+                    <div className="h-1.5 bg-black/10 rounded-full w-full overflow-hidden mb-3">
+                      <motion.div
+                        className="h-full bg-[#0673f9] rounded-full"
+                        animate={{ width: ["15%", "85%", "15%"] }}
+                        transition={{
+                          duration: 4,
+                          repeat: Infinity,
+                          ease: "easeInOut",
+                        }}
+                      />
+                    </div>
+
+                    <p className="text-[11px] font-normal text-black/60">
+                      Investor Readiness & Traction Metrics
+                    </p>
+                  </motion.div>
+                </div>
               </div>
             </div>
           </div>
