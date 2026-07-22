@@ -54,7 +54,7 @@ export default function AddEventForm({ editData }: AddEventFormProps) {
   const handleChange = (
     e: React.ChangeEvent<
       HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
-    >
+    >,
   ) => {
     const { name, value } = e.target;
     setFormData((prev) => ({
@@ -121,16 +121,12 @@ export default function AddEventForm({ editData }: AddEventFormProps) {
         />
       )}
 
-      <h2 className="text-2xl font-bold text-white mb-6">
-        {editData ? "Edit Event" : "Add New Event"}
-      </h2>
-
       <form onSubmit={handleSubmit} className="space-y-6">
         {/* Title */}
         <div>
           <label
             htmlFor="title"
-            className="block text-sm font-medium text-gray-300 mb-2"
+            className="block text-xs font-normal text-gray-400 mb-1.5"
           >
             Event Title *
           </label>
@@ -141,7 +137,7 @@ export default function AddEventForm({ editData }: AddEventFormProps) {
             value={formData.title}
             onChange={handleChange}
             required
-            className="w-full px-4 py-3 bg-black/60 border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-blue-500 transition-colors"
+            className="w-full px-3 py-2.5 bg-white border border-gray-200 rounded-lg text-gray-900 text-sm placeholder-gray-400 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/10 transition-all"
             placeholder="e.g., Building Your MVP in 48 Hours"
           />
         </div>
@@ -150,7 +146,7 @@ export default function AddEventForm({ editData }: AddEventFormProps) {
         <div>
           <label
             htmlFor="desc"
-            className="block text-sm font-medium text-gray-300 mb-2"
+            className="block text-xs font-normal text-gray-400 mb-1.5"
           >
             Description *
           </label>
@@ -161,7 +157,7 @@ export default function AddEventForm({ editData }: AddEventFormProps) {
             onChange={handleChange}
             required
             rows={4}
-            className="w-full px-4 py-3 bg-black/60 border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-blue-500 transition-colors resize-none"
+            className="w-full px-3 py-2.5 bg-white border border-gray-200 rounded-lg text-gray-900 text-sm placeholder-gray-400 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/10 transition-all resize-none"
             placeholder="Describe the event..."
           />
         </div>
@@ -170,7 +166,7 @@ export default function AddEventForm({ editData }: AddEventFormProps) {
         <div>
           <label
             htmlFor="datetime"
-            className="block text-sm font-medium text-gray-300 mb-2"
+            className="block text-xs font-normal text-gray-400 mb-1.5"
           >
             Date & Time *
           </label>
@@ -181,8 +177,8 @@ export default function AddEventForm({ editData }: AddEventFormProps) {
             value={formData.datetime}
             onChange={handleChange}
             required
-            style={{ colorScheme: "dark" }}
-            className="w-full px-4 py-3 bg-black/60 border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-blue-500 transition-colors [&::-webkit-calendar-picker-indicator]:cursor-pointer [&::-webkit-calendar-picker-indicator]:opacity-100 [&::-webkit-calendar-picker-indicator]:brightness-200"
+            style={{ colorScheme: "light" }}
+            className="w-full px-3 py-2.5 bg-white border border-gray-200 rounded-lg text-gray-900 text-sm placeholder-gray-400 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/10 transition-all [&::-webkit-calendar-picker-indicator]:cursor-pointer"
           />
         </div>
 
@@ -190,7 +186,7 @@ export default function AddEventForm({ editData }: AddEventFormProps) {
         <div>
           <label
             htmlFor="location"
-            className="block text-sm font-medium text-gray-300 mb-2"
+            className="block text-xs font-normal text-gray-400 mb-1.5"
           >
             Location *
           </label>
@@ -201,7 +197,7 @@ export default function AddEventForm({ editData }: AddEventFormProps) {
             value={formData.location}
             onChange={handleChange}
             required
-            className="w-full px-4 py-3 bg-black/60 border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-blue-500 transition-colors"
+            className="w-full px-3 py-2.5 bg-white border border-gray-200 rounded-lg text-gray-900 text-sm placeholder-gray-400 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/10 transition-all"
             placeholder="e.g., Online (Zoom) or Building 360, Room 105"
           />
         </div>
@@ -210,7 +206,7 @@ export default function AddEventForm({ editData }: AddEventFormProps) {
         <div>
           <label
             htmlFor="maxCapicity"
-            className="block text-sm font-medium text-gray-300 mb-2"
+            className="block text-xs font-normal text-gray-400 mb-1.5"
           >
             Maximum Capacity *
           </label>
@@ -222,10 +218,10 @@ export default function AddEventForm({ editData }: AddEventFormProps) {
             onChange={handleChange}
             required
             min="1"
-            className="w-full px-4 py-3 bg-black/60 border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-blue-500 transition-colors"
+            className="w-full px-3 py-2.5 bg-white border border-gray-200 rounded-lg text-gray-900 text-sm placeholder-gray-400 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/10 transition-all"
             placeholder="e.g., 50"
           />
-          <p className="mt-2 text-xs text-gray-500">
+          <p className="mt-2 text-xs text-gray-400">
             Set the maximum number of people who can attend this event
           </p>
         </div>
@@ -234,11 +230,11 @@ export default function AddEventForm({ editData }: AddEventFormProps) {
         <button
           type="submit"
           disabled={loading}
-          className="w-full px-6 py-3 bg-blue-500 hover:bg-blue-400 text-white font-semibold rounded-lg transition-all duration-300 hover:shadow-[0_0_25px_rgba(19,40,85,0.6)] disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+          className="w-full px-6 py-3 bg-blue-500 hover:bg-blue-400 text-gray-900 font-normal rounded-lg transition-all duration-300 hover:shadow-[0_0_25px_rgba(19,40,85,0.6)] disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
         >
           {loading ? (
             <>
-              <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+              <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
               <span>{editData ? "Updating" : "Adding"} Event...</span>
             </>
           ) : (

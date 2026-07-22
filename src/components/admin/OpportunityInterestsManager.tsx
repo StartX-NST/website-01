@@ -121,7 +121,7 @@ export default function OpportunityInterestsManager() {
   if (loading) {
     return (
       <div className="flex items-center justify-center py-20">
-        <Loader2 className="w-8 h-8 text-blue-400 animate-spin" />
+        <Loader2 className="w-7 h-7 text-blue-500 animate-spin" />
       </div>
     );
   }
@@ -129,7 +129,7 @@ export default function OpportunityInterestsManager() {
   return (
     <div>
       <div className="flex items-center justify-between mb-6">
-        <h2 className="text-2xl font-bold text-white">
+        <h2 className="text-base font-normal text-gray-900">
           Opportunity Interests ({filteredOpportunities.length})
         </h2>
 
@@ -137,7 +137,7 @@ export default function OpportunityInterestsManager() {
         <select
           value={filter}
           onChange={(e) => setFilter(e.target.value as any)}
-          className="px-4 py-2 bg-black/60 border border-gray-700 rounded-lg text-white focus:outline-none focus:border-blue-500"
+          className="px-3 py-2 bg-white border border-gray-200 rounded-lg text-gray-900 text-sm focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/10 transition-all"
         >
           <option value="all">All Types</option>
           <option value="internship">Internship</option>
@@ -149,25 +149,25 @@ export default function OpportunityInterestsManager() {
 
       {filteredOpportunities.length === 0 ? (
         <div className="text-center py-20">
-          <Users className="w-16 h-16 text-gray-600 mx-auto mb-4" />
-          <p className="text-gray-400 text-lg">No opportunities found</p>
+          <Users className="w-12 h-12 text-gray-300 mx-auto mb-3" />
+          <p className="text-gray-400 text-sm">No opportunities found</p>
         </div>
       ) : (
         <div className="space-y-4">
           {filteredOpportunities.map((opportunity) => (
             <div
               key={opportunity.id}
-              className="bg-black/40 border border-gray-800 rounded-lg overflow-hidden transition-all hover:border-gray-700"
+              className="rounded-xl overflow-hidden transition-all bg-gray-50 hover:bg-gray-100"
             >
               {/* Opportunity Header */}
               <div
                 onClick={() => toggleExpand(opportunity.id)}
-                className="p-6 cursor-pointer hover:bg-white/5 transition-colors"
+                className="p-5 cursor-pointer hover:bg-gray-50 transition-colors"
               >
                 <div className="flex items-start justify-between">
                   <div className="flex-1">
                     <div className="flex items-center gap-3 mb-2">
-                      <h3 className="text-xl font-bold text-white">
+                      <h3 className="text-sm font-normal text-gray-900">
                         {opportunity.title}
                       </h3>
                       {getTypeBadge(opportunity.type)}
@@ -200,15 +200,15 @@ export default function OpportunityInterestsManager() {
                           e.stopPropagation();
                           exportToCSV(opportunity);
                         }}
-                        className="px-4 py-2 bg-blue-500/10 border border-blue-500/20 text-blue-400 rounded-lg hover:bg-blue-500/20 transition-colors text-sm font-medium"
+                        className="px-3 py-1.5 bg-blue-50 hover:bg-blue-100 text-blue-700 rounded-lg transition-colors text-xs font-normal"
                       >
                         Export CSV
                       </button>
                     )}
                     {expandedOpportunity === opportunity.id ? (
-                      <ChevronUp className="w-6 h-6 text-gray-400" />
+                      <ChevronUp className="w-5 h-5 text-gray-400" />
                     ) : (
-                      <ChevronDown className="w-6 h-6 text-gray-400" />
+                      <ChevronDown className="w-5 h-5 text-gray-400" />
                     )}
                   </div>
                 </div>
@@ -216,28 +216,28 @@ export default function OpportunityInterestsManager() {
 
               {/* Interested Users List */}
               {expandedOpportunity === opportunity.id && (
-                <div className="border-t border-gray-800 p-6 bg-black/20">
+                <div className="border-t border-gray-100 p-5 bg-gray-50">
                   {opportunity.interestedUsers.length === 0 ? (
-                    <p className="text-gray-400 text-center py-4">
+                    <p className="text-gray-400 text-sm text-center py-4">
                       No users have shown interest yet
                     </p>
                   ) : (
                     <div className="space-y-3">
-                      <h4 className="text-sm font-semibold text-gray-300 mb-4">
+                      <h4 className="text-xs font-normal text-gray-400 mb-3">
                         Interested Users:
                       </h4>
                       <div className="grid gap-3">
                         {opportunity.interestedUsers.map((user, index) => (
                           <div
                             key={user._id}
-                            className="flex items-center justify-between p-4 bg-black/40 border border-gray-800 rounded-lg hover:border-gray-700 transition-colors"
+                            className="flex items-center justify-between p-3.5 bg-white rounded-xl shadow-sm hover:shadow transition-all"
                           >
                             <div className="flex items-center gap-4">
-                              <div className="w-10 h-10 rounded-full bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-blue-400 font-semibold">
+                              <div className="w-9 h-9 rounded-full bg-blue-50 flex items-center justify-center text-blue-600 text-sm font-normal">
                                 {index + 1}
                               </div>
                               <div>
-                                <p className="text-white font-medium">
+                                <p className="text-gray-900 font-normal">
                                   {user.firstName && user.lastName
                                     ? `${user.firstName} ${user.lastName}`
                                     : "Name not provided"}

@@ -93,7 +93,7 @@ export default function ApplicationsManager() {
   return (
     <div>
       <div className="flex items-center justify-between mb-6">
-        <h2 className="text-2xl font-bold text-white">
+        <h2 className="text-base font-normal text-gray-900">
           Membership Applications ({applications.length})
         </h2>
 
@@ -101,7 +101,7 @@ export default function ApplicationsManager() {
         <select
           value={filter}
           onChange={(e) => setFilter(e.target.value as typeof filter)}
-          className="px-4 py-2 bg-black/60 border border-gray-700 rounded-lg text-white text-sm focus:outline-none focus:border-blue-500 transition-colors"
+          className="px-3 py-2 bg-white border border-gray-200 rounded-lg text-gray-900 text-sm focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/10 transition-all"
         >
           <option value="all">All Applications</option>
           <option value="submitted">New</option>
@@ -113,12 +113,12 @@ export default function ApplicationsManager() {
 
       {loading ? (
         <div className="text-center py-12">
-          <Loader2 className="w-12 h-12 text-blue-500 mx-auto mb-4 animate-spin" />
+          <Loader2 className="w-8 h-8 text-blue-500 mx-auto mb-4 animate-spin" />
           <p className="text-gray-400">Loading applications...</p>
         </div>
       ) : filteredApplications.length === 0 ? (
         <div className="text-center py-12">
-          <Clock className="w-12 h-12 text-gray-600 mx-auto mb-4" />
+          <Clock className="w-10 h-10 text-gray-300 mx-auto mb-3" />
           <p className="text-gray-400">No applications found</p>
         </div>
       ) : (
@@ -126,12 +126,12 @@ export default function ApplicationsManager() {
           {filteredApplications.map((app) => (
             <div
               key={app._id}
-              className="border border-gray-700 rounded-lg p-6 bg-black/40 hover:border-gray-600 transition-colors"
+              className="rounded-xl p-5 bg-gray-50 hover:bg-gray-100 transition-colors"
             >
               <div className="flex items-start justify-between mb-4">
                 <div className="flex-1">
                   <div className="flex items-center gap-3 mb-2">
-                    <h3 className="text-lg font-semibold text-white">
+                    <h3 className="text-sm font-normal text-gray-900">
                       {app.firstName} {app.lastName}
                     </h3>
                     {getStatusBadge(app.status)}
@@ -171,7 +171,7 @@ export default function ApplicationsManager() {
                     onClick={() =>
                       setSelectedApp(selectedApp?._id === app._id ? null : app)
                     }
-                    className="px-4 py-2 text-sm font-medium text-blue-400 hover:text-blue-300 transition-colors"
+                    className="px-3 py-1.5 text-xs font-normal text-blue-600 hover:text-blue-700 transition-colors bg-blue-50 hover:bg-blue-100 rounded-lg"
                   >
                     {selectedApp?._id === app._id
                       ? "Hide Details"
@@ -182,37 +182,37 @@ export default function ApplicationsManager() {
 
               {/* Expanded Details */}
               {selectedApp?._id === app._id && (
-                <div className="mt-4 pt-4 border-t border-gray-700 space-y-4">
+                <div className="mt-4 pt-4 border-t border-gray-100 space-y-4 pt-4">
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
-                      <label className="text-xs font-semibold text-gray-400 uppercase">
+                      <label className="text-xs font-normal text-gray-400 uppercase">
                         Year of Study
                       </label>
-                      <p className="text-white mt-1">Year {app.yearOfStudy}</p>
+                      <p className="text-gray-900 mt-1">Year {app.yearOfStudy}</p>
                     </div>
                   </div>
 
                   <div>
-                    <label className="text-xs font-semibold text-gray-400 uppercase">
+                    <label className="text-xs font-normal text-gray-400 uppercase">
                       Skills & Interests
                     </label>
-                    <p className="text-white mt-1">{app.skillsOrInterests}</p>
+                    <p className="text-gray-900 mt-1">{app.skillsOrInterests}</p>
                   </div>
 
                   <div>
-                    <label className="text-xs font-semibold text-gray-400 uppercase">
+                    <label className="text-xs font-normal text-gray-400 uppercase">
                       Previous Experience
                     </label>
-                    <p className="text-white mt-1">
+                    <p className="text-gray-900 mt-1">
                       {app.prevExp || "None provided"}
                     </p>
                   </div>
 
                   <div>
-                    <label className="text-xs font-semibold text-gray-400 uppercase">
+                    <label className="text-xs font-normal text-gray-400 uppercase">
                       Why Join StartX
                     </label>
-                    <p className="text-white mt-1">{app.whyJoin}</p>
+                    <p className="text-gray-900 mt-1">{app.whyJoin}</p>
                   </div>
 
                   {/* Decision Buttons */}
@@ -220,7 +220,7 @@ export default function ApplicationsManager() {
                     <button
                       onClick={() => handleStatusChange(app._id, "approved")}
                       disabled={app.status === "approved"}
-                      className="flex items-center gap-2 px-5 py-2.5 bg-green-500/10 hover:bg-green-500/20 border border-green-500/20 text-green-400 font-medium rounded-lg transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+                      className="flex items-center gap-2 px-4 py-2 bg-green-50 hover:bg-green-100 text-green-700 text-sm font-normal rounded-lg transition-all disabled:opacity-50 disabled:cursor-not-allowed"
                     >
                       <Check className="w-4 h-4" />
                       <span>Approve</span>
@@ -228,7 +228,7 @@ export default function ApplicationsManager() {
                     <button
                       onClick={() => handleStatusChange(app._id, "rejected")}
                       disabled={app.status === "rejected"}
-                      className="flex items-center gap-2 px-5 py-2.5 bg-red-500/10 hover:bg-red-500/20 border border-red-500/20 text-red-400 font-medium rounded-lg transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+                      className="flex items-center gap-2 px-4 py-2 bg-red-50 hover:bg-red-100 text-red-700 text-sm font-normal rounded-lg transition-all disabled:opacity-50 disabled:cursor-not-allowed"
                     >
                       <X className="w-4 h-4" />
                       <span>Reject</span>
@@ -238,7 +238,7 @@ export default function ApplicationsManager() {
                         onClick={() =>
                           handleStatusChange(app._id, "under_review")
                         }
-                        className="flex items-center gap-2 px-5 py-2.5 bg-yellow-500/10 hover:bg-yellow-500/20 border border-yellow-500/20 text-yellow-400 font-medium rounded-lg transition-all"
+                        className="flex items-center gap-2 px-4 py-2 bg-amber-50 hover:bg-amber-100 text-amber-700 text-sm font-normal rounded-lg transition-all"
                       >
                         <Clock className="w-4 h-4" />
                         <span>Mark as Reviewing</span>

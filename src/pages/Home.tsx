@@ -738,7 +738,6 @@ export default function Home() {
             </FadeIn>
           </div>
         </section>
-
         {/* Dark Sub-Hero Section */}
         <section className="relative w-full py-16 md:py-24 px-6 md:px-12 z-10 bg-black">
           <div className="max-w-7xl mx-auto">
@@ -765,7 +764,6 @@ export default function Home() {
             </FadeIn>
           </div>
         </section>
-
         {/* How It Works / Steps to Register Infographic Section */}
         <section className="relative w-full py-16 px-6 md:px-12 z-10 bg-black">
           <div className="max-w-8xl mx-auto">
@@ -1009,7 +1007,6 @@ export default function Home() {
             </FadeIn>
           </div>
         </section>
-
         {/* Continuous Grid Background Pattern for all sections below hero */}
         <div className="absolute inset-0 top-[100vh] z-0">
           <BGPattern
@@ -1019,10 +1016,8 @@ export default function Home() {
             fill="rgba(255, 255, 255, 0.08)"
           />
         </div>
-
         {/* ================= KEY FEATURES ================= */}
         <EverythingYouBuildSection />
-
         {/* ================= WHY JOIN STARTX ================= */}
         <section className="relative pt-44 pb-32 px-6 md:px-12 z-10 bg-black border-t border-zinc-900/50">
           <div className="max-w-8xl mx-auto">
@@ -1076,7 +1071,6 @@ export default function Home() {
             </div>
           </div>
         </section>
-
         {/* ================= MENTOR-GUIDED GROWTH STAGES (ASYMMETRIC 3-COLOR BENTO GRID ROADMAP) ================= */}
         <section className="relative pt-36 pb-32 px-6 md:px-12 z-10 bg-black border-t border-white/10">
           <div className="max-w-8xl mx-auto">
@@ -1296,168 +1290,165 @@ export default function Home() {
             </div>
           </div>
         </section>
+        <section className="relative pt-32 pb-0 px-6 md:px-12 z-10 bg-black min-h-[90vh] flex flex-col justify-between overflow-hidden border-t border-zinc-900/50">
+          {/* Background Graphic Image - covers the whole CTA + Footer section */}
+          <div className="absolute inset-0 w-full h-full pointer-events-none select-none z-0">
+            <img
+              src={FINAL_CTA_BG_IMAGE_URL}
+              alt="CTA and Footer background"
+              className="w-full h-full object-cover opacity-60 filter blur-[2px] scale-105"
+            />
+            {/* Dark overlay to ensure white text is highly legible */}
+            <div className="absolute inset-0 bg-black/60" />
+          </div>
 
-        {/* ================= FINAL CTA & CONNECTED FOOTER ================= */}
-        {!isAuthenticated && (
-          <section className="relative pt-32 pb-0 px-6 md:px-12 z-10 bg-black min-h-[90vh] flex flex-col justify-between overflow-hidden border-t border-zinc-900/50">
-            {/* Background Graphic Image - covers the whole CTA + Footer section */}
-            <div className="absolute inset-0 w-full h-full pointer-events-none select-none z-0">
-              <img
-                src={FINAL_CTA_BG_IMAGE_URL}
-                alt="CTA and Footer background"
-                className="w-full h-full object-cover opacity-60 filter blur-[2px] scale-105"
-              />
-              {/* Dark overlay to ensure white text is highly legible */}
-              <div className="absolute inset-0 bg-black/60" />
+          {/* CTA Content (Top Part) */}
+          <div className="relative text-center z-10 max-w-4xl mx-auto py-12 md:py-16">
+            <h2 className="text-4xl md:text-6xl lg:text-7xl font-normal text-white mb-6 leading-none tracking-tighter">
+              Ready to build <br className="hidden md:block" />
+              something great?
+            </h2>
+            <p className="text-base md:text-lg text-neutral-300 font-normal mb-8 leading-relaxed max-w-xl mx-auto">
+              Join hundreds of student founders building the next generation of
+              startups. No equity. No fees. Just builders helping builders.
+            </p>
+            <div className="flex flex-wrap items-center justify-center gap-4">
+              <Link
+                to="/check-eligibility"
+                className="inline-flex items-center gap-2 group"
+              >
+                <span className="bg-white text-black px-7 py-3.5 rounded-full text-sm font-semibold transition-colors hover:bg-neutral-100">
+                  Check eligibility
+                </span>
+                <span className="w-11 h-11 rounded-full bg-white text-black flex items-center justify-center transition-transform group-hover:translate-x-1 shrink-0">
+                  <ArrowRight className="w-4 h-4 md:w-5 h-5" />
+                </span>
+              </Link>
+
+              <Link
+                to="/showcase"
+                className="inline-flex items-center justify-center text-white font-semibold text-sm px-6 py-3.5 rounded-full border border-white/20 hover:bg-white/5 transition-all duration-300"
+              >
+                See projects
+              </Link>
             </div>
+          </div>
 
-            {/* CTA Content (Top Part) */}
-            <div className="relative text-center z-10 max-w-4xl mx-auto py-12 md:py-16">
-              <h2 className="text-4xl md:text-6xl lg:text-7xl font-normal text-white mb-6 leading-none tracking-tighter">
-                Ready to build <br className="hidden md:block" />
-                something great?
-              </h2>
-              <p className="text-base md:text-lg text-neutral-300 font-normal mb-8 leading-relaxed max-w-xl mx-auto">
-                Join hundreds of student founders building the next generation
-                of startups. No equity. No fees. Just builders helping builders.
-              </p>
-              <div className="flex flex-wrap items-center justify-center gap-4">
-                <Link
-                  to="/check-eligibility"
-                  className="inline-flex items-center gap-2 group"
-                >
-                  <span className="bg-white text-black px-7 py-3.5 rounded-full text-sm font-semibold transition-colors hover:bg-neutral-100">
-                    Check eligibility
-                  </span>
-                  <span className="w-11 h-11 rounded-full bg-white text-black flex items-center justify-center transition-transform group-hover:translate-x-1 shrink-0">
-                    <ArrowRight className="w-4 h-4 md:w-5 h-5" />
-                  </span>
+          {/* Connected White Footer Card (Bottom Part) */}
+          <div className="relative z-10 max-w-7xl mx-auto w-full bg-white text-black p-8 md:p-12 lg:p-16 rounded-t-[2.5rem] md:rounded-t-[3.5rem] rounded-b-none border-t border-x border-neutral-200/50 shadow-[0_-12px_40px_rgba(0,0,0,0.05)] mt-16 pb-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 md:gap-8 lg:gap-16 pb-12">
+              {/* Brand section */}
+              <div className="flex flex-col space-y-4">
+                <Link to="/" className="flex items-center space-x-2">
+                  <img
+                    src="/image.png"
+                    alt="StartX Logo"
+                    className="h-8 w-auto brightness-0"
+                  />
                 </Link>
-
-                <Link
-                  to="/showcase"
-                  className="inline-flex items-center justify-center text-white font-semibold text-sm px-6 py-3.5 rounded-full border border-white/20 hover:bg-white/5 transition-all duration-300"
-                >
-                  See projects
-                </Link>
-              </div>
-            </div>
-
-            {/* Connected White Footer Card (Bottom Part) */}
-            <div className="relative z-10 max-w-7xl mx-auto w-full bg-white text-black p-8 md:p-12 lg:p-16 rounded-t-[2.5rem] md:rounded-t-[3.5rem] rounded-b-none border-t border-x border-neutral-200/50 shadow-[0_-12px_40px_rgba(0,0,0,0.05)] mt-16 pb-8">
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 md:gap-8 lg:gap-16 pb-12">
-                {/* Brand section */}
-                <div className="flex flex-col space-y-4">
-                  <Link to="/" className="flex items-center space-x-2">
-                    <img
-                      src="/image.png"
-                      alt="StartX Logo"
-                      className="h-8 w-auto brightness-0"
-                    />
-                  </Link>
-                  <p className="text-sm leading-relaxed text-neutral-500 font-medium">
-                    A student-founder ecosystem for learning, building, and
-                    shipping. Join 1000+ builders creating the future.
-                  </p>
-                </div>
-
-                {/* Footer link sections */}
-                {[
-                  {
-                    title: "About Us",
-                    links: [
-                      { label: "Our Mission", href: "#about" },
-                      { label: "Success Stories", href: "/showcase" },
-                      { label: "Partner With Us", href: "#partner" },
-                      { label: "Careers", href: "#careers" },
-                    ],
-                  },
-                  {
-                    title: "Platform",
-                    links: [
-                      { label: "Events", href: "/events" },
-                      { label: "Learn", href: "/learn" },
-                      { label: "Showcase", href: "/showcase" },
-                      { label: "Opportunities", href: "/opportunities" },
-                    ],
-                  },
-                ].map((section) => (
-                  <div key={section.title}>
-                    <h4 className="text-black text-sm font-bold uppercase tracking-wider mb-6">
-                      {section.title}
-                    </h4>
-                    <ul className="space-y-3">
-                      {section.links.map((link) => (
-                        <li key={link.label}>
-                          <Link
-                            to={link.href}
-                            className="text-neutral-500 hover:text-black font-medium text-sm transition-colors"
-                          >
-                            {link.label}
-                          </Link>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                ))}
-
-                {/* Contact section */}
-                <div>
-                  <h4 className="text-black text-sm font-bold uppercase tracking-wider mb-6">
-                    Contact Us
-                  </h4>
-                  <ul className="space-y-4">
-                    <li className="flex items-center space-x-3 text-neutral-500 font-medium text-sm">
-                      <Mail size={16} className="text-neutral-400 shrink-0" />
-                      <a
-                        href="mailto:startx.ru@newtonschool.co"
-                        className="hover:text-black transition-colors"
-                      >
-                        startx.ru@newtonschool.co
-                      </a>
-                    </li>
-                    <li className="flex items-center space-x-3 text-neutral-500 font-medium text-sm">
-                      <MapPin size={16} className="text-neutral-400 shrink-0" />
-                      <span>NST, Rishihood University</span>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-
-              <hr className="border-t border-neutral-200 my-8" />
-
-              {/* Footer bottom */}
-              <div className="flex flex-col md:flex-row justify-between items-center text-sm space-y-4 md:space-y-0">
-                {/* Social icons */}
-                <div className="flex space-x-6 text-neutral-400">
-                  <a
-                    href="https://www.instagram.com/startx.nst?igsh=MWlxNWZieHQ1d3ltcg=="
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label="Instagram"
-                    className="hover:text-black transition-colors"
-                  >
-                    <Instagram size={20} />
-                  </a>
-                  <a
-                    href="https://www.linkedin.com/company/startx-nst/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label="LinkedIn"
-                    className="hover:text-black transition-colors"
-                  >
-                    <Linkedin size={20} />
-                  </a>
-                </div>
-
-                {/* Copyright */}
-                <p className="text-neutral-500 font-medium text-center md:text-left">
-                  &copy; {new Date().getFullYear()} StartX. All rights reserved.
+                <p className="text-sm leading-relaxed text-neutral-500 font-medium">
+                  A student-founder ecosystem for learning, building, and
+                  shipping. Join 1000+ builders creating the future.
                 </p>
               </div>
+
+              {/* Footer link sections */}
+              {[
+                {
+                  title: "About Us",
+                  links: [
+                    { label: "Our Mission", href: "#about" },
+                    { label: "Success Stories", href: "/showcase" },
+                    { label: "Partner With Us", href: "#partner" },
+                    { label: "Careers", href: "#careers" },
+                  ],
+                },
+                {
+                  title: "Platform",
+                  links: [
+                    { label: "Events", href: "/events" },
+                    { label: "Learn", href: "/learn" },
+                    { label: "Showcase", href: "/showcase" },
+                    { label: "Opportunities", href: "/opportunities" },
+                  ],
+                },
+              ].map((section) => (
+                <div key={section.title}>
+                  <h4 className="text-black text-sm font-bold uppercase tracking-wider mb-6">
+                    {section.title}
+                  </h4>
+                  <ul className="space-y-3">
+                    {section.links.map((link) => (
+                      <li key={link.label}>
+                        <Link
+                          to={link.href}
+                          className="text-neutral-500 hover:text-black font-medium text-sm transition-colors"
+                        >
+                          {link.label}
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+
+              {/* Contact section */}
+              <div>
+                <h4 className="text-black text-sm font-bold uppercase tracking-wider mb-6">
+                  Contact Us
+                </h4>
+                <ul className="space-y-4">
+                  <li className="flex items-center space-x-3 text-neutral-500 font-medium text-sm">
+                    <Mail size={16} className="text-neutral-400 shrink-0" />
+                    <a
+                      href="mailto:startx.ru@newtonschool.co"
+                      className="hover:text-black transition-colors"
+                    >
+                      startx.ru@newtonschool.co
+                    </a>
+                  </li>
+                  <li className="flex items-center space-x-3 text-neutral-500 font-medium text-sm">
+                    <MapPin size={16} className="text-neutral-400 shrink-0" />
+                    <span>NST, Rishihood University</span>
+                  </li>
+                </ul>
+              </div>
             </div>
-          </section>
-        )}
+
+            <hr className="border-t border-neutral-200 my-8" />
+
+            {/* Footer bottom */}
+            <div className="flex flex-col md:flex-row justify-between items-center text-sm space-y-4 md:space-y-0">
+              {/* Social icons */}
+              <div className="flex space-x-6 text-neutral-400">
+                <a
+                  href="https://www.instagram.com/startx.nst?igsh=MWlxNWZieHQ1d3ltcg=="
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Instagram"
+                  className="hover:text-black transition-colors"
+                >
+                  <Instagram size={20} />
+                </a>
+                <a
+                  href="https://www.linkedin.com/company/startx-nst/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="LinkedIn"
+                  className="hover:text-black transition-colors"
+                >
+                  <Linkedin size={20} />
+                </a>
+              </div>
+
+              {/* Copyright */}
+              <p className="text-neutral-500 font-medium text-center md:text-left">
+                &copy; {new Date().getFullYear()} StartX. All rights reserved.
+              </p>
+            </div>
+          </div>
+        </section>
+        )
       </div>
     </AnimatedPage>
   );
