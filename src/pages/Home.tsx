@@ -1,10 +1,4 @@
-import {
-  ArrowRight,
-  Mail,
-  MapPin,
-  Linkedin,
-  Instagram,
-} from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useRef, useState } from "react";
 import {
@@ -16,6 +10,7 @@ import {
 import { AnimatedPage, FadeIn } from "@/components/animations";
 import { BGPattern } from "@/components/ui/bg-pattern";
 import Grainient from "@/components/Grainient";
+import { Footer } from "@/components/ui/footer";
 
 // CUSTOMIZABLE MOUNTAIN BACKGROUND IMAGE FOR STEPS TO REGISTER
 // Replace this link with your own mountain rendering or image URL!
@@ -651,7 +646,7 @@ export default function Home() {
     <AnimatedPage>
       <div className="min-h-screen bg-black relative">
         {/* Full-Screen Landing Hero Section without Card Layout */}
-        <section className="relative w-full min-h-[92vh] md:min-h-screen flex flex-col justify-center pt-24 pb-16 px-6 sm:px-12 md:px-20 z-10 bg-black overflow-hidden border-b border-zinc-900">
+        <section className="relative w-full min-h-[100dvh] flex flex-col justify-between pt-24 sm:pt-28 pb-12 sm:pb-16 px-6 sm:px-12 md:px-20 z-10 bg-black overflow-hidden border-b border-zinc-900">
           {/* Background Grainient Canvas Covering Entire Screen Width including Far Left */}
           <div className="absolute inset-0 w-full h-full pointer-events-none select-none z-0 overflow-hidden">
             {/* Grainient Canvas stretching 100% full width and height */}
@@ -688,21 +683,21 @@ export default function Home() {
           </div>
 
           {/* Hero Main Content */}
-          <div className="max-w-7xl mx-auto w-full flex flex-col justify-between relative z-10 py-6 md:py-12">
+          <div className="max-w-7xl mx-auto w-full my-auto flex flex-col justify-between relative z-10 py-4 sm:py-6 md:py-12">
             <FadeIn>
-              <div className="flex flex-col gap-6 md:gap-8 max-w-4xl">
+              <div className="flex flex-col gap-5 sm:gap-6 md:gap-8 max-w-4xl">
                 {/* Main Hero Headline */}
-                <div className="flex flex-col gap-2 md:gap-3">
-                  <h1 className="text-[4.2rem] sm:text-[6.5rem] md:text-[8.5rem] lg:text-[10.5rem] font-normal text-white leading-[0.85] tracking-tighter">
+                <div className="flex flex-col gap-1.5 sm:gap-2 md:gap-3">
+                  <h1 className="text-[3.8rem] xs:text-[4.5rem] sm:text-[6.5rem] md:text-[8.5rem] lg:text-[10.5rem] font-normal text-white leading-[0.88] tracking-tighter">
                     Build
                   </h1>
-                  <h1 className="text-[4.2rem] sm:text-[6.5rem] md:text-[8.5rem] lg:text-[10.5rem] font-normal text-white leading-[0.85] tracking-tighter">
+                  <h1 className="text-[3.8rem] xs:text-[4.5rem] sm:text-[6.5rem] md:text-[8.5rem] lg:text-[10.5rem] font-normal text-white leading-[0.88] tracking-tighter">
                     to launch
                   </h1>
                 </div>
 
                 {/* Expanded Copy detailing Build to Launch */}
-                <p className="text-md sm:text-lg md:text-xl text-neutral-300 font-normal max-w-2xl leading-relaxed mt-2">
+                <p className="text-sm sm:text-lg md:text-xl text-neutral-300 font-normal max-w-2xl leading-relaxed mt-1 sm:mt-2">
                   Turn your boldest ideas into venture-backed startups. StartX
                   equips student builders with hands-on development sprints,
                   team matching, expert mentorship, and direct capital access.
@@ -712,16 +707,16 @@ export default function Home() {
 
             {/* Bottom Row: CTA Button (Preserved structure & button action) */}
             <FadeIn delay={0.15}>
-              <div className="mt-12 md:mt-16">
+              <div className="mt-8 sm:mt-12 md:mt-16">
                 <Link
                   to="/check-eligibility"
                   className="inline-flex items-center gap-2 group"
                 >
-                  <span className="bg-white text-black px-7 py-3.5 md:py-4 rounded-full text-sm md:text-base font-semibold transition-colors group-hover:bg-neutral-200 shadow-[0_4px_25px_rgba(255,255,255,0.2)]">
+                  <span className="bg-white text-black px-6 sm:px-7 py-3 sm:py-3.5 md:py-4 rounded-full text-xs sm:text-sm md:text-base font-semibold transition-colors group-hover:bg-neutral-200 shadow-[0_4px_25px_rgba(255,255,255,0.2)]">
                     Check eligibility
                   </span>
-                  <span className="w-12 h-12 md:w-14 md:h-14 rounded-full bg-white text-black flex items-center justify-center transition-transform group-hover:translate-x-1 shrink-0 shadow-[0_4px_25px_rgba(255,255,255,0.2)]">
-                    <ArrowRight className="w-5 h-5 md:w-6 h-6" />
+                  <span className="w-11 h-11 sm:w-12 sm:h-12 md:w-14 md:h-14 rounded-full bg-white text-black flex items-center justify-center transition-transform group-hover:translate-x-1 shrink-0 shadow-[0_4px_25px_rgba(255,255,255,0.2)]">
+                    <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6" />
                   </span>
                 </Link>
               </div>
@@ -1324,119 +1319,7 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Connected White Footer Card (Bottom Part) */}
-          <div className="relative z-10 max-w-7xl mx-auto w-full bg-white text-black p-8 md:p-12 lg:p-16 rounded-t-[2.5rem] md:rounded-t-[3.5rem] rounded-b-none border-t border-x border-neutral-200/50 shadow-[0_-12px_40px_rgba(0,0,0,0.05)] mt-16 pb-8">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 md:gap-8 lg:gap-16 pb-12">
-              {/* Brand section */}
-              <div className="flex flex-col space-y-4">
-                <Link to="/" className="flex items-center space-x-2">
-                  <img
-                    src="/image.png"
-                    alt="StartX Logo"
-                    className="h-8 w-auto brightness-0"
-                  />
-                </Link>
-                <p className="text-sm leading-relaxed text-neutral-500 font-medium">
-                  A student-founder ecosystem for learning, building, and
-                  shipping. Join 1000+ builders creating the future.
-                </p>
-              </div>
-
-              {/* Footer link sections */}
-              {[
-                {
-                  title: "About Us",
-                  links: [
-                    { label: "Our Mission", href: "#about" },
-                    { label: "Success Stories", href: "/showcase" },
-                    { label: "Partner With Us", href: "#partner" },
-                    { label: "Careers", href: "#careers" },
-                  ],
-                },
-                {
-                  title: "Platform",
-                  links: [
-                    { label: "Events", href: "/events" },
-                    { label: "Learn", href: "/learn" },
-                    { label: "Showcase", href: "/showcase" },
-                    { label: "Opportunities", href: "/opportunities" },
-                  ],
-                },
-              ].map((section) => (
-                <div key={section.title}>
-                  <h4 className="text-black text-sm font-bold uppercase tracking-wider mb-6">
-                    {section.title}
-                  </h4>
-                  <ul className="space-y-3">
-                    {section.links.map((link) => (
-                      <li key={link.label}>
-                        <Link
-                          to={link.href}
-                          className="text-neutral-500 hover:text-black font-medium text-sm transition-colors"
-                        >
-                          {link.label}
-                        </Link>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              ))}
-
-              {/* Contact section */}
-              <div>
-                <h4 className="text-black text-sm font-bold uppercase tracking-wider mb-6">
-                  Contact Us
-                </h4>
-                <ul className="space-y-4">
-                  <li className="flex items-center space-x-3 text-neutral-500 font-medium text-sm">
-                    <Mail size={16} className="text-neutral-400 shrink-0" />
-                    <a
-                      href="mailto:startx.ru@newtonschool.co"
-                      className="hover:text-black transition-colors"
-                    >
-                      startx.ru@newtonschool.co
-                    </a>
-                  </li>
-                  <li className="flex items-center space-x-3 text-neutral-500 font-medium text-sm">
-                    <MapPin size={16} className="text-neutral-400 shrink-0" />
-                    <span>NST, Rishihood University</span>
-                  </li>
-                </ul>
-              </div>
-            </div>
-
-            <hr className="border-t border-neutral-200 my-8" />
-
-            {/* Footer bottom */}
-            <div className="flex flex-col md:flex-row justify-between items-center text-sm space-y-4 md:space-y-0">
-              {/* Social icons */}
-              <div className="flex space-x-6 text-neutral-400">
-                <a
-                  href="https://www.instagram.com/startx.nst?igsh=MWlxNWZieHQ1d3ltcg=="
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="Instagram"
-                  className="hover:text-black transition-colors"
-                >
-                  <Instagram size={20} />
-                </a>
-                <a
-                  href="https://www.linkedin.com/company/startx-nst/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="LinkedIn"
-                  className="hover:text-black transition-colors"
-                >
-                  <Linkedin size={20} />
-                </a>
-              </div>
-
-              {/* Copyright */}
-              <p className="text-neutral-500 font-medium text-center md:text-left">
-                &copy; {new Date().getFullYear()} StartX. All rights reserved.
-              </p>
-            </div>
-          </div>
+          <Footer hideWrapperStyle />
         </section>
       </div>
     </AnimatedPage>

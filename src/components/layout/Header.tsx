@@ -12,6 +12,9 @@ import {
   X,
   Shield,
   Sparkles,
+  ArrowRight,
+  Instagram,
+  Linkedin,
 } from "lucide-react";
 import { useAuth } from "@/contexts/AuthContext";
 
@@ -30,6 +33,18 @@ export default function Header() {
   const [showMobileMenu, setShowMobileMenu] = useState(false);
 
   const isActive = (path: string) => location.pathname === path;
+
+  // Lock body scroll when mobile menu is open
+  useEffect(() => {
+    if (showMobileMenu) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [showMobileMenu]);
 
   // Close dropdown when clicking outside
   useEffect(() => {
@@ -298,68 +313,217 @@ export default function Header() {
         </div>
       </header>
 
-      {/* Mobile Drawer / Overlay Menu */}
+      {/* Mobile Full Screen Overlay Menu */}
       <AnimatePresence>
         {showMobileMenu && (
           <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.2 }}
-            className="fixed inset-0 z-40 md:hidden pointer-events-auto"
+            initial={{ opacity: 0, y: "-100%" }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: "-100%" }}
+            transition={{
+              type: "spring",
+              stiffness: 280,
+              damping: 32,
+              mass: 0.9,
+            }}
+            className="fixed inset-0 z-[100] md:hidden bg-black text-white flex flex-col justify-between overflow-y-auto pointer-events-auto"
           >
-            <div
-              className="absolute inset-0 bg-black/80 backdrop-blur-md"
-              onClick={() => setShowMobileMenu(false)}
-            />
-            <motion.div
-              initial={{ opacity: 0, y: -20, scale: 0.95 }}
-              animate={{ opacity: 1, y: 0, scale: 1 }}
-              exit={{ opacity: 0, y: -20, scale: 0.95 }}
-              transition={{ duration: 0.2, ease: "easeOut" }}
-              className="absolute top-16 left-4 right-4 bg-[#0a0a0c] border border-white/10 rounded-2xl shadow-[0_10px_40px_rgba(0,0,0,0.8)] overflow-hidden"
-            >
-              <div className="p-3 space-y-1">
+            {/* Top Bar inside Mobile Overlay */}
+            <div className="flex items-center justify-between px-6 py-5 border-b border-white/10 bg-black sticky top-0 z-10">
+              <Link
+                to="/"
+                onClick={() => setShowMobileMenu(false)}
+                className="flex items-center space-x-2"
+              >
+                <img
+                  src="/image.png"
+                  alt="StartX Logo"
+                  className="h-6 w-auto"
+                />
+              </Link>
+              <button
+                onClick={() => setShowMobileMenu(false)}
+                className="p-2.5 rounded-full bg-white/10 text-white hover:bg-white/20 active:scale-95 transition-all"
+                aria-label="Close menu"
+              >
+                <X className="w-6 h-6" />
+              </button>
+            </div>
+
+            {/* Main Content Area */}
+            <div className="px-6 py-8 flex-1 flex flex-col justify-between space-y-8">
+              {/* User Profile Card if logged in */}
+              {isAuthenticated && user && (
+                <motion.div
+                  initial={{ opacity: 0, y: -15, scale: 0.96 }}
+                  animate={{ opacity: 1, y: 0, scale: 1 }}
+                  exit={{ opacity: 0, y: -15, scale: 0.96 }}
+                  transition={{
+                    type: "spring",
+                    stiffness: 350,
+                    damping: 26,
+                    delay: 0.05,
+                  }}
+                  className="p-4 rounded-2xl bg-white/5 border border-white/10 space-y-3"
+                >
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center space-x-3">
+                      <div className="w-10 h-10 rounded-full bg-[#0673f9] text-white font-bold flex items-center justify-center shadow-md">
+                        {(user?.firstName || user?.name || "U")[0].toUpperCase()}
+                      </div>
+                      <div>
+                        <p className="text-sm font-semibold text-white">
+                          {user?.firstName || user?.name || "User"}
+                        </p>
+                        <p className="text-xs text-neutral-400 truncate max-w-[180px]">
+                          {user?.email}
+                        </p>
+                      </div>
+                    </div>
+                    {getRoleBadge()}
+                  </div>
+
+                  {getApplicationStatusBadge() && (
+                    <div className="pt-1">{getApplicationStatusBadge()}</div>
+                  )}
+
+                  <div className="pt-2 flex flex-col gap-2 border-t border-white/10">
+                    {user?.role === "admin" && (
+                      <Link
+                        to="/admin"
+                        onClick={() => setShowMobileMenu(false)}
+                        className="w-full px-3 py-2.5 rounded-xl text-xs font-semibold text-blue-400 bg-blue-500/10 border border-blue-500/20 flex items-center justify-between"
+                      >
+                        <span className="flex items-center gap-2">
+                          <Shield className="w-4 h-4" /> Admin Dashboard
+                        </span>
+                        <ArrowRight className="w-4 h-4" />
+                      </Link>
+                    )}
+
+                    {user?.role === "user" && (
+                      <Link
+                        to="/apply-membership"
+                        onClick={() => setShowMobileMenu(false)}
+                        className="w-full px-3 py-2.5 rounded-xl text-xs font-semibold text-blue-400 bg-blue-500/10 border border-blue-500/20 flex items-center justify-between"
+                      >
+                        <span className="flex items-center gap-2">
+                          <Sparkles className="w-4 h-4" />
+                          {user.applicationStatus === "none" ||
+                          user.applicationStatus === "draft"
+                            ? "Apply for Membership"
+                            : "View Application"}
+                        </span>
+                        <ArrowRight className="w-4 h-4" />
+                      </Link>
+                    )}
+                  </div>
+                </motion.div>
+              )}
+
+              {/* Navigation Links */}
+              <nav className="flex flex-col space-y-2 my-auto">
+                <p className="text-xs font-semibold tracking-wider text-neutral-500 uppercase px-2 mb-2">
+                  Navigation
+                </p>
                 {navLinks.map((link, index) => {
                   const active = isActive(link.path);
                   return (
                     <motion.div
                       key={link.path}
-                      initial={{ opacity: 0, x: -10 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      transition={{ delay: index * 0.04, duration: 0.15 }}
+                      initial={{ opacity: 0, x: -30, y: 10 }}
+                      animate={{ opacity: 1, x: 0, y: 0 }}
+                      exit={{ opacity: 0, x: -20 }}
+                      transition={{
+                        type: "spring",
+                        stiffness: 350,
+                        damping: 26,
+                        delay: 0.1 + index * 0.05,
+                      }}
                     >
                       <Link
                         to={link.path}
                         onClick={() => setShowMobileMenu(false)}
-                        className={`block px-4 py-3 rounded-xl text-sm font-medium transition-all ${
+                        className={`flex items-center justify-between px-4 py-3.5 rounded-2xl text-lg font-semibold transition-all ${
                           active
-                            ? "bg-blue-600/20 text-white font-semibold border border-blue-500/30"
+                            ? "bg-[#0673f9] text-white shadow-lg shadow-blue-500/25"
                             : "text-neutral-300 hover:text-white hover:bg-white/5"
                         }`}
                       >
-                        {link.name}
+                        <span>{link.name}</span>
+                        <ArrowRight
+                          className={`w-5 h-5 transition-transform ${
+                            active
+                              ? "text-white translate-x-1"
+                              : "text-neutral-600"
+                          }`}
+                        />
                       </Link>
                     </motion.div>
                   );
                 })}
+              </nav>
 
-                {isAuthenticated && user?.role === "user" && (
-                  <div className="pt-2 border-t border-white/10">
-                    <Link
-                      to="/apply-membership"
-                      onClick={() => setShowMobileMenu(false)}
-                      className="block px-4 py-3 rounded-xl text-sm font-medium text-blue-400 bg-blue-500/10 hover:bg-blue-500/20 transition-all border border-blue-500/20"
-                    >
-                      {user.applicationStatus === "none" ||
-                      user.applicationStatus === "draft"
-                        ? "Apply for Membership"
-                        : "View Application"}
-                    </Link>
-                  </div>
+              {/* Bottom Actions & Footer Info */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: 20 }}
+                transition={{
+                  type: "spring",
+                  stiffness: 320,
+                  damping: 26,
+                  delay: 0.35,
+                }}
+                className="space-y-4 pt-4 border-t border-white/10"
+              >
+                {!isAuthenticated ? (
+                  <Link
+                    to="/login"
+                    onClick={() => setShowMobileMenu(false)}
+                    className="w-full py-4 rounded-2xl bg-white text-black font-bold text-center text-base hover:bg-neutral-100 transition-all flex items-center justify-center gap-2 shadow-lg"
+                  >
+                    <User className="w-5 h-5" />
+                    <span>Sign In to StartX</span>
+                  </Link>
+                ) : (
+                  <button
+                    onClick={() => {
+                      logout();
+                      setShowMobileMenu(false);
+                    }}
+                    className="w-full py-3.5 rounded-2xl bg-red-500/10 text-red-400 font-semibold text-sm border border-red-500/20 hover:bg-red-500/20 transition-all flex items-center justify-center gap-2"
+                  >
+                    <LogOut className="w-4 h-4" />
+                    <span>Sign Out</span>
+                  </button>
                 )}
-              </div>
-            </motion.div>
+
+                <div className="flex items-center justify-between px-2 text-neutral-400 pt-2">
+                  <p className="text-xs">
+                    &copy; {new Date().getFullYear()} StartX Ecosystem
+                  </p>
+                  <div className="flex space-x-4">
+                    <a
+                      href="https://www.instagram.com/startx.nst?igsh=MWlxNWZieHQ1d3ltcg=="
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="hover:text-white transition-colors"
+                    >
+                      <Instagram className="w-4 h-4" />
+                    </a>
+                    <a
+                      href="https://www.linkedin.com/company/startx-nst/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="hover:text-white transition-colors"
+                    >
+                      <Linkedin className="w-4 h-4" />
+                    </a>
+                  </div>
+                </div>
+              </motion.div>
+            </div>
           </motion.div>
         )}
       </AnimatePresence>

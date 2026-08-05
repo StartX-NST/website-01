@@ -1,165 +1,135 @@
 import { Link } from "react-router-dom";
 import { Mail, MapPin, Linkedin, Instagram } from "lucide-react";
-import { TextHoverEffect, FooterBackgroundGradient } from "./hover-footer";
 
-// CUSTOMIZABLE FOOTER BACKGROUND IMAGE
-const FOOTER_BG_IMAGE_URL = "https://ik.imagekit.io/yatharth/STAR-BG.png";
+interface FooterProps {
+  className?: string;
+  hideWrapperStyle?: boolean;
+}
 
-export function Footer() {
-  // Footer link data
-  const footerLinks = [
-    {
-      title: "About Us",
-      links: [
-        { label: "Our Mission", href: "#about" },
-        { label: "Success Stories", href: "/showcase" },
-        { label: "Partner With Us", href: "#partner" },
-        { label: "Careers", href: "#careers" },
-      ],
-    },
-    {
-      title: "Platform",
-      links: [
-        { label: "Events", href: "/events" },
-        { label: "Learn", href: "/learn" },
-        { label: "Showcase", href: "/showcase" },
-        { label: "Opportunities", href: "/opportunities" },
-      ],
-    },
-  ];
+export function Footer({
+  className = "",
+  hideWrapperStyle = false,
+}: FooterProps) {
+  const cardContent = (
+    <div
+      className={`relative z-10 max-w-7xl mx-auto w-full bg-white text-black p-6 sm:p-8 md:p-12 lg:p-16 rounded-t-[2rem] sm:rounded-t-[2.5rem] md:rounded-t-[3.5rem] rounded-b-none border-t border-x border-neutral-200/50 shadow-[0_-12px_40px_rgba(0,0,0,0.05)] ${hideWrapperStyle ? "mt-12 sm:mt-16" : ""} pb-6 sm:pb-8`}
+    >
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-10 md:gap-8 lg:gap-16 pb-8 md:pb-12">
+        <div className="flex flex-col space-y-3 sm:space-y-4">
+          <Link to="/" className="flex items-center space-x-2">
+            <img
+              src="/image.png"
+              alt="StartX Logo"
+              className="h-7 sm:h-8 w-auto brightness-0"
+            />
+          </Link>
+          <p className="text-xs sm:text-sm leading-relaxed text-neutral-500 font-medium">
+            A student-founder ecosystem for learning, building, and shipping.
+            Join 1000+ builders creating the future.
+          </p>
+        </div>
 
-  // Contact info data
-  const contactInfo = [
-    {
-      icon: <Mail size={18} className="text-blue-400" />,
-      text: "startx.ru@newtonschool.co",
-      href: "mailto:startx.ru@newtonschool.co",
-    },
-    {
-      icon: <MapPin size={18} className="text-blue-400" />,
-      text: "NST, Rishihood University",
-    },
-  ];
-
-  // Social media icons
-  const socialLinks = [
-    {
-      icon: <Instagram size={20} />,
-      label: "Instagram",
-      href: "https://www.instagram.com/startx.nst?igsh=MWlxNWZieHQ1d3ltcg==",
-    },
-    {
-      icon: <Linkedin size={20} />,
-      label: "LinkedIn",
-      href: "https://www.linkedin.com/company/startx-nst/",
-    },
-  ];
-
-  return (
-    <footer className="relative h-fit overflow-hidden border-t border-gray-800/50 bg-black">
-      {/* Background Image with Dark Mask */}
-      <div className="absolute inset-0 w-full h-full pointer-events-none select-none z-0">
-        <img
-          src={FOOTER_BG_IMAGE_URL}
-          alt="Footer background"
-          className="w-full h-full object-cover opacity-15"
-        />
-        <div className="absolute inset-0 bg-black/90" />
-      </div>
-      <div className="max-w-7xl mx-auto px-6 py-16 md:py-20 z-40 relative">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 md:gap-8 lg:gap-16 pb-12">
-          {/* Brand section */}
-          <div className="flex flex-col space-y-4">
-            <Link to="/" className="flex items-center space-x-2">
-              <img src="/image.png" alt="StartX Logo" className="h-8 w-auto" />
-            </Link>
-            <p className="text-sm leading-relaxed text-gray-400">
-              A student-founder ecosystem for learning, building, and shipping.
-              Join 1000+ builders creating the future.
-            </p>
-          </div>
-
-          {/* Footer link sections */}
-          {footerLinks.map((section) => (
-            <div key={section.title}>
-              <h4 className="text-white text-lg font-semibold mb-6">
-                {section.title}
-              </h4>
-              <ul className="space-y-3">
-                {section.links.map((link) => (
-                  <li key={link.label} className="relative">
-                    <Link
-                      to={link.href}
-                      className="text-gray-400 hover:text-blue-400 transition-colors"
-                    >
-                      {link.label}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
-
-          {/* Contact section */}
-          <div>
-            <h4 className="text-white text-lg font-semibold mb-6">
-              Contact Us
+        {[
+          {
+            title: "About Us",
+            links: [
+              { label: "Our Mission", href: "#about" },
+              { label: "Success Stories", href: "/showcase" },
+              { label: "Partner With Us", href: "#partner" },
+              { label: "Careers", href: "#careers" },
+            ],
+          },
+          {
+            title: "Platform",
+            links: [
+              { label: "Events", href: "/events" },
+              { label: "Learn", href: "/learn" },
+              { label: "Showcase", href: "/showcase" },
+              { label: "Opportunities", href: "/opportunities" },
+            ],
+          },
+        ].map((section) => (
+          <div key={section.title}>
+            <h4 className="text-black text-xs sm:text-sm font-bold uppercase tracking-wider mb-4 sm:mb-6">
+              {section.title}
             </h4>
-            <ul className="space-y-4">
-              {contactInfo.map((item, i) => (
-                <li key={i} className="flex items-center space-x-3">
-                  {item.icon}
-                  {item.href ? (
-                    <a
-                      href={item.href}
-                      className="text-gray-400 hover:text-blue-400 transition-colors"
-                    >
-                      {item.text}
-                    </a>
-                  ) : (
-                    <span className="text-gray-400 hover:text-blue-400 transition-colors">
-                      {item.text}
-                    </span>
-                  )}
+            <ul className="space-y-2.5 sm:space-y-3">
+              {section.links.map((link) => (
+                <li key={link.label}>
+                  <Link
+                    to={link.href}
+                    className="text-neutral-500 hover:text-black font-medium text-xs sm:text-sm transition-colors"
+                  >
+                    {link.label}
+                  </Link>
                 </li>
               ))}
             </ul>
           </div>
-        </div>
+        ))}
 
-        <hr className="border-t border-gray-700 my-8" />
-
-        {/* Footer bottom */}
-        <div className="flex flex-col md:flex-row justify-between items-center text-sm space-y-4 md:space-y-0">
-          {/* Social icons */}
-          <div className="flex space-x-6 text-gray-400">
-            {socialLinks.map(({ icon, label, href }) => (
+        <div>
+          <h4 className="text-black text-xs sm:text-sm font-bold uppercase tracking-wider mb-4 sm:mb-6">
+            Contact Us
+          </h4>
+          <ul className="space-y-3 sm:space-y-4">
+            <li className="flex items-center space-x-3 text-neutral-500 font-medium text-xs sm:text-sm">
+              <Mail size={16} className="text-neutral-400 shrink-0" />
               <a
-                key={label}
-                href={href}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label={label}
-                className="hover:text-blue-400 transition-colors"
+                href="mailto:startx.ru@newtonschool.co"
+                className="hover:text-black transition-colors break-all sm:break-normal"
               >
-                {icon}
+                startx.ru@newtonschool.co
               </a>
-            ))}
-          </div>
-
-          {/* Copyright */}
-          <p className="text-gray-400 text-center md:text-left">
-            &copy; {new Date().getFullYear()} StartX. All rights reserved.
-          </p>
+            </li>
+            <li className="flex items-center space-x-3 text-neutral-500 font-medium text-xs sm:text-sm">
+              <MapPin size={16} className="text-neutral-400 shrink-0" />
+              <span>NST, Rishihood University</span>
+            </li>
+          </ul>
         </div>
       </div>
 
-      {/* Text hover effect */}
-      <div className="lg:flex hidden h-[30rem] -mt-20 -mb-32">
-        <TextHoverEffect text="STARTX" className="z-50" />
-      </div>
+      <hr className="border-t border-neutral-200 my-6 sm:my-8" />
 
-      <FooterBackgroundGradient />
+      <div className="flex flex-col-reverse sm:flex-row justify-between items-center gap-4 text-xs sm:text-sm">
+        <p className="text-neutral-500 font-medium text-center sm:text-left">
+          &copy; {new Date().getFullYear()} StartX. All rights reserved.
+        </p>
+
+        <div className="flex space-x-6 text-neutral-400">
+          <a
+            href="https://www.instagram.com/startx.nst?igsh=MWlxNWZieHQ1d3ltcg=="
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Instagram"
+            className="hover:text-black transition-colors p-1"
+          >
+            <Instagram size={20} />
+          </a>
+          <a
+            href="https://www.linkedin.com/company/startx-nst/"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="LinkedIn"
+            className="hover:text-black transition-colors p-1"
+          >
+            <Linkedin size={20} />
+          </a>
+        </div>
+      </div>
+    </div>
+  );
+
+  if (hideWrapperStyle) {
+    return cardContent;
+  }
+
+  return (
+    <footer
+      className={`w-full bg-black px-3 sm:px-6 md:px-12 pt-10 sm:pt-16 z-20 relative ${className}`}
+    >
+      {cardContent}
     </footer>
   );
 }
