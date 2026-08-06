@@ -60,10 +60,6 @@ function App() {
               element={<MembershipRequired />}
             />
             <Route
-              path="/apply-membership"
-              element={<MembershipApplication />}
-            />
-            <Route
               path="/admin"
               element={
                 <RequireRole allowedRoles={["admin"]}>
@@ -79,6 +75,10 @@ function App() {
               <Route path="/showcase" element={<Showcase />} />
               <Route path="/opportunities" element={<Opportunities />} />
               <Route path="/check-eligibility" element={<CheckEligibility />} />
+              <Route
+                path="/apply-membership"
+                element={<MembershipApplication />}
+              />
               {/* Placeholder routes for header navigation */}
               <Route path="/resources" element={<Opportunities />} />
               <Route path="features" element={<Opportunities />} />

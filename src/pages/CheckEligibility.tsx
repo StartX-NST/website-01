@@ -112,7 +112,6 @@ export default function CheckEligibility() {
   return (
     <AnimatedPage>
       <div className="relative min-h-screen bg-transparent text-white pt-24 pb-24 px-4 sm:px-6 lg:px-8">
-        {/* Continuous fixed Grainient Shader Background */}
         <div className="fixed inset-0 w-full h-full pointer-events-none select-none z-0 opacity-40">
           <Grainient
             color1="#0673f9"
@@ -142,14 +141,13 @@ export default function CheckEligibility() {
         </div>
 
         <div className="relative z-10 max-w-4xl mx-auto space-y-16">
-          {/* Hero Section Header */}
           <FadeIn>
             <div className="text-center space-y-4 max-w-2xl pt-10 mx-auto">
-              <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight text-white">
+              <h1 className="text-4xl sm:text-5xl md:text-6xl font-semibold tracking-tight text-white">
                 Am I Eligible for StartX?
               </h1>
 
-              <p className="text-base sm:text-lg text-zinc-400 font-medium leading-relaxed">
+              <p className="text-base sm:text-lg text-zinc-400 font-normal leading-relaxed">
                 Verify your fit for our student-founder ecosystem in seconds. We
                 welcome ambitious builders, developers, and aspiring founders at
                 every stage.
@@ -159,25 +157,23 @@ export default function CheckEligibility() {
 
           <FadeIn delay={0.1}>
             <div className="bg-zinc-950/80 border border-zinc-800/80 rounded-3xl p-6 sm:p-8 md:p-10 backdrop-blur-xl shadow-2xl space-y-8">
-              {/* Evaluator Header Bar */}
               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-zinc-900 pb-6">
                 <div>
-                  <h2 className="text-xl sm:text-2xl font-bold text-white">
+                  <h2 className="text-xl sm:text-2xl font-semibold text-white">
                     Select the criteria that apply to you
                   </h2>
                 </div>
 
-                {/* Quick Controls */}
                 <div className="flex items-center gap-2 self-start sm:self-center">
                   <button
                     onClick={selectAll}
-                    className="text-xs font-medium text-zinc-400 hover:text-white px-3 py-1.5 rounded-lg border border-zinc-800 hover:bg-zinc-900 transition-colors"
+                    className="text-xs font-normal text-zinc-400 hover:text-white px-3 py-1.5 rounded-lg border border-zinc-800 hover:bg-zinc-900 transition-colors"
                   >
                     Select All
                   </button>
                   <button
                     onClick={resetAll}
-                    className="inline-flex items-center gap-1.5 text-xs font-medium text-zinc-400 hover:text-white px-3 py-1.5 rounded-lg border border-zinc-800 hover:bg-zinc-900 transition-colors"
+                    className="inline-flex items-center gap-1.5 text-xs font-normal text-zinc-400 hover:text-white px-3 py-1.5 rounded-lg border border-zinc-800 hover:bg-zinc-900 transition-colors"
                   >
                     <ResetIcon className="w-3 h-3" />
                     Reset
@@ -185,7 +181,6 @@ export default function CheckEligibility() {
                 </div>
               </div>
 
-              {/* Criteria Cards Checklist */}
               <StaggerContainer className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 {CRITERIA_ITEMS.map((item) => {
                   const isChecked = checkedIds.includes(item.id);
@@ -200,7 +195,6 @@ export default function CheckEligibility() {
                             : "bg-zinc-900/20 border-zinc-800/60 hover:border-zinc-700/80 hover:bg-zinc-900/40"
                         }`}
                       >
-                        {/* Custom Radix Checkbox Indicator */}
                         <div
                           className={`mt-1 flex-shrink-0 w-5 h-5 rounded-md border flex items-center justify-center transition-all duration-200 ${
                             isChecked
@@ -213,17 +207,16 @@ export default function CheckEligibility() {
                           )}
                         </div>
 
-                        {/* Card Info */}
                         <div className="flex-1 space-y-1">
                           <div className="flex items-center gap-2">
-                            <h3 className="text-sm font-semibold text-white">
+                            <h3 className="text-sm font-medium text-white">
                               {item.title}
                             </h3>
                           </div>
-                          <p className="text-xs font-medium text-zinc-300">
+                          <p className="text-xs font-normal text-zinc-300">
                             {item.subtitle}
                           </p>
-                          <p className="text-[11px] text-zinc-500 leading-relaxed pt-1">
+                          <p className="text-[11px] text-zinc-500 leading-relaxed pt-1 font-light">
                             {item.description}
                           </p>
                         </div>
@@ -233,19 +226,18 @@ export default function CheckEligibility() {
                 })}
               </StaggerContainer>
 
-              {/* Dynamic Live Status Result Bar */}
               <div className="p-6 rounded-2xl bg-zinc-900/60 border border-zinc-800/80 space-y-4">
                 <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                   <div className="flex items-center gap-3.5">
                     <div>
-                      <h4 className="text-sm font-semibold text-white">
+                      <h4 className="text-sm font-medium text-white">
                         {matchPercentage === 100
                           ? "100% Fit — Ready to Apply!"
                           : matchPercentage >= 50
                             ? `${checkedIds.length} of ${CRITERIA_ITEMS.length} Criteria Met — High Fit`
                             : "Partial Match — Everyone is Welcome to Apply"}
                       </h4>
-                      <p className="text-xs text-zinc-400">
+                      <p className="text-xs text-zinc-400 font-light">
                         {matchPercentage === 100
                           ? "You fulfill all core requirements for our incubator community."
                           : "Even if you only meet 1 or 2 criteria, you can still apply and grow with us."}
@@ -255,14 +247,13 @@ export default function CheckEligibility() {
 
                   <Link
                     to="/apply-membership"
-                    className="inline-flex items-center justify-center gap-2 bg-[#0673f9] hover:bg-[#0562d6] text-white text-xs font-semibold px-6 py-2.5 rounded-xl transition-all duration-200 shrink-0"
+                    className="inline-flex items-center justify-center gap-2 bg-[#0673f9] hover:bg-[#0562d6] text-white text-xs font-medium px-6 py-2.5 rounded-xl transition-all duration-200 shrink-0"
                   >
                     Apply for Membership
                     <ArrowRightIcon className="w-4 h-4" />
                   </Link>
                 </div>
 
-                {/* Solid Progress Bar */}
                 <div className="w-full h-1.5 bg-zinc-800 rounded-full overflow-hidden">
                   <motion.div
                     className="h-full rounded-full bg-[#0673f9]"
@@ -275,12 +266,11 @@ export default function CheckEligibility() {
             </div>
           </FadeIn>
 
-          {/* Interactive FAQ Accordion */}
           <FadeIn delay={0.2}>
             <div className="bg-zinc-950/80 border border-zinc-800/80 rounded-3xl p-6 sm:p-8 space-y-6 backdrop-blur-xl">
               <div className="flex items-center gap-2">
                 <InfoCircledIcon className="w-5 h-5 text-[#0673f9]" />
-                <h2 className="text-xl font-bold text-white">
+                <h2 className="text-xl font-semibold text-white">
                   Frequently Asked Questions
                 </h2>
               </div>
@@ -292,7 +282,7 @@ export default function CheckEligibility() {
                     <div key={index} className="py-4 first:pt-0 last:pb-0">
                       <button
                         onClick={() => setActiveFaq(isOpen ? null : index)}
-                        className="w-full flex items-center justify-between gap-4 text-left py-2 text-sm font-semibold text-white hover:text-zinc-300 transition-colors"
+                        className="w-full flex items-center justify-between gap-4 text-left py-2 text-sm font-medium text-white hover:text-zinc-300 transition-colors"
                       >
                         <span>{faq.q}</span>
                         <motion.div
@@ -313,7 +303,7 @@ export default function CheckEligibility() {
                             transition={{ duration: 0.25, ease: "easeInOut" }}
                             className="overflow-hidden"
                           >
-                            <p className="pt-2 text-xs sm:text-sm text-zinc-400 leading-relaxed font-normal">
+                            <p className="pt-2 text-xs sm:text-sm text-zinc-400 leading-relaxed font-light">
                               {faq.a}
                             </p>
                           </motion.div>
@@ -326,14 +316,13 @@ export default function CheckEligibility() {
             </div>
           </FadeIn>
 
-          {/* Final CTA Bar */}
           <FadeIn delay={0.3}>
             <div className="text-center space-y-6 pt-2">
               <div className="space-y-2">
-                <h3 className="text-xl sm:text-2xl font-bold text-white">
+                <h3 className="text-xl sm:text-2xl font-semibold text-white">
                   Ready to Start Building?
                 </h3>
-                <p className="text-xs sm:text-sm text-zinc-400">
+                <p className="text-xs sm:text-sm text-zinc-400 font-light">
                   Join hundreds of student builders turning bold ideas into real
                   ventures.
                 </p>
@@ -342,14 +331,14 @@ export default function CheckEligibility() {
               <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
                 <Link
                   to="/apply-membership"
-                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-[#0673f9] hover:bg-[#0562d6] text-white font-semibold text-xs sm:text-sm px-8 py-3.5 rounded-xl transition-all duration-200"
+                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-[#0673f9] hover:bg-[#0562d6] text-white font-medium text-xs sm:text-sm px-8 py-3.5 rounded-xl transition-all duration-200"
                 >
                   Apply for Membership
                   <ArrowRightIcon className="w-4 h-4" />
                 </Link>
                 <Link
                   to="/"
-                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2 text-zinc-300 hover:text-white font-medium text-xs sm:text-sm px-8 py-3.5 rounded-xl border border-zinc-800 hover:border-zinc-700 hover:bg-zinc-900 transition-all duration-200"
+                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2 text-zinc-300 hover:text-white font-normal text-xs sm:text-sm px-8 py-3.5 rounded-xl border border-zinc-800 hover:border-zinc-700 hover:bg-zinc-900 transition-all duration-200"
                 >
                   Back to Home
                 </Link>
