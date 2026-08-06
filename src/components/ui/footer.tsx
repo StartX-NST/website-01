@@ -127,7 +127,7 @@ export function Footer({
 
   return (
     <footer
-      className={`w-full bg-black px-3 sm:px-6 md:px-12 pt-10 sm:pt-16 z-20 relative ${className}`}
+      className={`w-full bg-transparent px-3 sm:px-6 md:px-12 pt-10 sm:pt-16 z-20 relative ${className}`}
     >
       {cardContent}
     </footer>
