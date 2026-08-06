@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { Navigate, useLocation, Link } from "react-router-dom";
+import { motion } from "framer-motion";
 import {
   LayoutGrid,
   Users,
@@ -69,15 +70,16 @@ const TITLES: Record<ActiveTab, { h: string; sub: string }> = {
   },
 };
 
-const SIDEBAR_BG = "#141414";
-const ACTIVE_BG = "#ffffff";
-const MUTED_TEXT = "rgba(255,255,255,0.42)";
-const NAV_TEXT = "rgba(255,255,255,0.70)";
-const BLUE = "#0673f9";
-const PAGE_BG = "#f5f6f8";
-const CARD_BG = "#ffffff";
-const HEADING = "#111111";
-const BODY_TEXT = "#6b7280";
+const SIDEBAR_BG = "#0a0c12";
+const MUTED_TEXT = "rgba(255,255,255,0.45)";
+const NAV_TEXT = "rgba(255,255,255,0.75)";
+const BLUE = "#3b82f6";
+const PAGE_BG = "#07080d";
+const HEADER_BG = "#0f111a";
+const CARD_BG = "#0f111a";
+const HEADING = "#f3f4f6";
+const BODY_TEXT = "#9ca3af";
+const BORDER_COLOR = "#1c2030";
 
 export default function AdminDashboard() {
   const { user } = useAuth();
@@ -117,19 +119,21 @@ export default function AdminDashboard() {
         minHeight: "100vh",
         background: PAGE_BG,
         fontFamily: "'Raleway', system-ui, sans-serif",
+        color: HEADING,
       }}
     >
       {/* ─── SIDEBAR ─── */}
       <aside
         style={{
-          width: 220,
-          minWidth: 220,
+          width: 230,
+          minWidth: 230,
           background: SIDEBAR_BG,
           display: "flex",
           flexDirection: "column",
           position: "fixed",
           inset: "0 auto 0 0",
           zIndex: 40,
+          borderRight: `1px solid ${BORDER_COLOR}`,
         }}
       >
         {/* Logo */}
@@ -138,42 +142,57 @@ export default function AdminDashboard() {
           style={{
             display: "flex",
             alignItems: "center",
-            gap: 10,
-            padding: "26px 20px 22px",
+            gap: 12,
+            padding: "24px 20px",
             textDecoration: "none",
+            borderBottom: `1px solid ${BORDER_COLOR}`,
           }}
         >
           <img
             src="/logo.png"
             alt="StartX"
-            style={{ width: 26, height: 26, objectFit: "contain" }}
+            style={{ width: 28, height: 28, objectFit: "contain" }}
           />
-          <span
-            style={{
-              color: "#fff",
-              fontSize: 16,
-              fontWeight: 400,
-              letterSpacing: "-0.2px",
-            }}
-          >
-            StartX
-          </span>
+          <div style={{ display: "flex", flexDirection: "column" }}>
+            <span
+              style={{
+                color: "#fff",
+                fontSize: 16,
+                fontWeight: 600,
+                letterSpacing: "-0.2px",
+                lineHeight: 1.2,
+              }}
+            >
+              StartX
+            </span>
+            <span
+              style={{
+                color: BLUE,
+                fontSize: 10,
+                fontWeight: 500,
+                letterSpacing: "0.08em",
+                textTransform: "uppercase",
+              }}
+            >
+              Admin Suite
+            </span>
+          </div>
         </Link>
 
         {/* Nav groups */}
-        <nav style={{ flex: 1, padding: "0 10px", overflow: "auto" }}>
+        <nav style={{ flex: 1, padding: "16px 12px", overflowY: "auto" }}>
           {NAV.map(({ group, items }) => (
             <div key={group} style={{ marginBottom: 24 }}>
               <p
                 style={{
-                  fontSize: 9,
-                  fontWeight: 400,
+                  fontSize: 10,
+                  fontWeight: 600,
                   letterSpacing: "0.12em",
                   textTransform: "uppercase",
                   color: MUTED_TEXT,
                   padding: "0 10px",
-                  marginBottom: 4,
-                  margin: "0 0 4px",
+                  marginBottom: 8,
+                  margin: "0 0 8px",
                 }}
               >
                 {group}
@@ -185,30 +204,60 @@ export default function AdminDashboard() {
                     key={id}
                     onClick={() => switchTab(id)}
                     style={{
+                      position: "relative",
                       display: "flex",
                       alignItems: "center",
-                      gap: 10,
+                      gap: 12,
                       width: "100%",
-                      padding: "8px 12px",
-                      borderRadius: 8,
+                      padding: "10px 12px",
+                      borderRadius: 10,
                       border: "none",
                       cursor: "pointer",
-                      background: active ? ACTIVE_BG : "transparent",
-                      color: active ? HEADING : NAV_TEXT,
-                      marginBottom: 1,
-                      transition: "background 0.14s, color 0.14s",
+                      background: "transparent",
+                      color: active ? "#ffffff" : NAV_TEXT,
+                      marginBottom: 3,
+                      transition: "color 0.15s ease",
                       textAlign: "left",
                     }}
                   >
+                    {active && (
+                      <motion.div
+                        layoutId="sidebarActivePill"
+                        transition={{
+                          type: "spring",
+                          stiffness: 450,
+                          damping: 35,
+                          mass: 0.8,
+                        }}
+                        style={{
+                          position: "absolute",
+                          inset: 0,
+                          borderRadius: 10,
+                          background: "rgba(59, 130, 246, 0.15)",
+                          border: "1px solid rgba(59, 130, 246, 0.35)",
+                          zIndex: 0,
+                        }}
+                      />
+                    )}
                     <Icon
                       style={{
-                        width: 15,
-                        height: 15,
+                        width: 16,
+                        height: 16,
                         flexShrink: 0,
-                        color: active ? BLUE : "inherit",
+                        color: active ? BLUE : MUTED_TEXT,
+                        position: "relative",
+                        zIndex: 1,
+                        transition: "color 0.15s ease",
                       }}
                     />
-                    <span style={{ fontSize: 13, fontWeight: 400 }}>
+                    <span
+                      style={{
+                        fontSize: 13,
+                        fontWeight: active ? 500 : 400,
+                        position: "relative",
+                        zIndex: 1,
+                      }}
+                    >
                       {label}
                     </span>
                   </button>
@@ -219,47 +268,52 @@ export default function AdminDashboard() {
         </nav>
 
         {/* Footer */}
-        <div style={{ padding: "12px 10px 18px" }}>
+        <div
+          style={{
+            padding: "16px 12px 20px",
+            borderTop: `1px solid ${BORDER_COLOR}`,
+          }}
+        >
           {/* User row */}
           <div
             style={{
               display: "flex",
               alignItems: "center",
-              gap: 9,
+              gap: 10,
               padding: "10px 12px",
-              borderRadius: 8,
-              background: "rgba(255,255,255,0.06)",
-              marginBottom: 2,
+              borderRadius: 10,
+              background: "rgba(255,255,255,0.04)",
+              border: `1px solid ${BORDER_COLOR}`,
+              marginBottom: 8,
             }}
           >
             <div
               style={{
-                width: 28,
-                height: 28,
+                width: 32,
+                height: 32,
                 borderRadius: "50%",
-                background: BLUE,
+                background: `linear-gradient(135deg, ${BLUE}, #1d4ed8)`,
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
-                fontSize: 11,
-                fontWeight: 400,
+                fontSize: 12,
+                fontWeight: 600,
                 color: "#fff",
                 flexShrink: 0,
               }}
             >
               {user.email?.[0]?.toUpperCase() || "A"}
             </div>
-            <div style={{ minWidth: 0 }}>
+            <div style={{ minWidth: 0, flex: 1 }}>
               <p
                 style={{
-                  fontSize: 11,
-                  fontWeight: 400,
-                  color: "#fff",
+                  fontSize: 12,
+                  fontWeight: 500,
+                  color: "#f3f4f6",
                   margin: 0,
                   overflow: "hidden",
                   textOverflow: "ellipsis",
                   whiteSpace: "nowrap",
-                  maxWidth: 130,
                 }}
               >
                 {user.email}
@@ -269,10 +323,10 @@ export default function AdminDashboard() {
                   fontSize: 10,
                   color: BLUE,
                   margin: 0,
-                  fontWeight: 400,
+                  fontWeight: 500,
                 }}
               >
-                Admin
+                Administrator
               </p>
             </div>
           </div>
@@ -282,18 +336,18 @@ export default function AdminDashboard() {
             style={{
               display: "flex",
               alignItems: "center",
-              gap: 9,
-              padding: "8px 12px",
+              gap: 10,
+              padding: "9px 12px",
               borderRadius: 8,
               textDecoration: "none",
               color: MUTED_TEXT,
-              transition: "color 0.14s",
+              transition: "all 0.14s",
             }}
             onMouseEnter={(e) => (e.currentTarget.style.color = "#fff")}
             onMouseLeave={(e) => (e.currentTarget.style.color = MUTED_TEXT)}
           >
             <LogOut style={{ width: 14, height: 14 }} />
-            <span style={{ fontSize: 12, fontWeight: 400 }}>Back to site</span>
+            <span style={{ fontSize: 13, fontWeight: 400 }}>Back to site</span>
           </Link>
         </div>
       </aside>
@@ -302,7 +356,7 @@ export default function AdminDashboard() {
       <div
         style={{
           flex: 1,
-          marginLeft: 220,
+          marginLeft: 230,
           display: "flex",
           flexDirection: "column",
           minHeight: "100vh",
@@ -311,67 +365,85 @@ export default function AdminDashboard() {
         {/* Header */}
         <header
           style={{
-            background: CARD_BG,
-            padding: "0 28px",
-            height: 60,
+            background: HEADER_BG,
+            padding: "0 32px",
+            height: 64,
             display: "flex",
             alignItems: "center",
             justifyContent: "space-between",
             position: "sticky",
             top: 0,
             zIndex: 20,
-            boxShadow: "0 1px 0 rgba(0,0,0,0.06)",
+            borderBottom: `1px solid ${BORDER_COLOR}`,
+            backdropFilter: "blur(8px)",
           }}
         >
           <div>
             <h1
               style={{
-                fontSize: 15,
-                fontWeight: 400,
+                fontSize: 16,
+                fontWeight: 600,
                 color: HEADING,
                 margin: 0,
+                letterSpacing: "-0.2px",
               }}
             >
               {info.h}
             </h1>
             <p
               style={{
-                fontSize: 11,
+                fontSize: 12,
                 color: BODY_TEXT,
-                margin: "1px 0 0",
+                margin: "2px 0 0",
                 fontWeight: 400,
               }}
             >
               {info.sub}
             </p>
           </div>
+          <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
+            <span
+              style={{
+                fontSize: 11,
+                padding: "4px 10px",
+                borderRadius: 20,
+                background: "rgba(59, 130, 246, 0.12)",
+                color: BLUE,
+                border: "1px solid rgba(59, 130, 246, 0.25)",
+                fontWeight: 500,
+              }}
+            >
+              Active Section
+            </span>
+          </div>
         </header>
 
         {/* Body */}
-        <main style={{ flex: 1, padding: "24px 28px" }}>
+        <main style={{ flex: 1, padding: "32px" }}>
           {/* Content card */}
           <div
             style={{
               background: CARD_BG,
-              borderRadius: 12,
+              borderRadius: 16,
               overflow: "hidden",
-              boxShadow: "0 1px 3px rgba(0,0,0,0.07)",
+              border: `1px solid ${BORDER_COLOR}`,
             }}
           >
             {/* Card title row */}
             <div
               style={{
-                padding: "16px 24px",
+                padding: "18px 28px",
                 display: "flex",
                 alignItems: "center",
-                gap: 9,
-                borderBottom: "1px solid #f2f2f2",
+                gap: 10,
+                borderBottom: `1px solid ${BORDER_COLOR}`,
+                background: "rgba(255,255,255,0.015)",
               }}
             >
               <div
                 style={{
-                  width: 6,
-                  height: 6,
+                  width: 8,
+                  height: 8,
                   borderRadius: "50%",
                   background: BLUE,
                   flexShrink: 0,
@@ -379,10 +451,11 @@ export default function AdminDashboard() {
               />
               <h2
                 style={{
-                  fontSize: 13,
-                  fontWeight: 400,
+                  fontSize: 14,
+                  fontWeight: 600,
                   color: HEADING,
                   margin: 0,
+                  letterSpacing: "-0.1px",
                 }}
               >
                 {info.h}
@@ -390,10 +463,10 @@ export default function AdminDashboard() {
             </div>
 
             {/* Panel content */}
-            <div style={{ padding: "24px" }}>
+            <div style={{ padding: "28px" }}>
               <div
                 key={key}
-                style={{ animation: "fadeUp 0.18s ease-out both" }}
+                style={{ animation: "fadeUp 0.2s ease-out both" }}
               >
                 {tab === "showcase" && <AddShowcaseForm editData={editData} />}
                 {tab === "opportunities" && (
@@ -411,7 +484,7 @@ export default function AdminDashboard() {
 
       <style>{`
 				@keyframes fadeUp {
-					from { opacity: 0; transform: translateY(5px); }
+					from { opacity: 0; transform: translateY(6px); }
 					to   { opacity: 1; transform: translateY(0); }
 				}
 			`}</style>

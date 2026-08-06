@@ -164,8 +164,8 @@ export default function AddShowcaseForm({ editData }: AddShowcaseFormProps) {
   };
 
   const inputCls =
-    "w-full px-3 py-2.5 bg-white border border-gray-200 rounded-lg text-gray-900 text-sm placeholder-gray-400 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/10 transition-all";
-  const labelCls = "block text-xs font-normal text-gray-500 mb-1.5";
+    "w-full px-3.5 py-2.5 bg-[#141724] border border-[#23283b] rounded-xl text-gray-100 text-sm placeholder-gray-500 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition-all";
+  const labelCls = "block text-xs font-medium text-gray-400 mb-1.5";
 
   return (
     <div>
@@ -239,7 +239,7 @@ export default function AddShowcaseForm({ editData }: AddShowcaseFormProps) {
             value={formData.category}
             onChange={handleChange}
             required
-            className={inputCls}
+            className={`${inputCls} [&>option]:bg-[#141724] [&>option]:text-gray-100`}
           >
             {categories.map((cat) => (
               <option key={cat.value} value={cat.value}>
@@ -284,29 +284,29 @@ export default function AddShowcaseForm({ editData }: AddShowcaseFormProps) {
         {/* Link or HTML File */}
         <div>
           <label className={labelCls}>Project Link / File</label>
-          <div className="flex gap-2 mb-3">
+          <div className="flex gap-3 mb-3">
             <button
               type="button"
               onClick={() => handleLinkTypeChange("url")}
-              className={`flex-1 px-3 py-2.5 rounded-lg text-sm font-normal transition-all flex items-center justify-center gap-2 ${
+              className={`flex-1 px-3.5 py-2.5 rounded-xl text-sm font-medium transition-all flex items-center justify-center gap-2 ${
                 formData.linkType === "url"
-                  ? "bg-blue-50 border border-blue-500 text-blue-600"
-                  : "bg-white border border-gray-200 text-gray-500 hover:border-gray-300"
+                  ? "bg-blue-600/20 border border-blue-500/50 text-blue-400"
+                  : "bg-[#141724] border border-[#23283b] text-gray-400 hover:text-gray-200 hover:border-gray-700"
               }`}
             >
-              <Link2 className="w-3.5 h-3.5" />
+              <Link2 className="w-4 h-4" />
               Project URL
             </button>
             <button
               type="button"
               onClick={() => handleLinkTypeChange("html")}
-              className={`flex-1 px-3 py-2.5 rounded-lg text-sm font-normal transition-all flex items-center justify-center gap-2 ${
+              className={`flex-1 px-3.5 py-2.5 rounded-xl text-sm font-medium transition-all flex items-center justify-center gap-2 ${
                 formData.linkType === "html"
-                  ? "bg-blue-50 border border-blue-500 text-blue-600"
-                  : "bg-white border border-gray-200 text-gray-500 hover:border-gray-300"
+                  ? "bg-blue-600/20 border border-blue-500/50 text-blue-400"
+                  : "bg-[#141724] border border-[#23283b] text-gray-400 hover:text-gray-200 hover:border-gray-700"
               }`}
             >
-              <FileCode className="w-3.5 h-3.5" />
+              <FileCode className="w-4 h-4" />
               HTML File
             </button>
           </div>
@@ -334,16 +334,16 @@ export default function AddShowcaseForm({ editData }: AddShowcaseFormProps) {
               />
               <label
                 htmlFor="htmlFile"
-                className="w-full px-3 py-2.5 bg-white border border-gray-200 rounded-lg text-gray-500 hover:border-blue-400 transition-colors cursor-pointer flex items-center justify-center gap-2 text-sm"
+                className="w-full px-3.5 py-3 bg-[#141724] border border-dashed border-[#23283b] rounded-xl text-gray-400 hover:border-blue-500/60 hover:text-gray-200 transition-all cursor-pointer flex items-center justify-center gap-2 text-sm"
               >
-                <FileCode className="w-4 h-4" />
+                <FileCode className="w-4 h-4 text-blue-400" />
                 <span>
                   {formData.htmlFile
                     ? formData.htmlFile.name
                     : "Choose HTML file..."}
                 </span>
               </label>
-              <p className="mt-1.5 text-xs text-gray-400">
+              <p className="mt-1.5 text-xs text-gray-500">
                 Upload an HTML file for your project showcase
               </p>
             </div>
@@ -354,7 +354,7 @@ export default function AddShowcaseForm({ editData }: AddShowcaseFormProps) {
         <button
           type="submit"
           disabled={loading}
-          className="w-full px-5 py-2.5 bg-[#0673f9] hover:bg-blue-600 text-white text-sm font-normal rounded-lg transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+          className="w-full px-5 py-3 bg-[#0673f9] hover:bg-blue-600 border border-blue-400/30 text-white text-sm font-medium rounded-xl transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
         >
           {loading ? (
             <>

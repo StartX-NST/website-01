@@ -132,12 +132,12 @@ export default function AddOpportunityForm({
         />
       )}
 
-      <form onSubmit={handleSubmit} className="space-y-6">
+      <form onSubmit={handleSubmit} className="space-y-5">
         {/* Type */}
         <div>
           <label
             htmlFor="type"
-            className="block text-xs font-normal text-gray-400 mb-1.5"
+            className="block text-xs font-medium text-gray-400 mb-1.5"
           >
             Opportunity Type *
           </label>
@@ -147,7 +147,7 @@ export default function AddOpportunityForm({
             value={formData.type}
             onChange={handleChange}
             required
-            className="w-full px-3 py-2.5 bg-white border border-gray-200 rounded-lg text-gray-900 text-sm focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/10 transition-all"
+            className="w-full px-3.5 py-2.5 bg-[#141724] border border-[#23283b] rounded-xl text-gray-100 text-sm focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition-all [&>option]:bg-[#141724] [&>option]:text-gray-100"
           >
             {types.map((type) => (
               <option key={type.value} value={type.value}>
@@ -161,7 +161,7 @@ export default function AddOpportunityForm({
         <div>
           <label
             htmlFor="title"
-            className="block text-xs font-normal text-gray-400 mb-1.5"
+            className="block text-xs font-medium text-gray-400 mb-1.5"
           >
             Title *
           </label>
@@ -172,7 +172,7 @@ export default function AddOpportunityForm({
             value={formData.title}
             onChange={handleChange}
             required
-            className="w-full px-3 py-2.5 bg-white border border-gray-200 rounded-lg text-gray-900 text-sm placeholder-gray-400 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/10 transition-all"
+            className="w-full px-3.5 py-2.5 bg-[#141724] border border-[#23283b] rounded-xl text-gray-100 text-sm placeholder-gray-500 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition-all"
             placeholder="e.g., Product Design Intern"
           />
         </div>
@@ -181,7 +181,7 @@ export default function AddOpportunityForm({
         <div>
           <label
             htmlFor="organization"
-            className="block text-xs font-normal text-gray-400 mb-1.5"
+            className="block text-xs font-medium text-gray-400 mb-1.5"
           >
             Organization *
           </label>
@@ -192,7 +192,7 @@ export default function AddOpportunityForm({
             value={formData.organization}
             onChange={handleChange}
             required
-            className="w-full px-3 py-2.5 bg-white border border-gray-200 rounded-lg text-gray-900 text-sm placeholder-gray-400 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/10 transition-all"
+            className="w-full px-3.5 py-2.5 bg-[#141724] border border-[#23283b] rounded-xl text-gray-100 text-sm placeholder-gray-500 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition-all"
             placeholder="e.g., TaskFlow"
           />
         </div>
@@ -201,7 +201,7 @@ export default function AddOpportunityForm({
         <div>
           <label
             htmlFor="description"
-            className="block text-xs font-normal text-gray-400 mb-1.5"
+            className="block text-xs font-medium text-gray-400 mb-1.5"
           >
             Description *
           </label>
@@ -212,7 +212,7 @@ export default function AddOpportunityForm({
             onChange={handleChange}
             required
             rows={4}
-            className="w-full px-3 py-2.5 bg-white border border-gray-200 rounded-lg text-gray-900 text-sm placeholder-gray-400 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/10 transition-all resize-none"
+            className="w-full px-3.5 py-2.5 bg-[#141724] border border-[#23283b] rounded-xl text-gray-100 text-sm placeholder-gray-500 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition-all resize-none"
             placeholder="Describe the opportunity..."
           />
         </div>
@@ -221,7 +221,7 @@ export default function AddOpportunityForm({
         <div>
           <label
             htmlFor="deadline"
-            className="block text-xs font-normal text-gray-400 mb-1.5"
+            className="block text-xs font-medium text-gray-400 mb-1.5"
           >
             Deadline *
           </label>
@@ -232,17 +232,17 @@ export default function AddOpportunityForm({
             value={formData.deadline}
             onChange={handleChange}
             required
-            style={{ colorScheme: "light" }}
-            className="w-full px-3 py-2.5 bg-white border border-gray-200 rounded-lg text-gray-900 text-sm focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/10 transition-all [&::-webkit-calendar-picker-indicator]:cursor-pointer"
+            style={{ colorScheme: "dark" }}
+            className="w-full px-3.5 py-2.5 bg-[#141724] border border-[#23283b] rounded-xl text-gray-100 text-sm focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition-all [&::-webkit-calendar-picker-indicator]:cursor-pointer [&::-webkit-calendar-picker-indicator]:invert"
           />
         </div>
 
         {/* Duration and Location */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div>
             <label
               htmlFor="duration"
-              className="block text-xs font-normal text-gray-400 mb-1.5"
+              className="block text-xs font-medium text-gray-400 mb-1.5"
             >
               Duration
             </label>
@@ -252,14 +252,14 @@ export default function AddOpportunityForm({
               name="duration"
               value={formData.duration}
               onChange={handleChange}
-              className="w-full px-3 py-2.5 bg-white border border-gray-200 rounded-lg text-gray-900 text-sm placeholder-gray-400 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/10 transition-all"
+              className="w-full px-3.5 py-2.5 bg-[#141724] border border-[#23283b] rounded-xl text-gray-100 text-sm placeholder-gray-500 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition-all"
               placeholder="e.g., 3 months, 48 hours"
             />
           </div>
           <div>
             <label
               htmlFor="location"
-              className="block text-xs font-normal text-gray-400 mb-1.5"
+              className="block text-xs font-medium text-gray-400 mb-1.5"
             >
               Location *
             </label>
@@ -270,7 +270,7 @@ export default function AddOpportunityForm({
               value={formData.location}
               onChange={handleChange}
               required
-              className="w-full px-3 py-2.5 bg-white border border-gray-200 rounded-lg text-gray-900 text-sm placeholder-gray-400 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/10 transition-all"
+              className="w-full px-3.5 py-2.5 bg-[#141724] border border-[#23283b] rounded-xl text-gray-100 text-sm placeholder-gray-500 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition-all"
               placeholder="e.g., Remote, San Francisco, CA"
             />
           </div>
@@ -280,7 +280,7 @@ export default function AddOpportunityForm({
         <div>
           <label
             htmlFor="stipend"
-            className="block text-xs font-normal text-gray-400 mb-1.5"
+            className="block text-xs font-medium text-gray-400 mb-1.5"
           >
             Stipend/Prize Badge
           </label>
@@ -290,10 +290,10 @@ export default function AddOpportunityForm({
             name="stipend"
             value={formData.stipend}
             onChange={handleChange}
-            className="w-full px-3 py-2.5 bg-white border border-gray-200 rounded-lg text-gray-900 text-sm placeholder-gray-400 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/10 transition-all"
+            className="w-full px-3.5 py-2.5 bg-[#141724] border border-[#23283b] rounded-xl text-gray-100 text-sm placeholder-gray-500 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition-all"
             placeholder="e.g., $2k/month, $50k prize"
           />
-          <p className="mt-2 text-sm text-gray-400">
+          <p className="mt-1.5 text-xs text-gray-500">
             This text will appear in the top-right highlight badge
           </p>
         </div>
@@ -302,7 +302,7 @@ export default function AddOpportunityForm({
         <button
           type="submit"
           disabled={loading}
-          className="w-full px-6 py-3 bg-blue-500 hover:bg-blue-400 text-gray-900 font-normal rounded-lg transition-all duration-300 hover:shadow-[0_0_25px_rgba(19,40,85,0.6)] disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+          className="w-full px-6 py-3 bg-[#0673f9] hover:bg-blue-600 border border-blue-400/30 text-white font-medium rounded-xl transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
         >
           {loading ? (
             <>
@@ -314,9 +314,9 @@ export default function AddOpportunityForm({
           ) : (
             <>
               {isEditMode ? (
-                <Save className="w-5 h-5" />
+                <Save className="w-4 h-4" />
               ) : (
-                <Plus className="w-5 h-5" />
+                <Plus className="w-4 h-4" />
               )}
               <span>
                 {isEditMode ? "Update Opportunity" : "Add Opportunity"}

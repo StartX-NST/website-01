@@ -73,27 +73,38 @@ export default function ApplicationsManager() {
   );
 
   const getStatusBadge = (status: Application["status"]) => {
-    const statusConfig = {
-      submitted: { text: "New", color: "blue" },
-      under_review: { text: "Reviewing", color: "yellow" },
-      approved: { text: "Approved", color: "green" },
-      rejected: { text: "Rejected", color: "red" },
-    };
-
-    const config = statusConfig[status];
-    return (
-      <span
-        className={`px-2.5 py-1 text-xs font-semibold rounded-full bg-${config.color}-500/10 border border-${config.color}-500/20 text-${config.color}-400`}
-      >
-        {config.text}
-      </span>
-    );
+    switch (status) {
+      case "submitted":
+        return (
+          <span className="px-2.5 py-1 text-xs font-semibold rounded-full bg-blue-500/15 border border-blue-500/30 text-blue-400">
+            New
+          </span>
+        );
+      case "under_review":
+        return (
+          <span className="px-2.5 py-1 text-xs font-semibold rounded-full bg-amber-500/15 border border-amber-500/30 text-amber-400">
+            Reviewing
+          </span>
+        );
+      case "approved":
+        return (
+          <span className="px-2.5 py-1 text-xs font-semibold rounded-full bg-emerald-500/15 border border-emerald-500/30 text-emerald-400">
+            Approved
+          </span>
+        );
+      case "rejected":
+        return (
+          <span className="px-2.5 py-1 text-xs font-semibold rounded-full bg-rose-500/15 border border-rose-500/30 text-rose-400">
+            Rejected
+          </span>
+        );
+    }
   };
 
   return (
     <div>
       <div className="flex items-center justify-between mb-6">
-        <h2 className="text-base font-normal text-gray-900">
+        <h2 className="text-base font-medium text-gray-100">
           Membership Applications ({applications.length})
         </h2>
 
@@ -101,7 +112,7 @@ export default function ApplicationsManager() {
         <select
           value={filter}
           onChange={(e) => setFilter(e.target.value as typeof filter)}
-          className="px-3 py-2 bg-white border border-gray-200 rounded-lg text-gray-900 text-sm focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/10 transition-all"
+          className="px-3.5 py-2 bg-[#141724] border border-[#23283b] rounded-xl text-gray-100 text-sm focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition-all [&>option]:bg-[#141724] [&>option]:text-gray-100"
         >
           <option value="all">All Applications</option>
           <option value="submitted">New</option>
@@ -112,51 +123,51 @@ export default function ApplicationsManager() {
       </div>
 
       {loading ? (
-        <div className="text-center py-12">
+        <div className="text-center py-16">
           <Loader2 className="w-8 h-8 text-blue-500 mx-auto mb-4 animate-spin" />
-          <p className="text-gray-400">Loading applications...</p>
+          <p className="text-gray-400 text-sm">Loading applications...</p>
         </div>
       ) : filteredApplications.length === 0 ? (
-        <div className="text-center py-12">
-          <Clock className="w-10 h-10 text-gray-300 mx-auto mb-3" />
-          <p className="text-gray-400">No applications found</p>
+        <div className="text-center py-16">
+          <Clock className="w-10 h-10 text-gray-600 mx-auto mb-3" />
+          <p className="text-gray-400 text-sm">No applications found</p>
         </div>
       ) : (
         <div className="space-y-4">
           {filteredApplications.map((app) => (
             <div
               key={app._id}
-              className="rounded-xl p-5 bg-gray-50 hover:bg-gray-100 transition-colors"
+              className="rounded-xl p-5 bg-[#141724] border border-[#23283b] hover:border-gray-700/80 transition-all"
             >
               <div className="flex items-start justify-between mb-4">
                 <div className="flex-1">
                   <div className="flex items-center gap-3 mb-2">
-                    <h3 className="text-sm font-normal text-gray-900">
+                    <h3 className="text-sm font-medium text-gray-100">
                       {app.firstName} {app.lastName}
                     </h3>
                     {getStatusBadge(app.status)}
                   </div>
-                  <div className="flex flex-wrap gap-4 text-sm text-gray-400">
+                  <div className="flex flex-wrap gap-4 text-xs text-gray-400">
                     {app.user && (
                       <div className="flex items-center gap-1.5">
-                        <Mail className="w-4 h-4" />
+                        <Mail className="w-3.5 h-3.5 text-gray-500" />
                         <span>{app.user.email}</span>
                       </div>
                     )}
                     {!app.user && (
                       <div className="flex items-center gap-1.5">
-                        <Mail className="w-4 h-4" />
+                        <Mail className="w-3.5 h-3.5 text-gray-500" />
                         <span className="text-gray-500 italic">
                           User deleted
                         </span>
                       </div>
                     )}
                     <div className="flex items-center gap-1.5">
-                      <Phone className="w-4 h-4" />
+                      <Phone className="w-3.5 h-3.5 text-gray-500" />
                       <span>{app.phoneNumber}</span>
                     </div>
                     <div className="flex items-center gap-1.5">
-                      <Calendar className="w-4 h-4" />
+                      <Calendar className="w-3.5 h-3.5 text-gray-500" />
                       <span>
                         Submitted:{" "}
                         {new Date(app.createdAt).toLocaleDateString()}
@@ -171,7 +182,7 @@ export default function ApplicationsManager() {
                     onClick={() =>
                       setSelectedApp(selectedApp?._id === app._id ? null : app)
                     }
-                    className="px-3 py-1.5 text-xs font-normal text-blue-600 hover:text-blue-700 transition-colors bg-blue-50 hover:bg-blue-100 rounded-lg"
+                    className="px-3 py-1.5 text-xs font-medium text-blue-400 hover:text-blue-300 transition-colors bg-blue-500/15 hover:bg-blue-500/25 border border-blue-500/30 rounded-lg"
                   >
                     {selectedApp?._id === app._id
                       ? "Hide Details"
@@ -182,45 +193,45 @@ export default function ApplicationsManager() {
 
               {/* Expanded Details */}
               {selectedApp?._id === app._id && (
-                <div className="mt-4 pt-4 border-t border-gray-100 space-y-4 pt-4">
+                <div className="mt-4 pt-4 border-t border-[#23283b] space-y-4">
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
-                      <label className="text-xs font-normal text-gray-400 uppercase">
+                      <label className="text-xs font-medium text-gray-400 uppercase tracking-wider">
                         Year of Study
                       </label>
-                      <p className="text-gray-900 mt-1">Year {app.yearOfStudy}</p>
+                      <p className="text-gray-200 mt-1 text-sm">Year {app.yearOfStudy}</p>
                     </div>
                   </div>
 
                   <div>
-                    <label className="text-xs font-normal text-gray-400 uppercase">
+                    <label className="text-xs font-medium text-gray-400 uppercase tracking-wider">
                       Skills & Interests
                     </label>
-                    <p className="text-gray-900 mt-1">{app.skillsOrInterests}</p>
+                    <p className="text-gray-200 mt-1 text-sm">{app.skillsOrInterests}</p>
                   </div>
 
                   <div>
-                    <label className="text-xs font-normal text-gray-400 uppercase">
+                    <label className="text-xs font-medium text-gray-400 uppercase tracking-wider">
                       Previous Experience
                     </label>
-                    <p className="text-gray-900 mt-1">
+                    <p className="text-gray-200 mt-1 text-sm">
                       {app.prevExp || "None provided"}
                     </p>
                   </div>
 
                   <div>
-                    <label className="text-xs font-normal text-gray-400 uppercase">
+                    <label className="text-xs font-medium text-gray-400 uppercase tracking-wider">
                       Why Join StartX
                     </label>
-                    <p className="text-gray-900 mt-1">{app.whyJoin}</p>
+                    <p className="text-gray-200 mt-1 text-sm">{app.whyJoin}</p>
                   </div>
 
                   {/* Decision Buttons */}
-                  <div className="flex gap-3 pt-4">
+                  <div className="flex gap-3 pt-3">
                     <button
                       onClick={() => handleStatusChange(app._id, "approved")}
                       disabled={app.status === "approved"}
-                      className="flex items-center gap-2 px-4 py-2 bg-green-50 hover:bg-green-100 text-green-700 text-sm font-normal rounded-lg transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+                      className="flex items-center gap-2 px-4 py-2 bg-emerald-500/15 hover:bg-emerald-500/25 border border-emerald-500/30 text-emerald-400 text-sm font-medium rounded-xl transition-all disabled:opacity-40 disabled:cursor-not-allowed"
                     >
                       <Check className="w-4 h-4" />
                       <span>Approve</span>
@@ -228,7 +239,7 @@ export default function ApplicationsManager() {
                     <button
                       onClick={() => handleStatusChange(app._id, "rejected")}
                       disabled={app.status === "rejected"}
-                      className="flex items-center gap-2 px-4 py-2 bg-red-50 hover:bg-red-100 text-red-700 text-sm font-normal rounded-lg transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+                      className="flex items-center gap-2 px-4 py-2 bg-rose-500/15 hover:bg-rose-500/25 border border-rose-500/30 text-rose-400 text-sm font-medium rounded-xl transition-all disabled:opacity-40 disabled:cursor-not-allowed"
                     >
                       <X className="w-4 h-4" />
                       <span>Reject</span>
@@ -238,7 +249,7 @@ export default function ApplicationsManager() {
                         onClick={() =>
                           handleStatusChange(app._id, "under_review")
                         }
-                        className="flex items-center gap-2 px-4 py-2 bg-amber-50 hover:bg-amber-100 text-amber-700 text-sm font-normal rounded-lg transition-all"
+                        className="flex items-center gap-2 px-4 py-2 bg-amber-500/15 hover:bg-amber-500/25 border border-amber-500/30 text-amber-400 text-sm font-medium rounded-xl transition-all"
                       >
                         <Clock className="w-4 h-4" />
                         <span>Mark as Reviewing</span>
